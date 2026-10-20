@@ -259,3 +259,224 @@ footer{background:#29332b;padding-top:49px}
  .footer-note{align-items:flex-start;line-height:1.8}
 }
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}
+
+
+/* MIA — premium editorial art direction, v2 */
+:root{
+ --ink:#20271f;--muted:#77766b;--paper:#f5f1e9;--line:#ded6c7;
+ --rose:#bd7b78;--green:#233b30;--champagne:#d6bd92;--cream:#eee5d7;
+ --serif:"Bodoni MT", "Times New Roman", serif;
+}
+body{
+ background:
+  radial-gradient(ellipse at 8% 2%,rgba(220,202,174,.16),transparent 32rem),
+  var(--paper);
+ color:var(--ink);
+}
+::selection{background:#c7a77c;color:#1d2c23}
+.topline{
+ height:31px;background:#1c3027;color:#eee4d2;
+ letter-spacing:.04em;font-size:10px;
+}
+.topline span{color:#d8c19a}
+.header{
+ height:94px;border-bottom:1px solid #d8d0c2;
+ position:relative;z-index:20;
+}
+.brandlogo{gap:12px;font-size:22px;letter-spacing:-.7px}
+.brandlogo>b{
+ width:47px;height:47px;border-radius:3px 18px 3px 18px;
+ background:linear-gradient(145deg,#304d3d,#17271f);
+ color:#ead6b2;font-size:30px;
+ box-shadow:inset 0 0 0 1px #d4bc8b65,0 8px 20px #1e33221b;
+}
+.brandlogo small{font-size:8px;letter-spacing:2px;margin-top:4px}
+.header nav{gap:29px;font-size:12px;color:#55594f}
+.header nav a{position:relative;padding-block:9px}
+.header nav a:after{
+ content:"";position:absolute;right:0;bottom:1px;width:0;height:1px;
+ background:var(--rose);transition:width .25s ease;
+}
+.header nav a:hover:after{width:100%}
+.search{background:#ebe5d9;border:1px solid transparent;border-radius:2px;width:220px}
+.search:focus-within{border-color:#b9a583;background:#f9f5ee}
+.bag{border:1px solid #d8d0c2;border-radius:2px;width:42px;height:42px;display:grid;place-items:center}
+.bag:hover{background:#e9dfcf}
+.btn{
+ border-radius:2px;background:#233b30;padding:15px 23px;
+ box-shadow:0 8px 20px #233b301c;letter-spacing:.01em;
+ transition:transform .25s,background .25s,box-shadow .25s;
+}
+.btn:hover{background:#304e3d;transform:translateY(-2px);box-shadow:0 12px 24px #233b3026}
+.text-link{border-bottom:1px solid #b8a68b;padding-bottom:5px}
+.hero{
+ position:relative;isolation:isolate;overflow:hidden;
+ grid-template-columns:.92fr 1.08fr;gap:5.5%;
+ padding:48px 4.2% 48px;
+ margin-top:24px;margin-bottom:25px;
+ background:
+  radial-gradient(ellipse at 83% 17%,#526c5140,transparent 35%),
+  linear-gradient(115deg,#f4efe5 0%,#f0e8da 53%,#e4d7c2 100%);
+ border:1px solid #e0d4c0;
+ box-shadow:0 22px 55px #51442e0b;
+}
+.hero:before{
+ content:"MIA BEAUTY / OBJECTS OF DESIRE";
+ position:absolute;z-index:-1;left:-38px;bottom:40px;
+ writing-mode:vertical-rl;transform:rotate(180deg);
+ font:9px Georgia,serif;letter-spacing:3px;color:#a4967c;
+}
+.herotext{padding:22px 0 16px}
+.eyebrow{color:#8f5c57;font-size:10px;letter-spacing:1.6px}
+.hero h1{
+ font-size:clamp(47px,5.2vw,73px);line-height:1.28;letter-spacing:-2.6px;
+ margin:23px 0 16px;max-width:540px;
+}
+.hero h1 em,.sectionhead h2 em,.newsletter h2 em{color:#a96062}
+.herotext>p{font-size:13px;line-height:2.35;max-width:390px;color:#6f7066}
+.stats{gap:25px;margin-top:42px}
+.stats b{font-size:17px;font-weight:600;color:#293b2e}
+.stats small{font-size:10px;color:#77766b}
+.stats>i{background:#cfc2ac;height:34px}
+.heroart{
+ min-height:455px;border-radius:46% 46% 2px 2px;
+ background:
+  radial-gradient(ellipse at 50% 72%,#a59a8050,transparent 40%),
+  linear-gradient(135deg,#d7c9b4 0%,#eee4d3 45%,#c9bba4 100%);
+ box-shadow:inset 0 0 0 1px #fff8,0 22px 45px #6c58401a;
+}
+.heroart:before{
+ content:"";position:absolute;inset:14px;border:1px solid #a995765c;
+ border-radius:46% 46% 0 0;pointer-events:none;z-index:1;
+}
+.heroart:after{
+ bottom:-95px;left:-5%;width:110%;height:190px;
+ background:linear-gradient(180deg,#c3b49e,#b3a38b);
+ box-shadow:0 -10px 35px #66543b0d;
+}
+.sun{background:radial-gradient(circle at 38% 32%,#fff6df,#e9d6b5 72%);opacity:.9}
+.orbit{border-color:#b6a181;opacity:.72}
+.bottle,.jar{filter:drop-shadow(12px 18px 13px #59493427);transition:transform .5s cubic-bezier(.2,.7,.2,1)}
+.heroart:hover .b1{transform:translateY(-7px) rotate(-2deg)}
+.heroart:hover .b2{transform:translateY(-9px) rotate(2deg)}
+.heroart:hover .jar{transform:translateY(-5px)}
+.note{background:#f9f3e8;border:1px solid #d7c7ac;color:#665744;box-shadow:0 8px 25px #604c3010}
+.hero-sticker{border:1px solid #bba680;background:#f6efe2;color:#5d644e}
+.artlabel{color:#504f41;letter-spacing:2px}
+.benefits{padding:26px 0;border-color:#d9d0c0}
+.benefits>div{gap:13px}
+.benefits>div>svg{color:#9a7160}
+.benefits b{font-size:12px;letter-spacing:.01em}
+.benefits small{color:#77766b}
+.categories-section{padding-top:83px;padding-bottom:30px}
+.sectionhead{margin-bottom:28px}
+.sectionhead h2{font-size:clamp(28px,3vw,39px);letter-spacing:-1.1px}
+.sectionhead>span{font:10px Georgia,serif;letter-spacing:2px;color:#a08d70}
+.category-grid{gap:17px}
+.category-card{
+ position:relative;overflow:hidden;min-height:215px;padding:24px;
+ background:linear-gradient(135deg,#ece3d4,#f4eee3);
+ border:1px solid #e0d5c3;border-radius:2px;
+ transition:transform .3s,border-color .3s,box-shadow .3s;
+}
+.category-card:nth-child(2){background:linear-gradient(135deg,#ead8d2,#f4e8e0)}
+.category-card:nth-child(3){background:linear-gradient(135deg,#dfe3d8,#eef0e7)}
+.category-card:hover{transform:translateY(-5px);border-color:#c6b08b;box-shadow:0 17px 35px #493d2d12}
+.category-card:after{
+ content:"";position:absolute;right:-45px;top:-65px;width:170px;height:170px;
+ border:1px solid #ffffffa0;border-radius:50%;pointer-events:none;
+}
+.category-number{font:10px Georgia,serif;letter-spacing:1px;color:#927c5b}
+.category-copy strong{font-size:19px;letter-spacing:-.5px}
+.category-copy>small{color:#7a7469}
+.category-link{border-bottom:1px solid #bba887;padding-bottom:5px}
+.category-art{filter:drop-shadow(8px 12px 8px #46382a1a)}
+.editorial{
+ margin-top:72px;margin-bottom:70px;gap:8%;
+ padding:44px;background:#233b30;color:#f4ecde;
+ position:relative;overflow:hidden;border-radius:2px;
+}
+.editorial:after{
+ content:"";position:absolute;right:-100px;top:-180px;width:450px;height:450px;
+ border:1px solid #d6bd9233;border-radius:50%;
+ box-shadow:0 0 0 35px #d6bd9208,0 0 0 70px #d6bd9208;
+ pointer-events:none;
+}
+.editorial-art{background:linear-gradient(135deg,#b5a58d,#e1d3bd 50%,#8d9b84);border-radius:48% 48% 2px 2px;min-height:330px}
+.editorial-ring{border-color:#f1e3c288}
+.editorial-flower{color:#52634f}
+.editorial-note{background:#f2e7d4;color:#4e4a3b}
+.editorial-copy{position:relative;z-index:2}
+.editorial-copy .eyebrow{color:#d7bd92}
+.editorial-copy h2{font-size:clamp(32px,3.5vw,47px);line-height:1.55;letter-spacing:-1.3px}
+.editorial-copy p{color:#d1d4c8;line-height:2.35}
+.editorial .btn{background:#e4d2b1;color:#26392d;box-shadow:none}
+.editorial .btn:hover{background:#f0dfc2}
+.products{padding-block:38px 85px}
+.filters{gap:9px}
+.filters button{border-radius:2px;border:1px solid #d9d0c0;background:transparent;transition:all .2s}
+.filters button:hover,.filters button.active{background:#233b30;color:#f5eddf;border-color:#233b30}
+.sort-label select{border:1px solid #d9d0c0;border-radius:2px;background:#f8f4ec;padding:8px 10px}
+.product-count{color:#888173}
+.grid{gap:20px}
+.card{
+ background:#faf7f0;border:1px solid #e3dbce;border-radius:2px;
+ overflow:hidden;transition:transform .3s,box-shadow .3s,border-color .3s;
+}
+.card:hover{transform:translateY(-5px);box-shadow:0 18px 36px #473c2c13;border-color:#cdbb9d}
+.visual{background:linear-gradient(140deg,#e9e0d2,#f3ede3 58%,#ded1bc);overflow:hidden}
+.visual:before{background:radial-gradient(circle,#fff8e7 0%,#ead9bd 70%,#d7c4a4 100%);border:1px solid #ffffffa0}
+.visual-grain{opacity:.25}
+.shape{filter:drop-shadow(10px 14px 9px #51412b2b);transition:transform .35s cubic-bezier(.2,.7,.2,1)}
+.card:hover .shape{transform:translateY(-7px) scale(1.025)}
+.tag{background:#263e31;color:#f6ead4;border-radius:1px;letter-spacing:.03em}
+.off{background:#a75e60;color:#fff7ef;border-radius:1px}
+.details{padding:17px 16px 19px}
+.details h3{font-size:13px;line-height:1.8;color:#282d26}
+.details .brand{font-size:10px;letter-spacing:.08em;color:#8a8376}
+.price b{font-size:13px;color:#263b2e}
+.price del{color:#a19a8e}
+.price button{border:1px solid #d6cbb8;border-radius:2px;background:#eee5d6;color:#293d30;transition:all .2s}
+.price button:hover{background:#263e31;color:#fff}
+.catalog-foot{border-top:1px solid #ddd3c2;color:#77766b;padding-top:22px}
+.newsletter{
+ background:#e8dfd0;border:1px solid #d8c9b2;border-radius:2px;
+ padding:34px 38px;margin-bottom:65px;position:relative;overflow:hidden;
+}
+.newsletter:after{content:"";position:absolute;right:-65px;bottom:-150px;width:260px;height:260px;border:1px solid #bba5816b;border-radius:50%;box-shadow:0 0 0 25px #bba58112,0 0 0 50px #bba58112;pointer-events:none}
+.newsletter-mark{background:#263e31;color:#e6d1ad;border-radius:2px}
+.newsletter h2{font-size:clamp(22px,2.4vw,31px);letter-spacing:-.7px}
+.newsletter p{color:#777367}
+.newsletter form{position:relative;z-index:1}
+.newsletter input{background:#f8f3e9;border:1px solid #d3c4ac;border-radius:2px}
+.newsletter form button{background:#263e31;border-radius:2px}
+.foot{background:#1c2f26;color:#f1e7d6;padding:50px 0 26px}
+.foot-brand .brandlogo>b{background:#e2cfad;color:#24372c}
+.foot-brand .brandlogo small{color:#c4bba9}
+.foot>div:not(:first-child)>b{color:#e5d2ae}
+.foot>div:not(:first-child)>a,.foot span{color:#c6c8bb}
+.footer-note,.copyright{border-color:#ffffff20}
+.mobile-bottom-nav{background:#f7f2e9f5;border-color:#d8cdbb}
+.mobile-bottom-nav a:hover,.mobile-bottom-nav button:hover{color:#a96062}
+.shade{background:#18271fd1;backdrop-filter:blur(8px)}
+.drawer{background:#f8f3e9;border-left:1px solid #d8c9b2}
+@media(max-width:800px){
+ .hero{padding:28px 24px 30px;margin-top:14px;gap:20px}
+ .hero:before{display:none}
+ .heroart{min-height:390px}
+ .editorial{padding:25px;gap:25px;margin-block:48px}
+ .categories-section{padding-top:58px}
+ .newsletter{padding:25px 22px}
+}
+@media(max-width:480px){
+ .topline{background:#1c3027}
+ .header{height:72px}
+ .hero{padding:24px 18px 20px}
+ .hero h1{font-size:43px;line-height:1.42}
+ .heroart{min-height:315px}
+ .categories-section{padding-top:48px}
+ .category-card{border-radius:2px}
+ .editorial{padding:20px}
+ .products{padding-bottom:55px}
+ .card:hover{transform:none}
+}
