@@ -100,15 +100,18 @@ export default function Home() {
             <div><b>رایحه</b><small>امضای شخصی</small></div>
           </div>
         </div>
-        <div className="heroart neon-stage" aria-label="فضای نئونی و لوکس میاشاپ">
-          <div className="neon-halo halo-one" /><div className="neon-halo halo-two" />
-          <div className="neon-orb orb-pink" /><div className="neon-orb orb-green" />
-          <div className="neon-petal petal-one">✿</div><div className="neon-petal petal-two">✧</div>
-          <div className="neon-product product-serum"><span>m.</span><small>GLOW SERUM</small></div>
-          <div className="neon-product product-perfume"><span>MIA</span><small>EAU DE PARFUM</small></div>
-          <div className="neon-product product-cream"><span>m.</span><small>SKIN RITUAL</small></div>
-          <div className="neon-stage-label"><span>THE MIA BEAUTY EDIT</span><b>01 / YOUR GLOW ERA</b></div>
-          <div className="neon-side-note">BEAUTY<br/>AFTER DARK</div>
+        <div className="heroart neon-stage" aria-label="بنر اصلی میاشاپ با دسترسی سریع به محصولات">
+          <div className="hero-overlay-content" dir="rtl">
+            <span className="hero-overlay-kicker"><Sparkles size={15} /> THE MIA BEAUTY EDIT</span>
+            <h1>زیبایی، یک انتخاب نیست؛<br /><em>یک سبک زندگی است.</em></h1>
+            <p>از مراقبت پوست تا آرایش و رایحه‌های خاص؛ انتخاب‌هایی برای درخشش به سبک خودت.</p>
+            <div className="hero-overlay-actions">
+              <a className="hero-overlay-primary" href="#products">مشاهده محصولات <ArrowLeft size={17} /></a>
+              <a className="hero-overlay-secondary" href="#categories">کشف دسته‌بندی‌ها <ChevronLeft size={16} /></a>
+            </div>
+            <div className="hero-overlay-trust"><span><ShieldCheck size={15} /> انتخاب آگاهانه</span><i /><span><Heart size={15} /> زیبایی به سبک تو</span></div>
+          </div>
+          <span className="hero-overlay-frame" aria-hidden="true" />
         </div>
       </section>
 
