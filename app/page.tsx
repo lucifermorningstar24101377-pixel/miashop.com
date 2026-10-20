@@ -2,8 +2,8 @@
 
 import { useMemo, useState } from "react";
 import {
-  Search, ShoppingBag, Heart, Sparkles, Truck, ShieldCheck, ArrowLeft,
-  Plus, X, Minus, Star, Instagram, Menu, ChevronLeft, Flower2, Gift,
+  Search, ShoppingBag, Heart, Sparkles, ShieldCheck, ArrowLeft,
+  Plus, X, Minus, Instagram, Menu, ChevronLeft, Flower2, Gift,
   PackageCheck, SlidersHorizontal
 } from "lucide-react";
 
@@ -126,7 +126,7 @@ export default function Home() {
         <div className="category-grid">
           {categories.map((item, index) => (
             <button className={"category-card " + item.tone} key={item.cat} onClick={() => chooseCategory(item.cat)}>
-              <span className="category-number">۰{index + ۱}</span>
+              <span className="category-number">{"۰" + (index + 1).toLocaleString("fa-IR")}</span>
               <span className="category-art" aria-hidden="true"><b>{item.mark}</b><small>{item.en}</small></span>
               <span className="category-copy"><small>{item.note}</small><strong>{item.title}</strong><span className="category-link">مشاهده محصولات <ArrowLeft size={15} /></span></span>
             </button>
