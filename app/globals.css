@@ -524,3 +524,56 @@ body{font-family:"Estedad",Tahoma,sans-serif;background:radial-gradient(ellipse 
 @media(max-width:800px){.hero{padding:30px 20px;margin-top:0;gap:24px}.heroart.neon-stage{min-height:390px}.editorial{padding:25px}}
 @media(max-width:480px){.topline{background:#030806}.hero{padding:25px 17px}.hero h1{font-size:41px;letter-spacing:-1.2px}.heroart.neon-stage{min-height:320px}.product-serum{left:18%;top:32%;transform:scale(.86) rotate(-8deg)}.product-perfume{right:15%;top:24%;transform:scale(.86)}.product-cream{transform:scale(.88);bottom:17%}.petal-one{font-size:60px}.neon-stage-label{font-size:7px;left:15px;right:15px}.neon-side-note{right:8px}}
 @media(prefers-reduced-motion:reduce){.neon-product,.btn,.category-card{transition:none}}
+
+
+/* MIASHOP reference hero: full-width artwork, store content follows below */
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Estedad:wght@300;400;500;600;700&display=swap');
+:root{--ink:#f7eee4;--muted:#c7b8ad;--paper:#030d0a;--line:#3c453d;--rose:#ff5aab;--green:#00e5b0;--champagne:#e9bd8a}
+html,body{background:#020b08;color:#f7eee4;font-family:'Estedad','Vazirmatn',Tahoma,sans-serif}
+.topline{display:none}
+.header{width:100%;max-width:none;height:76px;padding-inline:clamp(18px,4vw,64px);border-bottom:1px solid #d8b98a30;background:#020b08;position:relative;z-index:5}
+.brandlogo{color:#e9bd8a;font-family:'Cormorant Garamond',serif;letter-spacing:3px}
+.brandlogo>b{display:none}
+.brandlogo span{font-family:'Estedad',sans-serif;font-size:16px}
+.brandlogo small{font-family:'Cormorant Garamond',serif;color:#e9bd8a;letter-spacing:2px}
+.header nav{color:#f7eee4;gap:clamp(12px,2.3vw,34px)}
+.search{background:#0d1915;border:1px solid #d8b98a45;color:#e9bd8a}
+.search input{color:#fff}
+.bag,.mobile-menu-toggle{color:#e9bd8a}
+.hero.wrap{display:block;width:100%;max-width:none;padding:0;margin:0}
+.hero .herotext{display:none}
+.hero .heroart{width:100%;max-width:none;height:clamp(510px,calc(100svh - 76px),880px);min-height:510px;margin:0;border-radius:0;overflow:hidden;background:#020b08 url('https://yesojugjdxyjlznelmll.supabase.co/storage/v1/object/public/images/miashop-hero.png') center center/cover no-repeat;display:block}
+.hero .heroart:after{display:none}
+.hero .heroart>*{display:none!important}
+.benefits{width:min(1180px,calc(100% - 48px));border-color:#d8b98a35;color:#e9bd8a}
+.benefits>div{color:#e9bd8a}
+.benefits span{color:#f7eee4}
+.benefits small{color:#c7b8ad}
+.sectionhead h2,.newsletter h2{color:#f7eee4}
+.sectionhead h2 em,.newsletter h2 em{color:#ff9bc8}
+.sectionhead p,.newsletter p{color:#c7b8ad}
+.sectionhead>span{color:#e9bd8a}
+.category-card,.editorial,.newsletter{background:#081510;border-color:#35483d;color:#f7eee4}
+.category-copy strong,.category-copy>small{color:#f7eee4}
+.filters button{border-color:#526057;color:#d8c9bb}
+.filters button.active,.btn,.newsletter form button{background:#123a2d;color:#fff}
+.visual{background:#101d17}
+.details h3,.price b{color:#f7eee4}
+.details>small,.price del{color:#b9aaa0}
+.price button{border-color:#d8b98a;color:#e9bd8a}
+footer{background:#010604}
+@media(max-width:760px){
+ .header{height:66px;padding-inline:16px;gap:10px}
+ .header nav{background:#03110c;border:1px solid #d8b98a40}
+ .search{width:min(42vw,180px);padding:9px}
+ .hero .heroart{height:clamp(440px,72svh,680px);min-height:440px;background-position:58% center}
+ .benefits{grid-template-columns:1fr;gap:16px;padding-block:20px}
+ .benefits>div{justify-content:flex-start}
+ .grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+ .visual{height:205px}
+ .sectionhead h2{font-size:25px}
+ .sectionhead>span{display:none}
+ .newsletter{padding:28px 20px;display:block}
+ .newsletter form{width:100%;margin-top:18px}
+}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*:before,*:after{transition:none!important;animation:none!important}}
