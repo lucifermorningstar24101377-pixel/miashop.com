@@ -542,7 +542,7 @@ html,body{background:#020b08;color:#f7eee4;font-family:'Estedad','Vazirmatn',Tah
 .bag,.mobile-menu-toggle{color:#e9bd8a}
 .hero.wrap{display:block;width:100%;max-width:none;padding:0;margin:0}
 .hero .herotext{display:none}
-.hero .heroart{width:100%;max-width:none;height:clamp(510px,calc(100svh - 76px),880px);min-height:510px;margin:0;border-radius:0;overflow:hidden;background:#020b08 url('https://yesojugjdxyjlznelmll.supabase.co/storage/v1/object/public/images/miashop-hero.png') center center/cover no-repeat;display:block}
+.hero .heroart{width:100%;max-width:none;height:clamp(510px,calc(100svh - 76px),880px);min-height:510px;margin:0;border-radius:0;overflow:hidden;background:#020b08 url('https://yesojugjdxyjlznelmll.supabase.co/storage/v1/object/sign/files/image/Neon%20Botanical%20Beauty%20Editorial.png?token=eyJraWQiOiI5NDhmNTg1My1mY2QyLTQwZWItODE5MS03Y2YwNDRjZGE0ZjUiLCJhbGciOiJIUzUxMiJ9.eyJ1cmwiOiJmaWxlcy9pbWFnZS9OZW9uIEJvdGFuaWNhbCBCZWF1dHkgRWRpdG9yaWFsLnBuZyIsInNjb3BlIjoiZG93bmxvYWQiLCJpYXQiOjE3OTI0ODcwNzgsImV4cCI6MTgyNDAyMzA3OH0.pvuMnsnEnNpshqPMaAFPr01UXYaVW311HZvJEnm8dZMx_sNbvxGuta4Cj8FQ0gGvaXS74tMaZyc3xVZqhw0qfQ') center center/cover no-repeat;display:block}
 .hero .heroart:after{display:none}
 .hero .heroart>*{display:none!important}
 .benefits{width:min(1180px,calc(100% - 48px));border-color:#d8b98a35;color:#e9bd8a}
