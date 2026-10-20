@@ -544,7 +544,35 @@ html,body{background:#020b08;color:#f7eee4;font-family:'Estedad','Vazirmatn',Tah
 .hero .herotext{display:none}
 .hero .heroart{width:100%;max-width:none;height:clamp(510px,calc(100svh - 76px),880px);min-height:510px;margin:0;border-radius:0;overflow:hidden;background:#020b08 url('https://yesojugjdxyjlznelmll.supabase.co/storage/v1/object/sign/files/image/Neon%20Botanical%20Beauty%20Editorial.png?token=eyJraWQiOiI5NDhmNTg1My1mY2QyLTQwZWItODE5MS03Y2YwNDRjZGE0ZjUiLCJhbGciOiJIUzUxMiJ9.eyJ1cmwiOiJmaWxlcy9pbWFnZS9OZW9uIEJvdGFuaWNhbCBCZWF1dHkgRWRpdG9yaWFsLnBuZyIsInNjb3BlIjoiZG93bmxvYWQiLCJpYXQiOjE3OTI0ODcwNzgsImV4cCI6MTgyNDAyMzA3OH0.pvuMnsnEnNpshqPMaAFPr01UXYaVW311HZvJEnm8dZMx_sNbvxGuta4Cj8FQ0gGvaXS74tMaZyc3xVZqhw0qfQ') center center/cover no-repeat;display:block}
 .hero .heroart:after{display:none}
-.hero .heroart>*{display:none!important}
+.hero .heroart>*{display:block!important}
+.hero .heroart{display:flex;align-items:center;justify-content:flex-start;background-position:center;background-size:cover}
+.hero-overlay-content{position:relative;z-index:6;width:min(54%,650px);margin-right:clamp(22px,6vw,92px);padding:clamp(20px,4vw,54px);text-align:right;background:linear-gradient(110deg,#020b08e8 0%,#020b08c9 75%,#020b0870 100%);border-right:2px solid #ff5aab;box-shadow:0 16px 60px #0005;backdrop-filter:blur(2px)}
+.hero-overlay-kicker{display:flex;align-items:center;gap:9px;color:#e9bd8a;font:11px "Cormorant Garamond",Georgia,serif;letter-spacing:2px}
+.hero-overlay-kicker svg{color:#ff5aab}
+.hero-overlay-content h1{font-family:"Estedad",Tahoma,sans-serif;font-size:clamp(30px,4vw,58px);line-height:1.55;letter-spacing:-1.4px;margin:18px 0 12px;color:#fff8f0}
+.hero-overlay-content h1 em{font-style:normal;background:linear-gradient(100deg,#f1d6a7,#ff70b2 65%,#7affdf);-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero-overlay-content p{max-width:500px;color:#e1d9d0;font-size:clamp(12px,1.2vw,15px);line-height:2.2;margin:0 0 24px}
+.hero-overlay-actions{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.hero-overlay-primary,.hero-overlay-secondary{display:inline-flex;align-items:center;justify-content:center;gap:9px;min-height:46px;padding:12px 19px;font-size:12px;font-weight:700;transition:transform .2s,box-shadow .2s,background .2s}
+.hero-overlay-primary{background:linear-gradient(100deg,#ff4fa1,#31dcb9);color:#06100d;border-radius:3px;box-shadow:0 0 25px #ff4fa12c}
+.hero-overlay-primary:hover{transform:translateY(-2px);box-shadow:0 0 34px #ff4fa14d}
+.hero-overlay-secondary{border:1px solid #e9bd8a80;color:#f7eee4;background:#06100d9c}
+.hero-overlay-secondary:hover{background:#e9bd8a1c}
+.hero-overlay-trust{display:flex;align-items:center;gap:15px;margin-top:24px;color:#e8d4b5;font-size:11px}
+.hero-overlay-trust span{display:inline-flex;align-items:center;gap:7px}
+.hero-overlay-trust svg{color:#ff86bb}
+.hero-overlay-trust i{height:18px;width:1px;background:#e9bd8a50}
+.hero-overlay-frame{position:absolute;z-index:5;inset:14px;border:1px solid #e9bd8a40;pointer-events:none}
+@media(max-width:760px){
+ .hero .heroart{justify-content:center;background-position:58% center}
+ .hero-overlay-content{width:min(92%,560px);margin:0;padding:22px 19px;background:linear-gradient(110deg,#020b08ee,#020b08d9 82%,#020b089e);border-right-width:2px}
+ .hero-overlay-content h1{font-size:clamp(27px,7vw,42px);line-height:1.6;margin:12px 0}
+ .hero-overlay-content p{font-size:12px;line-height:2}
+ .hero-overlay-primary,.hero-overlay-secondary{min-height:42px;padding:10px 13px;font-size:11px}
+ .hero-overlay-trust{gap:10px;font-size:10px;margin-top:17px;flex-wrap:wrap}
+ .hero-overlay-frame{inset:9px}
+}
+@media(max-width:380px){.hero-overlay-content{padding:18px 14px}.hero-overlay-actions{gap:8px}.hero-overlay-primary,.hero-overlay-secondary{padding:9px 10px}.hero-overlay-trust{font-size:9px}}
 .benefits{width:min(1180px,calc(100% - 48px));border-color:#d8b98a35;color:#e9bd8a}
 .benefits>div{color:#e9bd8a}
 .benefits span{color:#f7eee4}
