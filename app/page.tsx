@@ -100,15 +100,15 @@ export default function Home() {
             <div><b>رایحه</b><small>امضای شخصی</small></div>
           </div>
         </div>
-        <div className="heroart" aria-label="تصویرسازی محصولات زیبایی میاشاپ">
-          <div className="hero-art-kicker">A LITTLE RITUAL<br /><b>JUST FOR YOU</b></div>
-          <div className="sun" /><div className="orbit" />
-          <div className="bottle b1"><b>m.</b><small>GLOW SERUM</small></div>
-          <div className="bottle b2"><b>MIA</b><small>EAU DE PARFUM</small></div>
-          <div className="jar"><b>m.</b><small>SKIN CREAM</small></div>
-          <div className="leaf">❧</div>
-          <div className="hero-sticker"><Flower2 size={17} /><span>make room<br />for yourself</span></div>
-          <div className="artlabel">THE BEAUTY EDIT <span>NO. 01 — MIA</span></div>
+        <div className="heroart neon-stage" aria-label="فضای نئونی و لوکس میاشاپ">
+          <div className="neon-halo halo-one" /><div className="neon-halo halo-two" />
+          <div className="neon-orb orb-pink" /><div className="neon-orb orb-green" />
+          <div className="neon-petal petal-one">✿</div><div className="neon-petal petal-two">✧</div>
+          <div className="neon-product product-serum"><span>m.</span><small>GLOW SERUM</small></div>
+          <div className="neon-product product-perfume"><span>MIA</span><small>EAU DE PARFUM</small></div>
+          <div className="neon-product product-cream"><span>m.</span><small>SKIN RITUAL</small></div>
+          <div className="neon-stage-label"><span>THE MIA BEAUTY EDIT</span><b>01 / YOUR GLOW ERA</b></div>
+          <div className="neon-side-note">BEAUTY<br/>AFTER DARK</div>
         </div>
       </section>
 
