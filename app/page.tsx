@@ -169,7 +169,7 @@ export default function Home() {
               </div>
               <div className="details">
                 <small>{p.brand}</small><h3>{p.name}</h3>
-                <div className="price"><span><b>{toman(p.price)}</b>{p.old && <del>{toman(p.old)}</del>}</span><button onClick={() => add(p.id, 1)} aria-label={"افزودن " + p.name + " به سبد خرید"}><Plus size={19} /></button></div>
+                <div className="price"><span><b>{toman(p.price)}</b>{p.old && <del>{toman(p.old)}</del>}</span><button onClick={() => add(p.id, 1)} aria-label={"افزودن " + p.name + " به سبد خرید"}><Plus size={19} /><span className="add-label">افزودن</span></button></div>
               </div>
             </article>
           ))}
