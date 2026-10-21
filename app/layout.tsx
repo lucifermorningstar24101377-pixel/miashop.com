@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Cormorant_Garamond, Estedad, Vazirmatn } from "next/font/google";
+import { Cormorant_Garamond, Vazirmatn } from "next/font/google";
 import "./globals.css";
 
 const vazirmatn = Vazirmatn({
@@ -9,7 +9,7 @@ const vazirmatn = Vazirmatn({
   variable: "--font-vazirmatn",
 });
 
-const estedad = Estedad({
+const estedad = Vazirmatn({
   subsets: ["arabic", "latin"],
   weight: ["300", "400", "500", "600", "700", "800"],
   display: "swap",
