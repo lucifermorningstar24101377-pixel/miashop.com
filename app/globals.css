@@ -832,3 +832,54 @@ img,svg,video,canvas{max-width:100%}
   html{scroll-behavior:auto}
   *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}
 }
+
+
+/* Hero art direction: keep the campaign card in the clear space, away from the model's face. */
+.heroart.neon-stage{position:relative;background-position:68% center}
+.heroart.neon-stage .hero-overlay-content{
+  position:absolute;
+  left:clamp(14px,3vw,38px);
+  right:auto;
+  top:50%;
+  bottom:auto;
+  translate:0 -50%;
+  width:min(47%,470px);
+  max-width:470px;
+  margin:0;
+  padding:clamp(18px,2.5vw,34px);
+  border:1px solid #e9bd8a52;
+  border-right:3px solid #ff5aab;
+  border-radius:4px;
+  background:linear-gradient(115deg,#020b08f5 0%,#020b08ed 88%,#020b08d9 100%);
+  box-shadow:0 18px 55px #0005;
+  backdrop-filter:blur(8px);
+}
+.heroart.neon-stage .hero-overlay-frame{pointer-events:none}
+.heroart.neon-stage .hero-overlay-content h1{font-size:clamp(25px,2.7vw,42px);line-height:1.55;letter-spacing:0}
+.heroart.neon-stage .hero-overlay-content p{font-size:clamp(12px,1vw,14px);line-height:2}
+.heroart.neon-stage .hero-overlay-actions{display:flex;flex-wrap:wrap;gap:9px}
+.heroart.neon-stage .hero-overlay-primary,
+.heroart.neon-stage .hero-overlay-secondary{min-height:44px;padding:10px 12px;white-space:normal}
+@media(max-width:800px){
+  .heroart.neon-stage{background-position:68% center}
+  .hero .heroart.neon-stage .hero-overlay-content{
+    left:12px;right:auto;top:auto;bottom:12px;translate:none;
+    width:min(74%,330px);max-width:330px;
+    padding:clamp(13px,3.4vw,20px);
+    border-radius:4px;
+    background:linear-gradient(110deg,#020b08f7,#020b08ed 92%);
+  }
+  .hero .heroart.neon-stage .hero-overlay-content h1{font-size:clamp(20px,5.3vw,30px);line-height:1.55;margin:7px 0}
+  .hero .heroart.neon-stage .hero-overlay-content p{font-size:clamp(11px,2.9vw,13px);line-height:1.85;margin-bottom:10px}
+  .hero .heroart.neon-stage .hero-overlay-actions{grid-template-columns:minmax(0,1fr);display:grid;gap:7px}
+  .hero .heroart.neon-stage .hero-overlay-primary,.hero .heroart.neon-stage .hero-overlay-secondary{min-height:42px;padding:8px 10px;font-size:11px}
+  .hero .heroart.neon-stage .hero-overlay-trust{gap:7px;font-size:9px;margin-top:9px}
+}
+@media(max-width:380px){
+  .hero .heroart.neon-stage .hero-overlay-content{left:9px;bottom:9px;width:min(78%,300px);padding:11px}
+  .hero .heroart.neon-stage .hero-overlay-trust{display:none}
+  .hero .heroart.neon-stage .hero-overlay-content h1{font-size:20px}
+}
+@media(prefers-reduced-motion:reduce){
+  .hero-overlay-content,.hero-overlay-content h1,.hero-overlay-content>p,.hero-overlay-actions,.hero-overlay-trust{animation:none!important}
+}
