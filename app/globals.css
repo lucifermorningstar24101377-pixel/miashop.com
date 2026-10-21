@@ -663,3 +663,49 @@ body{font-family:'Vazirmatn','Estedad',Tahoma,sans-serif;font-weight:400;letter-
 button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible{outline:2px solid var(--rose);outline-offset:4px}
 @media(hover:none){.neon-stage:after{animation:none}.category-card:hover,.card:hover{transform:none}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}}
+
+
+/* Keep the editorial copy clear of the model's face: anchor the card to the left negative space. */
+.hero .heroart.neon-stage{position:relative;background-position:center center}
+.hero .heroart .hero-overlay-content{
+ position:absolute;
+ left:clamp(18px,4vw,58px);
+ right:auto;
+ top:50%;
+ translate:0 -50%;
+ width:min(37%,460px);
+ max-width:460px;
+ margin:0;
+ padding:clamp(16px,2.1vw,28px);
+ background:linear-gradient(110deg,#020b08f2 0%,#020b08e8 78%,#020b08d8 100%);
+ border-right:2px solid #ff5aab;
+ box-shadow:0 12px 42px #0003;
+ backdrop-filter:blur(1px);
+}
+.hero .heroart .hero-overlay-content h1{font-size:clamp(25px,2.8vw,40px);line-height:1.5;margin:12px 0 9px;letter-spacing:-.7px}
+.hero .heroart .hero-overlay-content p{font-size:clamp(11px,.95vw,13px);line-height:1.95;margin-bottom:15px}
+.hero .heroart .hero-overlay-kicker{font-size:10px;letter-spacing:1.2px}
+.hero .heroart .hero-overlay-actions{gap:9px}
+.hero .heroart .hero-overlay-primary,.hero .heroart .hero-overlay-secondary{min-height:40px;padding:9px 13px;font-size:11px}
+.hero .heroart .hero-overlay-trust{gap:9px;margin-top:15px;font-size:10px}
+@media(max-width:760px){
+ .hero .heroart.neon-stage{background-position:66% center}
+ .hero .heroart .hero-overlay-content{
+  left:12px;right:auto;top:auto;bottom:18px;translate:none;
+  width:min(76%,350px);max-width:350px;
+  padding:15px 14px;
+  background:linear-gradient(110deg,#020b08f5,#020b08ed 90%);
+  box-shadow:0 8px 28px #0004;
+ }
+ .hero .heroart .hero-overlay-content h1{font-size:clamp(23px,5.6vw,32px);line-height:1.45;margin:8px 0}
+ .hero .heroart .hero-overlay-content p{font-size:11px;line-height:1.75;margin-bottom:10px}
+ .hero .heroart .hero-overlay-kicker{font-size:9px;letter-spacing:.8px}
+ .hero .heroart .hero-overlay-primary,.hero .heroart .hero-overlay-secondary{min-height:36px;padding:8px 10px;font-size:10px}
+ .hero .heroart .hero-overlay-trust{display:none}
+ .hero-overlay-frame{inset:8px}
+}
+@media(max-width:380px){
+ .hero .heroart .hero-overlay-content{left:10px;bottom:14px;width:min(80%,310px);padding:12px}
+ .hero .heroart .hero-overlay-content h1{font-size:22px}
+ .hero .heroart .hero-overlay-content p{font-size:10px}
+}
