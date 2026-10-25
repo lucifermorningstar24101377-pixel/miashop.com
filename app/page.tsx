@@ -258,7 +258,6 @@ export default function Home() {
         <div className="category-grid">
           {categories.map((item, index) => (
             <button className={"category-card " + item.tone} key={item.en} onClick={() => chooseCategory(item.cat)} aria-label={item.title + "؛ مشاهده محصولات"}>
-              <span className="category-number">{"۰" + (index + 1).toLocaleString("fa-IR")}</span>
               <span className="category-art" aria-hidden="true"><b>{item.mark}</b><small>{item.en}</small></span>
               <span className="category-copy"><small>{item.note}</small><strong>{item.title}</strong><span className="category-link">مشاهده محصولات <ArrowLeft size={15} /></span></span>
             </button>
