@@ -991,3 +991,5 @@ img,svg,video,canvas{max-width:100%}
 }
 
 .toast-message{position:fixed;z-index:200;bottom:24px;left:24px;max-width:min(420px,calc(100vw - 32px));display:flex;align-items:center;gap:14px;padding:14px 16px;background:var(--green);color:#fff;border-radius:12px;box-shadow:0 12px 36px #0003}.toast-message button{display:inline-flex;align-items:center;justify-content:center;border:0;background:transparent;color:inherit;padding:4px}
+
+.shipping-progress{padding:14px 18px 4px}.shipping-progress p{margin:0 0 10px;color:var(--muted);font-size:12px}.shipping-progress-track{height:6px;border-radius:99px;overflow:hidden;background:var(--line)}.shipping-progress-track span{display:block;height:100%;background:var(--rose);border-radius:inherit;transition:width .25s ease}
