@@ -1,11 +1,9 @@
 "use client";
 
 import { FormEvent, useState } from "react";
-import { useSearchParams } from "next/navigation";
 import { LockKeyhole, ShieldCheck } from "lucide-react";
 
 export default function AdminLoginPage() {
-  const searchParams = useSearchParams();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
@@ -16,7 +14,7 @@ export default function AdminLoginPage() {
     try {
       const response = await fetch("/api/admin/login", {
         method: "POST", headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ username, password, next: searchParams.get("next") || "/admin" }),
+        body: JSON.stringify({ username, password, next: new URLSearchParams(window.location.search).get("next") || "/admin" }),
       });
       const result = await response.json();
       if (!response.ok) { setError(result.error || "ورود انجام نشد."); return; }
