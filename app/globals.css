@@ -1084,13 +1084,13 @@ img,svg,video,canvas{max-width:100%}
   border:1px solid #f2c8e533;
   border-radius:22px;
   background:
-    linear-gradient(90deg,rgba(8,7,14,.10) 0%,rgba(8,7,14,.35) 38%,rgba(8,7,14,.90) 100%),
+    linear-gradient(90deg,rgba(8,7,14,.90) 0%,rgba(8,7,14,.35) 48%,rgba(8,7,14,.08) 100%),
     url("https://yesojugjdxyjlznelmll.supabase.co/storage/v1/object/public/files/image/beauty-routine.webp.jpg") center/cover no-repeat;
   box-shadow:0 22px 55px rgba(0,0,0,.22);
 }
 .editorial.wrap .editorial-art{display:none}
 .editorial.wrap .editorial-copy{
-  grid-column:2;
+  grid-column:1;
   max-width:440px;
   color:#fff;
   position:relative;
