@@ -2,6 +2,7 @@
 
 import { useEffect, useMemo, useRef, useState } from "react";
 import { normalizeFa } from "@/lib/text";
+import { FREE_SHIPPING_THRESHOLD } from "@/lib/pricing";
 import {
   Search, ShoppingBag, Heart, Sparkles, ShieldCheck, ArrowLeft,
   Plus, X, Minus, Instagram, Menu, ChevronLeft, Flower2, Gift,
@@ -121,6 +122,8 @@ export default function Home() {
 
   const count = Object.values(cart).reduce((a, b) => a + b, 0);
   const total = products.reduce((s, p) => s + p.price * (cart[p.id] || 0), 0);
+  const remainingForFreeShipping = Math.max(0, FREE_SHIPPING_THRESHOLD - total);
+  const shippingProgress = Math.min(100, Math.round((total / FREE_SHIPPING_THRESHOLD) * 100));
   const add = (id: number, n: number) => setCart((old) => ({ ...old, [id]: Math.max(0, (old[id] || 0) + n) }));
   const chooseCategory = (value: string) => {
     setCat(value);
@@ -285,7 +288,7 @@ export default function Home() {
       {open && <div className="shade" onClick={() => setOpen(false)}><aside ref={drawerRef} className="drawer" role="dialog" aria-modal="true" aria-labelledby="cart-drawer-title" onClick={(e) => e.stopPropagation()}><div className="drawhead"><h2 id="cart-drawer-title">سبد خرید ({count.toLocaleString("fa-IR")})</h2><button onClick={() => setOpen(false)} aria-label="بستن"><X /></button></div>
         {count === 0 ? <div className="emptycart"><ShoppingBag /><h3>سبد خریدت خالیه</h3><p>چند محصول دوست‌داشتنی بهش اضافه کن.</p><button className="btn" onClick={() => setOpen(false)}>دیدن محصولات</button></div> : <>
           <div className="cartlist">{products.filter((p) => cart[p.id] > 0).map((p) => <div className="cartitem" key={p.id}><span className={"thumb " + p.tone}>{p.mark}</span><div><b>{p.name}</b><small>{toman(p.price)}</small><div className="qty"><button onClick={() => add(p.id, -1)} aria-label="کم کردن"><Minus size={13} /></button>{cart[p.id].toLocaleString("fa-IR")}<button onClick={() => add(p.id, 1)} aria-label="زیاد کردن"><Plus size={13} /></button></div></div></div>)}</div>
-          <div className="cartfoot"><span>مجموع <b>{toman(total)}</b></span><button className="btn" onClick={() => setNotice("درگاه پرداخت به این نسخه متصل نیست؛ هیچ پرداختی انجام نشد.")}>ادامه و پرداخت <ArrowLeft size={16} /></button><small>این سبد نمایشی است؛ پرداخت واقعی فعال نیست.</small></div>
+          <div className="shipping-progress"><p>{remainingForFreeShipping > 0 ? <>{toman(remainingForFreeShipping)} تا ارسال رایگان باقی مانده</> : "سفارش به حد ارسال رایگان رسیده است."}</p><div className="shipping-progress-track" role="progressbar" aria-valuemin={0} aria-valuemax={100} aria-valuenow={shippingProgress}><span style={{ width: shippingProgress + "%" }} /></div></div><div className="cartfoot"><span>جمع کالاها <b>{toman(total)}</b></span><span>هزینه ارسال <b>پس از تعیین روش ارسال مشخص می‌شود</b></span><span>مجموع موقت <b>{toman(total)}</b></span><button className="btn" onClick={() => setNotice("درگاه پرداخت به این نسخه متصل نیست؛ هیچ پرداختی انجام نشد.")}>ادامه و پرداخت <ArrowLeft size={16} /></button><small>این سبد نمایشی است؛ پرداخت و هزینه ارسال واقعی هنوز فعال نیستند.</small></div>
         </>}
       </aside></div>}
     </main>
