@@ -15,7 +15,7 @@ type Section = "داشبورد" | "محصولات" | "سفارش‌ها" | "مش
 
 const initialProducts: Product[] = [];
 
-const orders: { id: string; customer: string; date: string; total: string; status: string; tone: string }[] = [];
+type AdminOrder = { id: number; order_code: string; customer_name: string; phone: string; province: string; city: string; address: string; postal_code: string; payment_method: string; payment_status: string; order_status: string; items: unknown[]; subtotal: number; shipping_cost: number; total: number; carrier: string | null; tracking_code: string | null; created_at: string; };
 
 const nav: { title: Section; icon: typeof LayoutDashboard; group: string }[] = [
   { title: "داشبورد", icon: LayoutDashboard, group: "مدیریت فروشگاه" },
@@ -34,7 +34,7 @@ const toman = (value: number) => value.toLocaleString("fa-IR") + " تومان";
 
 export default function AdminPage() {
   const [section, setSection] = useState<Section>("داشبورد");
-  const [products, setProducts] = useState<Product[]>(initialProducts);
+  const [products, setProducts] = useState<Product[]>(initialProducts);\n  const [orders, setOrders] = useState<AdminOrder[]>([]);
   const [query, setQuery] = useState("");
   const [mobileNav, setMobileNav] = useState(false);
   const [showProductForm, setShowProductForm] = useState(false);
@@ -50,7 +50,7 @@ export default function AdminPage() {
   const [savingProduct, setSavingProduct] = useState(false);
   const [providerEnabled, setProviderEnabled] = useState<Record<string, boolean>>({ "درگاه بانکی": true, "اسنپ‌پی": false, "ترب‌پی": false, "باسلام": false });
 
-  useEffect(() => { void loadProducts(); }, []);
+  useEffect(() => { void loadProducts(); void loadOrders(); }, []);
   async function loadProducts() {
     try {
       const response = await fetch("/api/admin/products", { cache: "no-store" });
@@ -60,6 +60,29 @@ export default function AdminPage() {
     } catch (error) { notify(error instanceof Error ? error.message : "اتصال محصولات برقرار نشد."); }
   }
   const filteredProducts = useMemo(() => products.filter(p => (p.name + p.sku + p.category).toLowerCase().includes(query.toLowerCase())), [products, query]);
+  async function loadOrders() {
+    try {
+      const response = await fetch("/api/admin/orders", { cache: "no-store" });
+      const result = await response.json();
+      if (!response.ok) throw new Error(result.error || "دریافت سفارش‌ها ناموفق بود.");
+      setOrders(result.orders || []);
+    } catch (error) { notify(error instanceof Error ? error.message : "اتصال سفارش‌ها برقرار نشد."); }
+  }
+  async function manageOrder(order: AdminOrder) {
+    const status = window.prompt("وضعیت سفارش را وارد کنید: awaiting_payment / paid / processing / shipped / delivered / cancelled / returned", order.order_status);
+    if (status === null) return;
+    const tracking = window.prompt("کد رهگیری مرسوله (برای shipped الزامی است):", order.tracking_code || "");
+    if (tracking === null) return;
+    const carrier = window.prompt("شرکت ارسال (مثلاً پست ایران یا تی‌باکس):", order.carrier || "");
+    if (carrier === null) return;
+    try {
+      const response = await fetch("/api/admin/orders/" + order.id, { method: "PATCH", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ order_status: status.trim(), tracking_code: tracking.trim(), carrier: carrier.trim() }) });
+      const result = await response.json();
+      if (!response.ok) throw new Error(result.error || "به‌روزرسانی سفارش ناموفق بود.");
+      await loadOrders();
+      notify("سفارش به‌روزرسانی شد.");
+    } catch (error) { notify(error instanceof Error ? error.message : "به‌روزرسانی سفارش ناموفق بود."); }
+  }
   const notify = (message: string) => { setToast(message); window.setTimeout(() => setToast(""), 2600); };
   const openNewProduct = (product?: Product) => {
     setEditingId(product?.id ?? null);
@@ -162,7 +185,7 @@ export default function AdminPage() {
                 <button onClick={() => setSection("گزارش‌ها")}><span className="shortcut-icon sand"><FileText size={19}/></span><span><b>گزارش فروش</b><small>تحلیل عملکرد فروشگاه</small></span><ArrowDownLeft size={16}/></button>
               </div></section>
             </div>
-            <section className="admin-panel orders-panel"><div className="admin-panel-head"><div><h3>آخرین سفارش‌ها</h3><p>آخرین فعالیت‌های ثبت‌شده در فروشگاه</p></div><button className="admin-text-btn" onClick={() => setSection("سفارش‌ها")}>مشاهده همه <ArrowDownLeft size={15}/></button></div><OrdersTable/></section>
+            <section className="admin-panel orders-panel"><div className="admin-panel-head"><div><h3>آخرین سفارش‌ها</h3><p>آخرین فعالیت‌های ثبت‌شده در فروشگاه</p></div><button className="admin-text-btn" onClick={() => setSection("سفارش‌ها")}>مشاهده همه <ArrowDownLeft size={15}/></button></div><OrdersTable orders={orders} onManage={manageOrder}/></section>
             <section className="admin-panel integrations-panel"><div className="admin-panel-head"><div><h3>وضعیت اتصال‌ها</h3><p>نمای کلی سرویس‌های قابل اتصال</p></div><button className="admin-text-btn" onClick={() => setSection("پرداخت و اقساط")}>مدیریت اتصال‌ها <ArrowDownLeft size={15}/></button></div><div className="integration-cards">{["درگاه بانکی","اسنپ‌پی","ترب‌پی","باسلام"].map((name,i)=><div className="integration-mini" key={name}><span className={"provider-mark p"+i}>{["بانک","S","T","ب"][i]}</span><div><b>{name}</b><small>{providerEnabled[name] ? "فعال در پیش‌نمایش" : "نیازمند راه‌اندازی"}</small></div><i className={providerEnabled[name] ? "connected" : ""}/></div>)}</div></section>
           </>}
 
@@ -173,7 +196,7 @@ export default function AdminPage() {
           {section === "پرداخت و اقساط" && <><div className="admin-page-intro"><div><h2>درگاه‌ها و پرداخت اقساطی</h2><p>اتصال‌ها را مدیریت کن؛ اتصال واقعی پس از پیاده‌سازی و دریافت اطلاعات پذیرندگی فعال می‌شود.</p></div><button className="admin-primary" onClick={() => notify("فرم اتصال اختصاصی پس از بررسی مستندات هر ارائه‌دهنده تکمیل می‌شود.")}><Plus size={17}/> افزودن اتصال</button></div><div className="admin-notice"><ShieldCheck size={19}/><span><b>امنیت پرداخت</b><small>کلیدهای محرمانه باید فقط در سمت سرور نگهداری شوند. وضعیت این صفحه نمایشی است و هیچ تراکنش واقعی انجام نمی‌دهد.</small></span></div><div className="payment-provider-list">{[{name:"درگاه بانکی",desc:"پرداخت آنلاین مستقیم با کارت‌های بانکی",mark:"بانک",key:"درگاه بانکی"},{name:"اسنپ‌پی",desc:"خرید اعتباری و پرداخت اقساطی",mark:"S",key:"اسنپ‌پی"},{name:"ترب‌پی",desc:"ارائه‌دهنده پرداخت اعتباری؛ نیازمند تأیید سرویس",mark:"T",key:"ترب‌پی"},{name:"باسلام",desc:"بررسی امکان همکاری و اتصال مستقیم به فروشگاه",mark:"ب",key:"باسلام"}].map((p,i)=><div className="provider-row" key={p.name}><span className={"provider-mark p"+i}>{p.mark}</span><div className="provider-info"><b>{p.name}</b><small>{p.desc}</small></div><span className={"provider-status "+(providerEnabled[p.key]?"on":"off")}>{providerEnabled[p.key]?"فعال در پیش‌نمایش":"راه‌اندازی نشده"}</span><button className={"toggle-switch "+(providerEnabled[p.key]?"on":"")} aria-label={"تغییر وضعیت "+p.name} onClick={()=>{setProviderEnabled(old=>({...old,[p.key]:!old[p.key]}));notify("وضعیت نمایشی تغییر کرد؛ اتصال واقعی هنوز برقرار نیست.");}}><i/></button><button className="provider-config" onClick={()=>notify("برای اتصال واقعی، مستندات فنی و اطلاعات پذیرندگی لازم است.")}>تنظیمات <ArrowDownLeft size={14}/></button></div>)}</div><div className="admin-panel"><div className="admin-panel-head"><div><h3>تراکنش‌ها</h3><p>فقط تراکنش‌های واقعی پس از اتصال درگاه نمایش داده می‌شوند.</p></div></div><div className="admin-empty">هنوز تراکنش واقعی متصل نیست؛ هیچ تراکنش نمونه‌ای نمایش داده نمی‌شود.</div></div></>}
 
           {section !== "داشبورد" && section !== "محصولات" && section !== "سفارش‌ها" && section !== "پرداخت و اقساط" && <ComingSoon section={section} onNotify={notify}/>}
-          <footer className="admin-footer"><span>© MiaShop · پنل مدیریت فروشگاه</span><span><ShieldCheck size={14}/> پایگاه داده هنوز متصل نیست</span></footer>
+          <footer className="admin-footer"><span>© MiaShop · پنل مدیریت فروشگاه</span><span><ShieldCheck size={14}/> کاتالوگ و سفارش‌ها به پایگاه داده متصل‌اند</span></footer>
         </div>
       </section>
 
