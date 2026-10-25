@@ -1,6 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
+import { normalizeFa } from "@/lib/text";
 import {
   Search, ShoppingBag, Heart, Sparkles, ShieldCheck, ArrowLeft,
   Plus, X, Minus, Instagram, Menu, ChevronLeft, Flower2, Gift,
@@ -38,7 +39,7 @@ export default function Home() {
   const list = useMemo(() => {
     const filtered = products.filter((p) =>
       (cat === "همه" || p.cat === cat) &&
-      (p.name + p.brand).toLowerCase().includes(q.toLowerCase())
+      normalizeFa(`${p.name} ${p.brand}`).includes(normalizeFa(q))
     );
     if (sort === "low") return [...filtered].sort((a, b) => a.price - b.price);
     if (sort === "high") return [...filtered].sort((a, b) => b.price - a.price);
@@ -75,7 +76,7 @@ export default function Home() {
         <div className="headtools">
           <label className="search">
             <Search size={17} />
-            <input value={q} onChange={(e) => { setQ(e.target.value); document.getElementById("products")?.scrollIntoView({ behavior: "smooth" }); }} placeholder="دنبال چی می‌گردی؟" aria-label="جست‌وجوی محصولات" />
+            <input value={q} onChange={(e) => setQ(e.target.value)} placeholder="دنبال چی می‌گردی؟" aria-label="جست‌وجوی محصولات" />
             {q && <button type="button" className="clear-search" onClick={() => setQ("")} aria-label="پاک کردن جست‌وجو"><X size={13} /></button>}
           </label>
           <button className="bag" onClick={() => setOpen(true)} aria-label="باز کردن سبد خرید">
@@ -181,7 +182,7 @@ export default function Home() {
       <section className="newsletter wrap">
         <div className="newsletter-mark"><Gift size={25} /></div>
         <div className="newsletter-copy"><small>THE MIA LETTER</small><h2>نامه‌هایی برای <em>حالِ بهتر</em></h2><p>تازه‌های زیبایی و ایده‌های روتین را در یک جای خلوت دنبال کن.</p></div>
-        <form onSubmit={(e) => { e.preventDefault(); alert("خبرنامه در این نسخهٔ نمایشی هنوز به سرویس ارسال ایمیل متصل نیست."); }}>
+        <form onSubmit={(e) => { e.preventDefault(); setNewsletterMessage("خبرنامه هنوز به سرویس ارسال ایمیل متصل نیست؛ اطلاعات ارسال نشد."); }}>
           <input type="email" required placeholder="آدرس ایمیل تو" aria-label="آدرس ایمیل" /><button>به خبرنامه بپیوند <ArrowLeft size={16} /></button>
         </form>
         <b className="flower">✳</b>
