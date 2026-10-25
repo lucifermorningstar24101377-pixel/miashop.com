@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { normalizeFa } from "@/lib/text";
 import {
   Search, ShoppingBag, Heart, Sparkles, ShieldCheck, ArrowLeft,
@@ -38,6 +38,10 @@ export default function Home() {
   const [likes, setLikes] = useState<number[]>([]);
   const [mobileMenu, setMobileMenu] = useState(false);
   const [newsletterMessage, setNewsletterMessage] = useState("");
+  const [notice, setNotice] = useState("");
+  const cartTriggerRef = useRef<HTMLButtonElement>(null);
+  const drawerRef = useRef<HTMLElement>(null);
+  const mobileMenuRef = useRef<HTMLElement>(null);
   const [sort, setSort] = useState("featured");
 
   useEffect(() => {
@@ -66,6 +70,34 @@ export default function Home() {
     window.addEventListener("storage", syncStorage);
     return () => window.removeEventListener("storage", syncStorage);
   }, []);
+
+  useEffect(() => {
+    if (!open && !mobileMenu) return;
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    const dialog = open ? drawerRef.current : mobileMenuRef.current;
+    const getControls = () => Array.from(dialog?.querySelectorAll<HTMLElement>('button:not([disabled]), a[href], input:not([disabled]), select:not([disabled]), [tabindex]:not([tabindex="-1"])') ?? []);
+    getControls()[0]?.focus();
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        setOpen(false);
+        setMobileMenu(false);
+      }
+      if (event.key !== "Tab") return;
+      const controls = getControls();
+      if (!controls.length) return;
+      const first = controls[0];
+      const last = controls[controls.length - 1];
+      if (event.shiftKey && document.activeElement === first) { event.preventDefault(); last.focus(); }
+      else if (!event.shiftKey && document.activeElement === last) { event.preventDefault(); first.focus(); }
+    };
+    document.addEventListener("keydown", onKeyDown);
+    return () => {
+      document.body.style.overflow = previousOverflow;
+      document.removeEventListener("keydown", onKeyDown);
+      if (open) cartTriggerRef.current?.focus();
+    };
+  }, [open, mobileMenu]);
 
   useEffect(() => {
     if (!hydrated) return;
@@ -121,13 +153,13 @@ export default function Home() {
             {searchInput && <button type="button" className="clear-search" onClick={() => setSearchInput("")} aria-label="پاک کردن جست‌وجو"><X size={13} /></button>}
             <button type="button" className="search-submit" onClick={() => document.getElementById("products")?.scrollIntoView({ behavior: "smooth" })} aria-label="جست‌وجو"><Search size={16} /></button>
           </div>
-          <button className="bag" onClick={() => setOpen(true)} aria-label="باز کردن سبد خرید">
+          <button className="bag" ref={cartTriggerRef} onClick={() => setOpen(true)} aria-label="باز کردن سبد خرید">
             <ShoppingBag size={21} />{count > 0 && <i>{count.toLocaleString("fa-IR")}</i>}
           </button>
           <button className="mobile-menu-toggle" onClick={() => setMobileMenu((v) => !v)} aria-label="باز و بسته کردن منو" aria-expanded={mobileMenu} aria-controls="mobile-navigation"><Menu size={21} /></button>
         </div>
       </header>
-      {mobileMenu && <div className="mobile-menu-backdrop" onClick={() => setMobileMenu(false)}><nav id="mobile-navigation" className="mobile-menu-dialog" role="dialog" aria-modal="true" aria-label="منوی اصلی" onClick={(event) => event.stopPropagation()}><div className="mobile-menu-heading"><strong>منوی میاشاپ</strong><button type="button" onClick={() => setMobileMenu(false)} aria-label="بستن منو"><X /></button></div><a href="#home" onClick={() => setMobileMenu(false)}>صفحه اصلی</a><a href="#products" onClick={() => { chooseCategory("آرایش"); setMobileMenu(false); }}>آرایشی</a><a href="#products" onClick={() => { chooseCategory("پوست"); setMobileMenu(false); }}>مراقبت پوست</a><a href="#products" onClick={() => { chooseCategory("عطر"); setMobileMenu(false); }}>عطر و ادکلن</a></nav></div>}
+      {mobileMenu && <div className="mobile-menu-backdrop" onClick={() => setMobileMenu(false)}><nav id="mobile-navigation" ref={mobileMenuRef} className="mobile-menu-dialog" role="dialog" aria-modal="true" aria-label="منوی اصلی" onClick={(event) => event.stopPropagation()}><div className="mobile-menu-heading"><strong>منوی میاشاپ</strong><button type="button" onClick={() => setMobileMenu(false)} aria-label="بستن منو"><X /></button></div><a href="#home" onClick={() => setMobileMenu(false)}>صفحه اصلی</a><a href="#products" onClick={() => { chooseCategory("آرایش"); setMobileMenu(false); }}>آرایشی</a><a href="#products" onClick={() => { chooseCategory("پوست"); setMobileMenu(false); }}>مراقبت پوست</a><a href="#products" onClick={() => { chooseCategory("عطر"); setMobileMenu(false); }}>عطر و ادکلن</a></nav></div>}
 
       <section className="hero wrap" id="home">
         <div className="herotext">
@@ -249,10 +281,11 @@ export default function Home() {
         <button onClick={() => setOpen(true)}><ShoppingBag size={19} /><span>سبد {count > 0 ? "· " + count.toLocaleString("fa-IR") : ""}</span></button>
       </nav>
 
-      {open && <div className="shade" onClick={() => setOpen(false)}><aside className="drawer" onClick={(e) => e.stopPropagation()}><div className="drawhead"><h2>سبد خرید ({count.toLocaleString("fa-IR")})</h2><button onClick={() => setOpen(false)} aria-label="بستن"><X /></button></div>
+      {notice && <div className="toast-message" role="status" aria-live="polite"><span>{notice}</span><button type="button" onClick={() => setNotice("")} aria-label="بستن پیام"><X size={16} /></button></div>}
+      {open && <div className="shade" onClick={() => setOpen(false)}><aside ref={drawerRef} className="drawer" role="dialog" aria-modal="true" aria-labelledby="cart-drawer-title" onClick={(e) => e.stopPropagation()}><div className="drawhead"><h2 id="cart-drawer-title">سبد خرید ({count.toLocaleString("fa-IR")})</h2><button onClick={() => setOpen(false)} aria-label="بستن"><X /></button></div>
         {count === 0 ? <div className="emptycart"><ShoppingBag /><h3>سبد خریدت خالیه</h3><p>چند محصول دوست‌داشتنی بهش اضافه کن.</p><button className="btn" onClick={() => setOpen(false)}>دیدن محصولات</button></div> : <>
           <div className="cartlist">{products.filter((p) => cart[p.id] > 0).map((p) => <div className="cartitem" key={p.id}><span className={"thumb " + p.tone}>{p.mark}</span><div><b>{p.name}</b><small>{toman(p.price)}</small><div className="qty"><button onClick={() => add(p.id, -1)} aria-label="کم کردن"><Minus size={13} /></button>{cart[p.id].toLocaleString("fa-IR")}<button onClick={() => add(p.id, 1)} aria-label="زیاد کردن"><Plus size={13} /></button></div></div></div>)}</div>
-          <div className="cartfoot"><span>مجموع <b>{toman(total)}</b></span><button className="btn" onClick={() => alert("درگاه پرداخت در این نسخهٔ نمایشی متصل نیست.")}>ادامه و پرداخت <ArrowLeft size={16} /></button><small>این سبد نمایشی است؛ پرداخت واقعی فعال نیست.</small></div>
+          <div className="cartfoot"><span>مجموع <b>{toman(total)}</b></span><button className="btn" onClick={() => setNotice("درگاه پرداخت به این نسخه متصل نیست؛ هیچ پرداختی انجام نشد.")}>ادامه و پرداخت <ArrowLeft size={16} /></button><small>این سبد نمایشی است؛ پرداخت واقعی فعال نیست.</small></div>
         </>}
       </aside></div>}
     </main>
