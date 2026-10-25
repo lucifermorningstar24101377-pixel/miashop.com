@@ -280,7 +280,7 @@ export default function Home() {
           <span>جزئیات کوچک، حس متفاوت <Sparkles size={16} /></span>
         </div>
         <div className="filters">
-          {["همه", "پوست", "آرایش", "عطر"].map((c) => <button key={c} className={cat === c ? "active" : ""} onClick={() => setCat(c)}>{c === "همه" ? "همه محصولات" : c}</button>)}
+          {["همه", "پوست", "آرایش", "عطر"].map((c) => <button key={c} className={cat === c ? "active" : ""} onClick={() => { setCat(c); if (c === "همه") { setQ(""); setSearchInput(""); } }}>{c === "همه" ? "همه محصولات" : c}</button>)}
           <label className="sort-label"><SlidersHorizontal size={14} /><select value={sort} onChange={(e) => setSort(e.target.value)} aria-label="مرتب‌سازی محصولات"><option value="featured">پیشنهاد میاشاپ</option><option value="low">ارزان‌ترین</option><option value="high">گران‌ترین</option></select></label>
           <small className="product-count">{list.length.toLocaleString("fa-IR")} محصول</small>
         </div>
