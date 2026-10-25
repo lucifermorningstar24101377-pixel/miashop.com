@@ -137,15 +137,16 @@ export default function Home() {
     }
   }, [cart, likes, hydrated]);
 
-  const list = useMemo(() => {
-    const filtered = products.filter((p) =>
-      (cat === "همه" || p.cat === cat) &&
-      normalizeFa(`${p.name} ${p.brand}`).includes(normalizeFa(q))
-    );
-    if (sort === "low") return [...filtered].sort((a, b) => a.price - b.price);
-    if (sort === "high") return [...filtered].sort((a, b) => b.price - a.price);
-    return filtered;
-  }, [products, cat, q, sort]);
+  const normalizedSearch = normalizeFa(searchInput.trim());
+  const filteredProducts = products.filter((p) =>
+    (cat === "همه" || p.cat === cat) &&
+    (!normalizedSearch || normalizeFa(`${p.name} ${p.brand}`).includes(normalizedSearch))
+  );
+  const list = sort === "low"
+    ? [...filteredProducts].sort((a, b) => a.price - b.price)
+    : sort === "high"
+      ? [...filteredProducts].sort((a, b) => b.price - a.price)
+      : filteredProducts;
 
   const count = Object.values(cart).reduce((a, b) => a + b, 0);
   const total = products.reduce((s, p) => s + p.price * (cart[p.id] || 0), 0);
