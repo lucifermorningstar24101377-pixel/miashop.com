@@ -1112,3 +1112,12 @@ img,svg,video,canvas{max-width:100%}
   }
   .editorial.wrap .editorial-copy{grid-column:1;align-self:end;max-width:100%;padding-top:100px}
 }
+
+
+/* Enforce the site's primary Persian typeface consistently across every UI text element. */
+html, body, body *:not(svg):not(svg *){
+  font-family:var(--font-vazirmatn),Tahoma,sans-serif !important;
+}
+input, textarea, select, button{
+  font-family:var(--font-vazirmatn),Tahoma,sans-serif !important;
+}
