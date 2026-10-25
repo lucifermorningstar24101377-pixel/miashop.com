@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import {
   Activity, ArrowDownLeft, ArrowUpLeft, Bell, Boxes, ChartNoAxesCombined,
   Check, ChevronDown, CircleHelp, CreditCard, Download, FileText, Filter,
@@ -10,7 +10,7 @@ import {
 } from "lucide-react";
 import "./admin.css";
 
-type Product = { id: number; name: string; sku: string; category: string; price: number; stock: number; status: "فعال" | "کم‌موجود" | "ناموجود"; };
+type Product = { id: number; name: string; sku: string; category: string; price: number; stock: number; image_url?: string | null; old_price?: number | null; description?: string | null; status: "فعال" | "کم‌موجود" | "ناموجود"; };
 type Section = "داشبورد" | "محصولات" | "سفارش‌ها" | "مشتریان" | "پرداخت و اقساط" | "انبار و ارسال" | "بازاریابی" | "محتوای سایت" | "گزارش‌ها" | "تنظیمات";
 
 const initialProducts: Product[] = [];
@@ -45,8 +45,20 @@ export default function AdminPage() {
   const [newCategory, setNewCategory] = useState("مراقبت پوست");
   const [newPrice, setNewPrice] = useState("");
   const [newStock, setNewStock] = useState("");
+  const [newImage, setNewImage] = useState<File | null>(null);
+  const [newDescription, setNewDescription] = useState("");
+  const [savingProduct, setSavingProduct] = useState(false);
   const [providerEnabled, setProviderEnabled] = useState<Record<string, boolean>>({ "درگاه بانکی": true, "اسنپ‌پی": false, "ترب‌پی": false, "باسلام": false });
 
+  useEffect(() => { void loadProducts(); }, []);
+  async function loadProducts() {
+    try {
+      const response = await fetch("/api/admin/products", { cache: "no-store" });
+      const result = await response.json();
+      if (!response.ok) throw new Error(result.error || "دریافت محصولات ناموفق بود.");
+      setProducts((result.products || []).map((p: any) => ({ ...p, id: Number(p.id), price: Number(p.price), stock: Number(p.stock), status: Number(p.stock) === 0 ? "ناموجود" : Number(p.stock) <= 8 ? "کم‌موجود" : "فعال" })));
+    } catch (error) { notify(error instanceof Error ? error.message : "اتصال محصولات برقرار نشد."); }
+  }
   const filteredProducts = useMemo(() => products.filter(p => (p.name + p.sku + p.category).toLowerCase().includes(query.toLowerCase())), [products, query]);
   const notify = (message: string) => { setToast(message); window.setTimeout(() => setToast(""), 2600); };
   const openNewProduct = (product?: Product) => {
@@ -56,15 +68,38 @@ export default function AdminPage() {
     setNewCategory(product?.category ?? "مراقبت پوست");
     setNewPrice(product ? String(product.price) : "");
     setNewStock(product ? String(product.stock) : "");
+    setNewImage(null);
+    setNewDescription(product?.description ?? "");
     setShowProductForm(true);
   };
-  const saveProduct = () => {
-    if (!newName.trim() || !newSku.trim() || !newPrice || !newStock) { notify("لطفاً فیلدهای ضروری را کامل کنید."); return; }
-    const stock = Math.max(0, Number(newStock));
-    const product: Product = { id: editingId ?? Math.max(0, ...products.map(p => p.id)) + 1, name: newName.trim(), sku: newSku.trim(), category: newCategory, price: Math.max(0, Number(newPrice)), stock, status: stock === 0 ? "ناموجود" : stock <= 8 ? "کم‌موجود" : "فعال" };
-    setProducts(old => editingId ? old.map(p => p.id === editingId ? product : p) : [product, ...old]);
-    setShowProductForm(false);
-    notify(editingId ? "تغییرات محصول در پیش‌نمایش ذخیره شد." : "محصول به فهرست نمایشی اضافه شد.");
+  const saveProduct = async () => {
+    if (!newName.trim() || !newSku.trim() || newPrice === "" || newStock === "") { notify("لطفاً فیلدهای ضروری را کامل کنید."); return; }
+    if (!editingId && !newImage) { notify("برای محصول جدید تصویر انتخاب کنید."); return; }
+    setSavingProduct(true);
+    try {
+      const form = new FormData();
+      if (editingId) form.set("id", String(editingId));
+      form.set("name", newName.trim()); form.set("sku", newSku.trim()); form.set("category", newCategory);
+      form.set("price", newPrice); form.set("stock", newStock); form.set("description", newDescription);
+      if (newImage) form.set("image", newImage);
+      const response = await fetch("/api/admin/products", { method: "POST", body: form });
+      const result = await response.json();
+      if (!response.ok) throw new Error(result.error || "ذخیره محصول ناموفق بود.");
+      await loadProducts();
+      setShowProductForm(false);
+      notify(editingId ? "تغییرات محصول ذخیره شد." : "محصول در سایت ثبت شد.");
+    } catch (error) { notify(error instanceof Error ? error.message : "ذخیره محصول ناموفق بود."); }
+    finally { setSavingProduct(false); }
+  };
+  const deleteProduct = async (product: Product) => {
+    if (!window.confirm("محصول «" + product.name + "» حذف شود؟ این عملیات قابل بازگشت نیست.")) return;
+    try {
+      const response = await fetch("/api/admin/products/" + product.id, { method: "DELETE" });
+      const result = await response.json();
+      if (!response.ok) throw new Error(result.error || "حذف محصول ناموفق بود.");
+      setProducts(old => old.filter(p => p.id !== product.id));
+      notify("محصول حذف شد.");
+    } catch (error) { notify(error instanceof Error ? error.message : "حذف محصول ناموفق بود."); }
   };
   const groups = Array.from(new Set(nav.map(n => n.group)));
 
@@ -131,7 +166,7 @@ export default function AdminPage() {
             <section className="admin-panel integrations-panel"><div className="admin-panel-head"><div><h3>وضعیت اتصال‌ها</h3><p>نمای کلی سرویس‌های قابل اتصال</p></div><button className="admin-text-btn" onClick={() => setSection("پرداخت و اقساط")}>مدیریت اتصال‌ها <ArrowDownLeft size={15}/></button></div><div className="integration-cards">{["درگاه بانکی","اسنپ‌پی","ترب‌پی","باسلام"].map((name,i)=><div className="integration-mini" key={name}><span className={"provider-mark p"+i}>{["بانک","S","T","ب"][i]}</span><div><b>{name}</b><small>{providerEnabled[name] ? "فعال در پیش‌نمایش" : "نیازمند راه‌اندازی"}</small></div><i className={providerEnabled[name] ? "connected" : ""}/></div>)}</div></section>
           </>}
 
-          {section === "محصولات" && <><div className="admin-page-intro"><div><h2>مدیریت محصولات</h2><p>کالاها، قیمت‌ها و موجودی انبار را مدیریت کن.</p></div><button className="admin-primary" onClick={() => openNewProduct()}><Plus size={17}/> افزودن محصول</button></div><div className="admin-stats-grid compact-stats"><StatCard title="کل محصولات" value={products.length.toLocaleString("fa-IR")} icon={<Package size={18}/>} foot="در فهرست فعلی"/><StatCard title="محصولات فعال" value={products.filter(p=>p.status==="فعال").length.toLocaleString("fa-IR")} icon={<Check size={18}/>} foot="آماده فروش"/><StatCard title="کم‌موجود / ناموجود" value={products.filter(p=>p.status!=="فعال").length.toLocaleString("fa-IR")} icon={<CircleAlert size={18}/>} foot="نیازمند رسیدگی"/></div><section className="admin-panel product-panel"><div className="product-toolbar"><label className="admin-search"><Search size={17}/><input value={query} onChange={e=>setQuery(e.target.value)} placeholder="جست‌وجوی نام، کد یا دسته‌بندی محصول..."/></label><button className="admin-secondary" onClick={() => notify("فیلترهای پیشرفته در نسخه کامل فعال می‌شوند.")}><Filter size={16}/> فیلترها</button><button className="admin-secondary" onClick={() => notify("خروجی اکسل پس از اتصال داده‌های واقعی فعال می‌شود.")}><Download size={16}/> خروجی</button></div><div className="admin-table-wrap"><table className="admin-table"><thead><tr><th>محصول</th><th>کد کالا</th><th>دسته‌بندی</th><th>قیمت فروش</th><th>موجودی</th><th>وضعیت</th><th>عملیات</th></tr></thead><tbody>{filteredProducts.map(p=><tr key={p.id}><td><div className="product-name-cell"><span className="product-thumb"><Package size={19}/></span><b>{p.name}</b></div></td><td className="sku-cell">{p.sku}</td><td>{p.category}</td><td className="price-cell">{toman(p.price)}</td><td>{p.stock.toLocaleString("fa-IR")} عدد</td><td><span className={"status-pill "+(p.status==="فعال"?"success":p.status==="کم‌موجود"?"warning":"muted")}>{p.status}</span></td><td><button className="table-action" onClick={() => openNewProduct(p)}>ویرایش</button></td></tr>)}</tbody></table>{filteredProducts.length===0&&<div className="admin-empty">{query ? "محصولی با این مشخصات پیدا نشد." : "هنوز محصولی ثبت نشده است؛ برای شروع، «افزودن محصول» را انتخاب کنید."}</div>}</div><div className="admin-table-foot">نمایش {filteredProducts.length.toLocaleString("fa-IR")} محصول · اتصال ذخیره‌سازی دائمی هنوز انجام نشده است</div></section></>}
+          {section === "محصولات" && <><div className="admin-page-intro"><div><h2>مدیریت محصولات</h2><p>کالاها، قیمت‌ها و موجودی انبار را مدیریت کن.</p></div><button className="admin-primary" onClick={() => openNewProduct()}><Plus size={17}/> افزودن محصول</button></div><div className="admin-stats-grid compact-stats"><StatCard title="کل محصولات" value={products.length.toLocaleString("fa-IR")} icon={<Package size={18}/>} foot="در فهرست فعلی"/><StatCard title="محصولات فعال" value={products.filter(p=>p.status==="فعال").length.toLocaleString("fa-IR")} icon={<Check size={18}/>} foot="آماده فروش"/><StatCard title="کم‌موجود / ناموجود" value={products.filter(p=>p.status!=="فعال").length.toLocaleString("fa-IR")} icon={<CircleAlert size={18}/>} foot="نیازمند رسیدگی"/></div><section className="admin-panel product-panel"><div className="product-toolbar"><label className="admin-search"><Search size={17}/><input value={query} onChange={e=>setQuery(e.target.value)} placeholder="جست‌وجوی نام، کد یا دسته‌بندی محصول..."/></label><button className="admin-secondary" onClick={() => notify("فیلترهای پیشرفته در نسخه کامل فعال می‌شوند.")}><Filter size={16}/> فیلترها</button><button className="admin-secondary" onClick={() => notify("خروجی اکسل پس از اتصال داده‌های واقعی فعال می‌شود.")}><Download size={16}/> خروجی</button></div><div className="admin-table-wrap"><table className="admin-table"><thead><tr><th>محصول</th><th>کد کالا</th><th>دسته‌بندی</th><th>قیمت فروش</th><th>موجودی</th><th>وضعیت</th><th>عملیات</th></tr></thead><tbody>{filteredProducts.map(p=><tr key={p.id}><td><div className="product-name-cell"><span className="product-thumb">{p.image_url ? <img src={p.image_url} alt="" style={{width:"100%",height:"100%",objectFit:"cover",borderRadius:9}}/> : <Package size={19}/>}</span><b>{p.name}</b></div></td><td className="sku-cell">{p.sku}</td><td>{p.category}</td><td className="price-cell">{toman(p.price)}</td><td>{p.stock.toLocaleString("fa-IR")} عدد</td><td><span className={"status-pill "+(p.status==="فعال"?"success":p.status==="کم‌موجود"?"warning":"muted")}>{p.status}</span></td><td><button className="table-action" onClick={() => openNewProduct(p)}>ویرایش</button><button className="table-action" style={{color:"#b45f5c",marginRight:8}} onClick={() => void deleteProduct(p)}>حذف</button></td></tr>)}</tbody></table>{filteredProducts.length===0&&<div className="admin-empty">{query ? "محصولی با این مشخصات پیدا نشد." : "هنوز محصولی ثبت نشده است؛ برای شروع، «افزودن محصول» را انتخاب کنید."}</div>}</div><div className="admin-table-foot">نمایش {filteredProducts.length.toLocaleString("fa-IR")} محصول · ذخیره‌سازی متصل به پایگاه داده</div></section></>}
 
           {section === "سفارش‌ها" && <><div className="admin-page-intro"><div><h2>سفارش‌های فروشگاه</h2><p>وضعیت پرداخت، پردازش و ارسال سفارش‌ها را پیگیری کن.</p></div><button className="admin-secondary" onClick={() => notify("خروجی سفارش‌ها پس از اتصال پایگاه داده فعال می‌شود.")}><Download size={16}/> خروجی سفارش‌ها</button></div><div className="admin-stats-grid compact-stats"><StatCard title="همه سفارش‌ها" value="—" icon={<ShoppingBag size={18}/>} foot="در انتظار اتصال پایگاه داده"/><StatCard title="در انتظار پردازش" value="—" icon={<Clock3 size={18}/>} foot="پس از اتصال سفارش‌ها محاسبه می‌شود"/><StatCard title="در حال ارسال" value="—" icon={<Truck size={18}/>} foot="پس از اتصال ارسال محاسبه می‌شود"/></div><section className="admin-panel orders-panel"><OrdersTable/></section></>}
 
@@ -142,7 +177,7 @@ export default function AdminPage() {
         </div>
       </section>
 
-      {showProductForm && <div className="admin-modal-backdrop" role="presentation" onMouseDown={e=>{if(e.target===e.currentTarget)setShowProductForm(false);}}><section className="admin-modal" role="dialog" aria-modal="true" aria-labelledby="product-form-title"><div className="admin-modal-head"><div><span className="admin-eyebrow">کاتالوگ محصولات</span><h2 id="product-form-title">{editingId?"ویرایش محصول":"افزودن محصول جدید"}</h2><p>اطلاعات پایه محصول را وارد کن.</p></div><button className="admin-icon-btn" onClick={()=>setShowProductForm(false)} aria-label="بستن فرم"><X size={18}/></button></div><div className="admin-form-grid"><label className="admin-field full"><span>نام محصول *</span><input value={newName} onChange={e=>setNewName(e.target.value)} placeholder="مثلاً سرم آبرسان هیالورونیک"/></label><label className="admin-field"><span>کد کالا / SKU *</span><input value={newSku} onChange={e=>setNewSku(e.target.value)} placeholder="MIA-1006"/></label><label className="admin-field"><span>دسته‌بندی</span><select value={newCategory} onChange={e=>setNewCategory(e.target.value)}><option>مراقبت پوست</option><option>آرایش</option><option>عطر و رایحه</option><option>بهداشت شخصی</option><option>مراقبت مو</option></select></label><label className="admin-field"><span>قیمت فروش (تومان) *</span><input type="number" min="0" value={newPrice} onChange={e=>setNewPrice(e.target.value)} placeholder="890000"/></label><label className="admin-field"><span>موجودی انبار *</span><input type="number" min="0" value={newStock} onChange={e=>setNewStock(e.target.value)} placeholder="20"/></label></div><div className="admin-modal-note"><ImageIcon size={17}/><span>بارگذاری تصاویر، قیمت خرید، تخفیف، توضیحات کامل و ویژگی‌ها در مرحله تکمیل فرم محصول اضافه می‌شود.</span></div><div className="admin-modal-actions"><button className="admin-secondary" onClick={()=>setShowProductForm(false)}>انصراف</button><button className="admin-primary" onClick={saveProduct}><Check size={16}/> {editingId?"ذخیره تغییرات":"افزودن به فهرست"}</button></div></section></div>}
+      {showProductForm && <div className="admin-modal-backdrop" role="presentation" onMouseDown={e=>{if(e.target===e.currentTarget)setShowProductForm(false);}}><section className="admin-modal" role="dialog" aria-modal="true" aria-labelledby="product-form-title"><div className="admin-modal-head"><div><span className="admin-eyebrow">کاتالوگ محصولات</span><h2 id="product-form-title">{editingId?"ویرایش محصول":"افزودن محصول جدید"}</h2><p>اطلاعات پایه محصول را وارد کن.</p></div><button className="admin-icon-btn" onClick={()=>setShowProductForm(false)} aria-label="بستن فرم"><X size={18}/></button></div><div className="admin-form-grid"><label className="admin-field full"><span>نام محصول *</span><input value={newName} onChange={e=>setNewName(e.target.value)} placeholder="مثلاً سرم آبرسان هیالورونیک"/></label><label className="admin-field"><span>کد کالا / SKU *</span><input value={newSku} onChange={e=>setNewSku(e.target.value)} placeholder="MIA-1006"/></label><label className="admin-field"><span>دسته‌بندی</span><select value={newCategory} onChange={e=>setNewCategory(e.target.value)}><option>مراقبت پوست</option><option>آرایش</option><option>عطر و رایحه</option><option>بهداشت شخصی</option><option>مراقبت مو</option></select></label><label className="admin-field"><span>قیمت فروش (تومان) *</span><input type="number" min="0" value={newPrice} onChange={e=>setNewPrice(e.target.value)} placeholder="890000"/></label><label className="admin-field"><span>موجودی انبار *</span><input type="number" min="0" value={newStock} onChange={e=>setNewStock(e.target.value)} placeholder="20"/></label><label className="admin-field full"><span>تصویر محصول {editingId ? "(در صورت نیاز تصویر جدید انتخاب کنید)" : "*"}</span><input type="file" accept="image/jpeg,image/png,image/webp,image/avif" onChange={e=>setNewImage(e.target.files?.[0] ?? null)}/>{newImage && <small>{newImage.name} · {(newImage.size / 1024 / 1024).toFixed(2)} MB</small>}{editingId && products.find(p=>p.id===editingId)?.image_url && <img src={products.find(p=>p.id===editingId)?.image_url ?? ""} alt="تصویر فعلی محصول" style={{width:96,height:96,objectFit:"cover",borderRadius:10}}/>}</label><label className="admin-field full"><span>توضیحات محصول</span><textarea value={newDescription} onChange={e=>setNewDescription(e.target.value)} rows={3} placeholder="توضیحات کوتاه محصول"/></label></div><div className="admin-modal-note"><ImageIcon size={17}/><span>تصویر در Supabase Storage ذخیره می‌شود و محصول پس از ثبت موفق در فروشگاه نمایش داده می‌شود.</span></div><div className="admin-modal-actions"><button className="admin-secondary" onClick={()=>setShowProductForm(false)}>انصراف</button><button className="admin-primary" disabled={savingProduct} onClick={() => void saveProduct()}><Check size={16}/> {savingProduct ? "در حال ذخیره…" : editingId?"ذخیره تغییرات":"افزودن محصول به سایت"}</button></div></section></div>}
       {toast && <div className="admin-toast"><Check size={17}/>{toast}</div>}
     </main>
   );
