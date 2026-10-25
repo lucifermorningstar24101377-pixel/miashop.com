@@ -34,6 +34,7 @@ export default function Home() {
   const [open, setOpen] = useState(false);
   const [likes, setLikes] = useState<number[]>([]);
   const [mobileMenu, setMobileMenu] = useState(false);
+  const [newsletterMessage, setNewsletterMessage] = useState("");
   const [sort, setSort] = useState("featured");
 
   const list = useMemo(() => {
@@ -185,6 +186,7 @@ export default function Home() {
         <form onSubmit={(e) => { e.preventDefault(); setNewsletterMessage("خبرنامه هنوز به سرویس ارسال ایمیل متصل نیست؛ اطلاعات ارسال نشد."); }}>
           <input type="email" required placeholder="آدرس ایمیل تو" aria-label="آدرس ایمیل" /><button>به خبرنامه بپیوند <ArrowLeft size={16} /></button>
         </form>
+        {newsletterMessage && <p className="newsletter-message" role="status" aria-live="polite">{newsletterMessage}</p>}
         <b className="flower">✳</b>
       </section>
 
