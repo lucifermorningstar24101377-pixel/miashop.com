@@ -9,16 +9,10 @@ import {
   PackageCheck, SlidersHorizontal
 } from "lucide-react";
 
-const products = [
-  { id: 1, name: "سرم آبرسان هیالورونیک", brand: "The Ordinary", price: 890000, old: 1120000, cat: "پوست", tone: "sand", tag: "پرفروش", mark: "✧", type: "serum" },
-  { id: 2, name: "رژ لب مات مخملی", brand: "Flormar", price: 465000, cat: "آرایش", tone: "rose", tag: "تازه رسیده", mark: "◒", type: "lipstick" },
-  { id: 3, name: "ادو پرفیوم زنانه", brand: "Lattafa", price: 2180000, old: 2650000, cat: "عطر", tone: "lilac", tag: "انتخاب ویژه", mark: "❋", type: "perfume" },
-  { id: 4, name: "کرم مرطوب‌کننده روز", brand: "CeraVe", price: 1240000, cat: "پوست", tone: "mint", mark: "◌", type: "jar" },
-  { id: 5, name: "ریمل حجم‌دهنده", brand: "Maybelline", price: 735000, old: 890000, cat: "آرایش", tone: "peach", tag: "محبوب", mark: "✦", type: "mascara" },
-  { id: 6, name: "عطر جیبی یونیسکس", brand: "Zara", price: 980000, cat: "عطر", tone: "blue", mark: "❈", type: "perfume" },
-  { id: 7, name: "ضدآفتاب بی‌رنگ SPF 50", brand: "La Roche-Posay", price: 1570000, cat: "پوست", tone: "yellow", tag: "روتین روزانه", mark: "☼", type: "tube" },
-  { id: 8, name: "پالت سایه نچرال", brand: "Revolution", price: 1120000, cat: "آرایش", tone: "plum", mark: "✧", type: "palette" }
-];
+type StoreProduct = { id: number; name: string; brand: string; price: number; old?: number; cat: string; tone: string; tag?: string; mark: string; type: string };
+
+// No demo products: the catalog stays empty until the administrator adds real inventory.
+const products: StoreProduct[] = [];
 
 const toman = (n: number) => n.toLocaleString("fa-IR") + " تومان";
 
@@ -253,7 +247,7 @@ export default function Home() {
             </article>
           ))}
         </div>
-        {list.length === 0 && <p className="empty">محصولی پیدا نشد؛ عبارت دیگری را جست‌وجو کن.</p>}
+        {list.length === 0 && <div className="empty catalog-empty"><PackageCheck size={25}/><strong>{q ? "محصولی با این جست‌وجو پیدا نشد." : "هنوز محصولی برای فروش ثبت نشده است."}</strong><span>{q ? "نام محصول یا برند دیگری را جست‌وجو کن." : "پس از ثبت محصولات واقعی در پنل مدیریت، کالاها در این بخش نمایش داده می‌شوند."}</span></div>}
         <div className="catalog-foot"><span>در حال حاضر مجموعه‌ای منتخب از محصولات نمایشی را می‌بینی.</span><a className="text-link" href="#home">بازگشت به بالا <ArrowLeft size={15} /></a></div>
       </section>
 
