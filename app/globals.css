@@ -1047,8 +1047,8 @@ img,svg,video,canvas{max-width:100%}
 }
 
 
-/* Category cards: use the exact signed Supabase Storage URLs supplied by the owner.
-   Text and CTA remain real HTML elements layered over the photography. */
+/* Category cards use stable public object URLs (no expiring signed tokens).
+   The files bucket must contain only assets intended for public viewing. */
 .category-number{display:none!important}
 .category-card{
   background-repeat:no-repeat!important;
@@ -1056,14 +1056,14 @@ img,svg,video,canvas{max-width:100%}
   background-position:center!important;
 }
 .category-card:nth-child(1){
-  background-image:url("https://yesojugjdxyjlznelmll.supabase.co/storage/v1/object/sign/files/image/skincare.webp.jpg?token=eyJraWQiOiI5NDhmNTg1My1mY2QyLTQwZWItODE5MS03Y2YwNDRjZGE0ZjUiLCJhbGciOiJIUzUxMiJ9.eyJ1cmwiOiJmaWxlcy9pbWFnZS9za2luY2FyZS53ZWJwLmpwZyIsInNjb3BlIjoiZG93bmxvYWQiLCJpYXQiOjE3OTI5MzI4NjksImV4cCI6MTc5MzAxOTI2OX0.Q99YqdEePEO4r8TGUukZ5ti_-zS93SwUq9Jkmq8uYWaMr4DNZZsAA8MOJ7ypVfHcK2p57XJomHpqQfOTJ85PVg")!important;
+  background-image:url("https://yesojugjdxyjlznelmll.supabase.co/storage/v1/object/public/files/image/skincare.webp.jpg")!important;
 }
 .category-card:nth-child(2){
-  background-image:url("https://yesojugjdxyjlznelmll.supabase.co/storage/v1/object/sign/files/image/makeup.webp.jpg?token=eyJraWQiOiI5NDhmNTg1My1mY2QyLTQwZWItODE5MS03Y2YwNDRjZGE0ZjUiLCJhbGciOiJIUzUxMiJ9.eyJ1cmwiOiJmaWxlcy9pbWFnZS9tYWtldXAud2VicC5qcGciLCJzY29wZSI6ImRvd25sb2FkIiwiaWF0IjoxNzkyOTMyODM3LCJleHAiOjE4MjQ0Njg4Mzd9.1YDSkhyIqB7kRxfq-zzqBfVZ39a7LQLdKR14TMls6cd-vT1WyptkHhO9DsjN9W--IvfvMtmkJhVkk7pEgdOFvg")!important;
+  background-image:url("https://yesojugjdxyjlznelmll.supabase.co/storage/v1/object/public/files/image/makeup.webp.jpg")!important;
 }
 .category-card:nth-child(3){
-  background-image:url("https://yesojugjdxyjlznelmll.supabase.co/storage/v1/object/sign/files/image/fragrance.webp.jpg?token=eyJraWQiOiI5NDhmNTg1My1mY2QyLTQwZWItODE5MS03Y2YwNDRjZGE0ZjUiLCJhbGciOiJIUzUxMiJ9.eyJ1cmwiOiJmaWxlcy9pbWFnZS9mcmFncmFuY2Uud2VicC5qcGciLCJzY29wZSI6ImRvd25sb2FkIiwiaWF0IjoxNzkyOTMyODE0LCJleHAiOjE4MjQ0Njg4MTR9.25IlFdwk3edvmD-yU08oG1hc2ByUW7WqDr1QKawb1eK8PPnrh2HDuxPmWj5JBVJAJkXD87RWsQlTNunz1PgO6w")!important;
+  background-image:url("https://yesojugjdxyjlznelmll.supabase.co/storage/v1/object/public/files/image/fragrance.webp.jpg")!important;
 }
 .category-card:nth-child(4){
-  background-image:url("https://yesojugjdxyjlznelmll.supabase.co/storage/v1/object/sign/files/image/Neon%20Botanical%20Beauty%20Editorial.png?token=eyJraWQiOiI5NDhmNTg1My1mY2QyLTQwZWItODE5MS03Y2YwNDRjZGE0ZjUiLCJhbGciOiJIUzUxMiJ9.eyJ1cmwiOiJmaWxlcy9pbWFnZS9OZW9uIEJvdGFuaWNhbCBCZWF1dHkgRWRpdG9yaWFsLnBuZyIsInNjb3BlIjoiZG93bmxvYWQiLCJpYXQiOjE3OTI5MzI4NTYsImV4cCI6MTgyNDQ2ODg1Nn0.HcjHlrvFkxJBXl_L0vdQa8vhMMcD6hmxkURmblB9rJByldjJesw3fhD95ho2j8Q7mBd_3mOfyKW1874Qpn6cgQ")!important;
+  background-image:url("https://yesojugjdxyjlznelmll.supabase.co/storage/v1/object/public/files/image/Neon%20Botanical%20Beauty%20Editorial.png")!important;
 }
