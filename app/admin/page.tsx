@@ -210,9 +210,11 @@ function StatCard({title,value,unit,change,positive,icon,foot}:{title:string;val
   return <div className="admin-stat-card"><div className="stat-card-top"><span>{title}</span><i>{icon}</i></div><div className="stat-value">{value}{unit&&<small> {unit}</small>}</div><div className="stat-card-bottom"><span className={change?(positive?"stat-positive":"stat-neutral"):"stat-neutral"}>{change}</span><small>{foot}</small></div></div>;
 }
 
-function OrdersTable() {
-  if (orders.length === 0) return <div className="admin-empty">هنوز سفارش واقعی از پایگاه داده دریافت نشده است؛ این فهرست عمداً خالی است.</div>;
-  return <div className="admin-table-wrap"><table className="admin-table"><thead><tr><th>شماره سفارش</th><th>مشتری</th><th>تاریخ ثبت</th><th>مبلغ نهایی</th><th>وضعیت</th><th>جزئیات</th></tr></thead><tbody>{orders.map(order=><tr key={order.id}><td className="order-id">{order.id}</td><td>{order.customer}</td><td className="date-cell">{order.date}</td><td className="price-cell">{order.total}</td><td><span className={"status-pill "+order.tone}>{order.status}</span></td><td><button className="table-action" onClick={()=>window.alert("جزئیات این سفارش در نسخه متصل به پایگاه داده نمایش داده می‌شود.")}>مشاهده</button></td></tr>)}</tbody></table></div>;
+function OrdersTable({orders,onManage}:{orders:AdminOrder[];onManage:(order:AdminOrder)=>void}) {
+  if (orders.length === 0) return <div className="admin-empty">هنوز سفارشی در پایگاه داده ثبت نشده است.</div>;
+  const labels: Record<string,string> = { awaiting_payment:"در انتظار پرداخت", paid:"پرداخت‌شده", processing:"در حال آماده‌سازی", shipped:"ارسال‌شده", delivered:"تحویل‌شده", cancelled:"لغوشده", returned:"مرجوعی" };
+  const tones: Record<string,string> = { awaiting_payment:"pending", paid:"success", processing:"info", shipped:"info", delivered:"success", cancelled:"danger", returned:"warning" };
+  return <div className="admin-table-wrap"><table className="admin-table"><thead><tr><th>شماره سفارش</th><th>مشتری / تماس</th><th>تاریخ ثبت</th><th>مبلغ کالاها</th><th>وضعیت</th><th>رهگیری</th><th>عملیات</th></tr></thead><tbody>{orders.map(order=><tr key={order.id}><td className="order-id">{order.order_code}</td><td>{order.customer_name}<small style={{display:"block",color:"#999"}}>{order.phone}</small></td><td className="date-cell">{new Date(order.created_at).toLocaleDateString("fa-IR")}</td><td className="price-cell">{toman(Number(order.total))}</td><td><span className={"status-pill "+(tones[order.order_status]||"muted")}>{labels[order.order_status]||order.order_status}</span></td><td>{order.tracking_code||"—"}</td><td><button className="table-action" onClick={()=>onManage(order)}>وضعیت / رهگیری</button></td></tr>)}</tbody></table></div>;
 }
 
 function ComingSoon({section,onNotify}:{section:Section;onNotify:(message:string)=>void}) {
