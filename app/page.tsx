@@ -33,6 +33,7 @@ export default function Home() {
   const [searchInput, setSearchInput] = useState("");
   const [mobileSearchOpen, setMobileSearchOpen] = useState(false);
   const [cart, setCart] = useState<Record<number, number>>({});
+  const [hydrated, setHydrated] = useState(false);
   const [open, setOpen] = useState(false);
   const [likes, setLikes] = useState<number[]>([]);
   const [mobileMenu, setMobileMenu] = useState(false);
@@ -43,6 +44,38 @@ export default function Home() {
     const timer = window.setTimeout(() => setQ(searchInput), 250);
     return () => window.clearTimeout(timer);
   }, [searchInput]);
+
+  useEffect(() => {
+    try {
+      const savedCart = window.localStorage.getItem("miashop:cart:v1");
+      const savedLikes = window.localStorage.getItem("miashop:favorites:v1");
+      if (savedCart) setCart(JSON.parse(savedCart) as Record<number, number>);
+      if (savedLikes) setLikes(JSON.parse(savedLikes) as number[]);
+    } catch {
+      // Private browsing or disabled storage: keep the in-memory state usable.
+    }
+    setHydrated(true);
+    const syncStorage = (event: StorageEvent) => {
+      try {
+        if (event.key === "miashop:cart:v1") setCart(event.newValue ? JSON.parse(event.newValue) as Record<number, number> : {});
+        if (event.key === "miashop:favorites:v1") setLikes(event.newValue ? JSON.parse(event.newValue) as number[] : []);
+      } catch {
+        // Ignore malformed data written by another tab.
+      }
+    };
+    window.addEventListener("storage", syncStorage);
+    return () => window.removeEventListener("storage", syncStorage);
+  }, []);
+
+  useEffect(() => {
+    if (!hydrated) return;
+    try {
+      window.localStorage.setItem("miashop:cart:v1", JSON.stringify(cart));
+      window.localStorage.setItem("miashop:favorites:v1", JSON.stringify(likes));
+    } catch {
+      // Storage quota or browser privacy settings may prevent persistence.
+    }
+  }, [cart, likes, hydrated]);
 
   const list = useMemo(() => {
     const filtered = products.filter((p) =>
