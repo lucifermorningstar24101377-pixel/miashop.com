@@ -3,7 +3,7 @@ import { timingSafeEqual } from "node:crypto";
 export function isAdminRequest(request: Request) {
   const expected = process.env.ADMIN_SESSION_TOKEN;
   const cookie = request.headers.get("cookie") ?? "";
-  const actual = cookie.match(/(?:^|;\\s*)mia_admin_session=([^;]+)/)?.[1];
+  const actual = cookie.match(/(?:^|;\s*)mia_admin_session=([^;]+)/)?.[1];
   if (!expected || !actual) return false;
   const a = Buffer.from(actual);
   const b = Buffer.from(expected);
@@ -11,7 +11,7 @@ export function isAdminRequest(request: Request) {
 }
 
 export function supabaseConfig() {
-  const url = (process.env.SUPABASE_URL || process.env.NEXT_PUBLIC_SUPABASE_URL || "https://yesojugjdxyjlznelmll.supabase.co").replace(/\\/$/, "");
+  const url = (process.env.SUPABASE_URL || process.env.NEXT_PUBLIC_SUPABASE_URL || "https://yesojugjdxyjlznelmll.supabase.co").replace(/\/$/, "");
   const key = process.env.SUPABASE_SERVICE_ROLE_KEY;
   if (!key) throw new Error("SUPABASE_SERVICE_ROLE_KEY is not configured");
   return { url, key };
