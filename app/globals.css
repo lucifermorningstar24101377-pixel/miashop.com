@@ -1121,3 +1121,60 @@ html, body, body *:not(svg):not(svg *){
 input, textarea, select, button{
   font-family:var(--font-vazirmatn),Tahoma,sans-serif !important;
 }
+
+
+/* Clear, high-contrast add-to-cart action: trusted deep green with a larger tap target. */
+.products .price button{
+  width:auto;
+  min-width:124px;
+  min-height:46px;
+  height:auto;
+  padding:0 13px;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:7px;
+  flex-shrink:0;
+  border:1px solid #245744;
+  border-radius:10px;
+  background:#176044;
+  color:#fff;
+  box-shadow:0 3px 10px rgba(23,96,68,.18);
+  font-weight:700;
+}
+.products .price button .add-label{
+  display:inline;
+  font-size:11px;
+  line-height:1.4;
+  white-space:nowrap;
+}
+.products .price button:hover{
+  background:#104b35;
+  border-color:#104b35;
+  color:#fff;
+  box-shadow:0 5px 14px rgba(23,96,68,.28);
+}
+.products .price button:focus-visible{
+  outline:3px solid #75b99a;
+  outline-offset:3px;
+}
+@media(max-width:800px){
+  .products .price button{
+    min-width:104px;
+    min-height:44px;
+    padding:0 9px;
+    gap:5px;
+    border-radius:9px;
+  }
+  .products .price button .add-label{font-size:10px}
+  .products .price button svg{width:16px;height:16px}
+}
+@media(max-width:380px){
+  .products .price button{
+    min-width:94px;
+    min-height:42px;
+    padding:0 7px;
+    gap:4px;
+  }
+  .products .price button .add-label{font-size:9px}
+}
