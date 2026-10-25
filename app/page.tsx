@@ -17,7 +17,6 @@ const categories = [
   { title: "مراقبت پوست", en: "SKINCARE", cat: "پوست", tone: "cat-skin", mark: "✧", note: "روتینِ پوستِ تو" },
   { title: "آرایش و زیبایی", en: "MAKEUP", cat: "آرایش", tone: "cat-makeup", mark: "◒", note: "رنگی برای حالِ خوب" },
   { title: "عطر و رایحه", en: "FRAGRANCE", cat: "عطر", tone: "cat-scent", mark: "❋", note: "امضای نامرئی تو" },
-  { title: "روتین زیبایی", en: "BEAUTY ROUTINE", cat: "پوست", tone: "cat-routine", mark: "✺", note: "لحظه‌ای برای خودت" }
 ];
 
 export default function Home() {
