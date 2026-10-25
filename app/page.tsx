@@ -9,10 +9,7 @@ import {
   PackageCheck, SlidersHorizontal
 } from "lucide-react";
 
-type StoreProduct = { id: number; name: string; brand: string; price: number; old?: number; cat: string; tone: string; tag?: string; mark: string; type: string };
-
-// No demo products: the catalog stays empty until the administrator adds real inventory.
-const products: StoreProduct[] = [];
+type StoreProduct = { id: number; name: string; brand: string; price: number; old?: number; cat: string; tone: string; tag?: string; mark: string; type: string; imageUrl?: string | null; stock?: number; description?: string | null };
 
 const toman = (n: number) => n.toLocaleString("fa-IR") + " تومان";
 
@@ -23,6 +20,7 @@ const categories = [
 ];
 
 export default function Home() {
+  const [products, setProducts] = useState<StoreProduct[]>([]);
   const [cat, setCat] = useState("همه");
   const [q, setQ] = useState("");
   const [searchInput, setSearchInput] = useState("");
@@ -38,6 +36,12 @@ export default function Home() {
   const drawerRef = useRef<HTMLElement>(null);
   const mobileMenuRef = useRef<HTMLElement>(null);
   const [sort, setSort] = useState("featured");
+
+  useEffect(() => {
+    let active = true;
+    fetch("/api/products", { cache: "no-store" }).then(response => response.ok ? response.json() : Promise.reject(new Error("catalog unavailable"))).then(result => { if (active) setProducts(Array.isArray(result.products) ? result.products : []); }).catch(() => { if (active) setProducts([]); });
+    return () => { active = false; };
+  }, []);
 
   useEffect(() => {
     const timer = window.setTimeout(() => setQ(searchInput), 250);
@@ -234,8 +238,7 @@ export default function Home() {
           {list.map((p) => (
             <article className="card" key={p.id}>
               <div className={"visual " + p.tone}>
-                <span className="visual-grain" />
-                <div className={"shape shape-" + p.type}><b>{p.mark}</b><small>{p.brand.toUpperCase()}</small></div>
+                {p.imageUrl ? <img src={p.imageUrl} alt={p.name} loading="lazy" style={{position:"absolute",inset:0,width:"100%",height:"100%",objectFit:"cover"}} /> : <><span className="visual-grain" /><div className={"shape shape-" + p.type}><b>{p.mark}</b><small>{p.brand.toUpperCase()}</small></>}
                 {p.tag && <span className="tag">{p.tag}</span>}
                 <button className={"like " + (likes.includes(p.id) ? "liked" : "")} onClick={() => setLikes((a) => a.includes(p.id) ? a.filter((x) => x !== p.id) : [...a, p.id])} aria-label={likes.includes(p.id) ? "حذف از علاقه‌مندی‌ها" : "افزودن به علاقه‌مندی‌ها"} aria-pressed={likes.includes(p.id)}><Heart size={17} fill={likes.includes(p.id) ? "currentColor" : "none"} /></button>
                 {p.old && <span className="off">{Math.round((1 - p.price / p.old) * 100).toLocaleString("fa-IR")}٪ تخفیف</span>}
@@ -248,7 +251,7 @@ export default function Home() {
           ))}
         </div>
         {list.length === 0 && <div className="empty catalog-empty"><PackageCheck size={25}/><strong>{q ? "محصولی با این جست‌وجو پیدا نشد." : "هنوز محصولی برای فروش ثبت نشده است."}</strong><span>{q ? "نام محصول یا برند دیگری را جست‌وجو کن." : "پس از ثبت محصولات واقعی در پنل مدیریت، کالاها در این بخش نمایش داده می‌شوند."}</span></div>}
-        <div className="catalog-foot"><span>در حال حاضر مجموعه‌ای منتخب از محصولات نمایشی را می‌بینی.</span><a className="text-link" href="#home">بازگشت به بالا <ArrowLeft size={15} /></a></div>
+        <div className="catalog-foot"><span>محصولات این بخش از موجودی ثبت‌شده در پنل مدیریت بارگذاری می‌شوند.</span><a className="text-link" href="#home">بازگشت به بالا <ArrowLeft size={15} /></a></div>
       </section>
 
       <section className="newsletter wrap">
