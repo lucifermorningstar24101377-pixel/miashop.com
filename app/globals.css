@@ -1067,3 +1067,48 @@ img,svg,video,canvas{max-width:100%}
 .category-card:nth-child(4){
   background-image:url("https://yesojugjdxyjlznelmll.supabase.co/storage/v1/object/public/files/image/Neon%20Botanical%20Beauty%20Editorial.png")!important;
 }
+
+
+/* Large beauty-routine editorial card beneath the three category cards. */
+.editorial.wrap{
+  position:relative;
+  isolation:isolate;
+  display:grid;
+  grid-template-columns:minmax(0,1fr) minmax(300px,.82fr);
+  align-items:center;
+  gap:clamp(24px,5vw,72px);
+  min-height:390px;
+  margin-block:28px 44px;
+  padding:clamp(28px,5vw,64px);
+  overflow:hidden;
+  border:1px solid #f2c8e533;
+  border-radius:22px;
+  background:
+    linear-gradient(90deg,rgba(8,7,14,.10) 0%,rgba(8,7,14,.35) 38%,rgba(8,7,14,.90) 100%),
+    url("https://yesojugjdxyjlznelmll.supabase.co/storage/v1/object/public/files/image/beauty-routine.webp.jpg") center/cover no-repeat;
+  box-shadow:0 22px 55px rgba(0,0,0,.22);
+}
+.editorial.wrap .editorial-art{display:none}
+.editorial.wrap .editorial-copy{
+  grid-column:2;
+  max-width:440px;
+  color:#fff;
+  position:relative;
+  z-index:1;
+}
+.editorial.wrap .editorial-copy .eyebrow{color:#f5c5df}
+.editorial.wrap .editorial-copy h2{color:#fff;text-shadow:0 2px 22px #0008}
+.editorial.wrap .editorial-copy h2 em{color:#ff9fd0}
+.editorial.wrap .editorial-copy p{color:#f7eaf2}
+.editorial.wrap .editorial-copy .text-link{color:#fff}
+@media(max-width:800px){
+  .editorial.wrap{
+    grid-template-columns:minmax(0,1fr);
+    min-height:340px;
+    margin-block:22px 34px;
+    padding:28px 22px;
+    background-position:38% center;
+    background-image:linear-gradient(0deg,rgba(7,6,13,.92) 0%,rgba(7,6,13,.58) 58%,rgba(7,6,13,.15) 100%),url("https://yesojugjdxyjlznelmll.supabase.co/storage/v1/object/public/files/image/beauty-routine.webp.jpg");
+  }
+  .editorial.wrap .editorial-copy{grid-column:1;align-self:end;max-width:100%;padding-top:100px}
+}
