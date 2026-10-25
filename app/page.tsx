@@ -16,7 +16,8 @@ const toman = (n: number) => n.toLocaleString("fa-IR") + " تومان";
 const categories = [
   { title: "مراقبت پوست", en: "SKINCARE", cat: "پوست", tone: "cat-skin", mark: "✧", note: "روتینِ پوستِ تو" },
   { title: "آرایش و زیبایی", en: "MAKEUP", cat: "آرایش", tone: "cat-makeup", mark: "◒", note: "رنگی برای حالِ خوب" },
-  { title: "عطر و رایحه", en: "FRAGRANCE", cat: "عطر", tone: "cat-scent", mark: "❋", note: "امضای نامرئی تو" }
+  { title: "عطر و رایحه", en: "FRAGRANCE", cat: "عطر", tone: "cat-scent", mark: "❋", note: "امضای نامرئی تو" },
+  { title: "روتین زیبایی", en: "BEAUTY ROUTINE", cat: "پوست", tone: "cat-routine", mark: "✺", note: "لحظه‌ای برای خودت" }
 ];
 
 export default function Home() {
@@ -47,6 +48,24 @@ export default function Home() {
   const [checkoutPayment, setCheckoutPayment] = useState("درگاه بانکی (پرداخت در مرحله بعد)");
   const [checkoutBusy, setCheckoutBusy] = useState(false);
   const [orderResult, setOrderResult] = useState<{orderCode:string;message:string}|null>(null);
+
+  useEffect(() => {
+    const cards = Array.from(document.querySelectorAll<HTMLElement>(".category-card"));
+    if (!("IntersectionObserver" in window)) {
+      cards.forEach((card) => card.classList.add("is-visible"));
+      return;
+    }
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("is-visible");
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.18, rootMargin: "0px 0px -35px 0px" });
+    cards.forEach((card) => observer.observe(card));
+    return () => observer.disconnect();
+  }, []);
 
   useEffect(() => {
     let active = true;
@@ -238,7 +257,7 @@ export default function Home() {
         </div>
         <div className="category-grid">
           {categories.map((item, index) => (
-            <button className={"category-card " + item.tone} key={item.cat} onClick={() => chooseCategory(item.cat)}>
+            <button className={"category-card " + item.tone} key={item.en} onClick={() => chooseCategory(item.cat)} aria-label={item.title + "؛ مشاهده محصولات"}>
               <span className="category-number">{"۰" + (index + 1).toLocaleString("fa-IR")}</span>
               <span className="category-art" aria-hidden="true"><b>{item.mark}</b><small>{item.en}</small></span>
               <span className="category-copy"><small>{item.note}</small><strong>{item.title}</strong><span className="category-link">مشاهده محصولات <ArrowLeft size={15} /></span></span>
