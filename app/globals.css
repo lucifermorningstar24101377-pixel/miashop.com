@@ -1045,3 +1045,16 @@ img,svg,video,canvas{max-width:100%}
 @media(prefers-reduced-motion:reduce){
   .category-card{opacity:1;transform:none;transition:none}
 }
+
+
+/* Fix category image rendering and remove decorative numbering. */
+.category-number{display:none!important}
+.category-card{
+  background-repeat:no-repeat!important;
+  background-size:cover!important;
+  background-position:center!important;
+}
+.category-card:nth-child(1){background-image:url("https://yesojugjdxyjlznelmll.supabase.co/storage/v1/object/public/files/image/skincare.webp")!important}
+.category-card:nth-child(2){background-image:url("https://yesojugjdxyjlznelmll.supabase.co/storage/v1/object/public/files/image/makeup.webp")!important}
+.category-card:nth-child(3){background-image:url("https://yesojugjdxyjlznelmll.supabase.co/storage/v1/object/public/files/image/fragrance.webp")!important}
+.category-card:nth-child(4){background-image:url("https://yesojugjdxyjlznelmll.supabase.co/storage/v1/object/public/files/image/beauty-routine.webp")!important}
