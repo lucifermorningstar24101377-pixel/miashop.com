@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { normalizeFa } from "@/lib/text";
 import {
   Search, ShoppingBag, Heart, Sparkles, ShieldCheck, ArrowLeft,
@@ -30,12 +30,19 @@ const categories = [
 export default function Home() {
   const [cat, setCat] = useState("همه");
   const [q, setQ] = useState("");
+  const [searchInput, setSearchInput] = useState("");
+  const [mobileSearchOpen, setMobileSearchOpen] = useState(false);
   const [cart, setCart] = useState<Record<number, number>>({});
   const [open, setOpen] = useState(false);
   const [likes, setLikes] = useState<number[]>([]);
   const [mobileMenu, setMobileMenu] = useState(false);
   const [newsletterMessage, setNewsletterMessage] = useState("");
   const [sort, setSort] = useState("featured");
+
+  useEffect(() => {
+    const timer = window.setTimeout(() => setQ(searchInput), 250);
+    return () => window.clearTimeout(timer);
+  }, [searchInput]);
 
   const list = useMemo(() => {
     const filtered = products.filter((p) =>
@@ -75,11 +82,12 @@ export default function Home() {
           <a href="#ritual" onClick={() => setMobileMenu(false)}>مجله زیبایی</a>
         </nav>
         <div className="headtools">
-          <label className="search">
-            <Search size={17} />
-            <input value={q} onChange={(e) => setQ(e.target.value)} placeholder="دنبال چی می‌گردی؟" aria-label="جست‌وجوی محصولات" />
-            {q && <button type="button" className="clear-search" onClick={() => setQ("")} aria-label="پاک کردن جست‌وجو"><X size={13} /></button>}
-          </label>
+          <div className={"search " + (mobileSearchOpen ? "mobile-search-open" : "")}>
+            <button type="button" className="mobile-search-toggle" onClick={() => setMobileSearchOpen((value) => !value)} aria-label={mobileSearchOpen ? "بستن جست‌وجو" : "باز کردن جست‌وجو"} aria-expanded={mobileSearchOpen}>{mobileSearchOpen ? <X size={17} /> : <Search size={17} />}</button>
+            <input value={searchInput} onChange={(e) => setSearchInput(e.target.value)} onKeyDown={(e) => { if (e.key === "Enter") document.getElementById("products")?.scrollIntoView({ behavior: "smooth" }); }} placeholder="دنبال چی می‌گردی؟" aria-label="جست‌وجوی محصولات" />
+            {searchInput && <button type="button" className="clear-search" onClick={() => setSearchInput("")} aria-label="پاک کردن جست‌وجو"><X size={13} /></button>}
+            <button type="button" className="search-submit" onClick={() => document.getElementById("products")?.scrollIntoView({ behavior: "smooth" })} aria-label="جست‌وجو"><Search size={16} /></button>
+          </div>
           <button className="bag" onClick={() => setOpen(true)} aria-label="باز کردن سبد خرید">
             <ShoppingBag size={21} />{count > 0 && <i>{count.toLocaleString("fa-IR")}</i>}
           </button>
