@@ -145,7 +145,7 @@ export default function Home() {
     if (sort === "low") return [...filtered].sort((a, b) => a.price - b.price);
     if (sort === "high") return [...filtered].sort((a, b) => b.price - a.price);
     return filtered;
-  }, [cat, q, sort]);
+  }, [products, cat, q, sort]);
 
   const count = Object.values(cart).reduce((a, b) => a + b, 0);
   const total = products.reduce((s, p) => s + p.price * (cart[p.id] || 0), 0);
@@ -295,7 +295,7 @@ export default function Home() {
               </div>
               <div className="details">
                 <small>{p.brand}</small><h3>{p.name}</h3>
-                <div className="price"><span><b>{toman(p.price)}</b>{p.old && <del>{toman(p.old)}</del>}</span><button onClick={() => add(p.id, 1)} aria-label={"افزودن " + p.name + " به سبد خرید"}><Plus size={19} /><span className="add-label">افزودن</span></button></div>
+                <div className="price"><span><b>{toman(p.price)}</b>{p.old && <del>{toman(p.old)}</del>}</span><button onClick={() => add(p.id, 1)} aria-label={"افزودن " + p.name + " به سبد خرید"}><Plus size={19} /><span className="add-label">افزودن به سبد</span></button></div>
               </div>
             </article>
           ))}
