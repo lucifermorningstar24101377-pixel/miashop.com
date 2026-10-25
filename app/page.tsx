@@ -83,9 +83,10 @@ export default function Home() {
           <button className="bag" onClick={() => setOpen(true)} aria-label="باز کردن سبد خرید">
             <ShoppingBag size={21} />{count > 0 && <i>{count.toLocaleString("fa-IR")}</i>}
           </button>
-          <button className="mobile-menu-toggle" onClick={() => setMobileMenu((v) => !v)} aria-label="باز و بسته کردن منو"><Menu size={21} /></button>
+          <button className="mobile-menu-toggle" onClick={() => setMobileMenu((v) => !v)} aria-label="باز و بسته کردن منو" aria-expanded={mobileMenu} aria-controls="mobile-navigation"><Menu size={21} /></button>
         </div>
       </header>
+      {mobileMenu && <div className="mobile-menu-backdrop" onClick={() => setMobileMenu(false)}><nav id="mobile-navigation" className="mobile-menu-dialog" role="dialog" aria-modal="true" aria-label="منوی اصلی" onClick={(event) => event.stopPropagation()}><div className="mobile-menu-heading"><strong>منوی میاشاپ</strong><button type="button" onClick={() => setMobileMenu(false)} aria-label="بستن منو"><X /></button></div><a href="#home" onClick={() => setMobileMenu(false)}>صفحه اصلی</a><a href="#products" onClick={() => { chooseCategory("آرایش"); setMobileMenu(false); }}>آرایشی</a><a href="#products" onClick={() => { chooseCategory("پوست"); setMobileMenu(false); }}>مراقبت پوست</a><a href="#products" onClick={() => { chooseCategory("عطر"); setMobileMenu(false); }}>عطر و ادکلن</a></nav></div>}
 
       <section className="hero wrap" id="home">
         <div className="herotext">
@@ -193,7 +194,7 @@ export default function Home() {
       <footer>
         <div className="wrap foot">
           <div className="foot-brand"><a className="brandlogo" href="#home"><b>m.</b><span>میاشاپ<small>BEAUTY, YOUR WAY</small></span></a><p>زیبایی از انتخاب‌های کوچک شروع می‌شود. انتخاب‌های روزمره‌ات را کمی خاص‌تر کن.</p><a className="social-link" href="#home" aria-label="اینستاگرام میاشاپ"><Instagram size={17} /> <span>همراه میاشاپ باش</span></a></div>
-          <div><b>خرید و کشف</b><a href="#products">همه محصولات</a><a href="#categories">مراقبت پوست</a><a href="#categories">آرایش و زیبایی</a><a href="#categories">عطر و رایحه</a></div>
+          <div><b>خرید و کشف</b><a href="#products">همه محصولات</a><a href="#products" onClick={() => chooseCategory("پوست")}>مراقبت پوست</a><a href="#products" onClick={() => chooseCategory("آرایش")}>آرایش و زیبایی</a><a href="#products" onClick={() => chooseCategory("عطر")}>عطر و رایحه</a></div>
           <div><b>میاشاپ</b><a href="#ritual">یادداشت زیبایی</a><a href="#home">درباره میاشاپ</a><a href="mailto:hello@miashop.com">ارتباط با ما</a><span>شنبه تا پنجشنبه · ۹ تا ۱۸</span></div>
         </div>
         <div className="wrap footer-note"><ShieldCheck size={15} /><span>اطلاعات سفارش و پرداخت پس از راه‌اندازی سرویس‌های واقعی فعال خواهد شد.</span></div>
