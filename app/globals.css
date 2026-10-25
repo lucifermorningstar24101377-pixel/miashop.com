@@ -1054,7 +1054,7 @@ img,svg,video,canvas{max-width:100%}
   background-size:cover!important;
   background-position:center!important;
 }
-.category-card:nth-child(1){background-image:url("https://yesojugjdxyjlznelmll.supabase.co/storage/v1/object/public/files/image/skincare.webp")!important}
-.category-card:nth-child(2){background-image:url("https://yesojugjdxyjlznelmll.supabase.co/storage/v1/object/public/files/image/makeup.webp")!important}
-.category-card:nth-child(3){background-image:url("https://yesojugjdxyjlznelmll.supabase.co/storage/v1/object/public/files/image/fragrance.webp")!important}
-.category-card:nth-child(4){background-image:url("https://yesojugjdxyjlznelmll.supabase.co/storage/v1/object/public/files/image/beauty-routine.webp")!important}
+.category-card:nth-child(1){background-image:url("https://yesojugjdxyjlznelmll.supabase.co/storage/v1/object/public/files/image/categories/skincare.webp"),url("https://yesojugjdxyjlznelmll.supabase.co/storage/v1/object/public/files/image/skincare.webp")!important}
+.category-card:nth-child(2){background-image:url("https://yesojugjdxyjlznelmll.supabase.co/storage/v1/object/public/files/image/categories/makeup.webp"),url("https://yesojugjdxyjlznelmll.supabase.co/storage/v1/object/public/files/image/makeup.webp")!important}
+.category-card:nth-child(3){background-image:url("https://yesojugjdxyjlznelmll.supabase.co/storage/v1/object/public/files/image/categories/fragrance.webp"),url("https://yesojugjdxyjlznelmll.supabase.co/storage/v1/object/public/files/image/fragrance.webp")!important}
+.category-card:nth-child(4){background-image:url("https://yesojugjdxyjlznelmll.supabase.co/storage/v1/object/public/files/image/categories/beauty-routine.webp"),url("https://yesojugjdxyjlznelmll.supabase.co/storage/v1/object/public/files/image/beauty-routine.webp")!important}
