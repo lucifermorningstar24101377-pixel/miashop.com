@@ -989,3 +989,5 @@ img,svg,video,canvas{max-width:100%}
   .mobile-menu-heading{display:flex;align-items:center;justify-content:space-between;padding-bottom:18px;border-bottom:1px solid var(--line);margin-bottom:8px}
   .mobile-menu-heading button{border:0;background:transparent;color:inherit;padding:8px}
 }
+
+.toast-message{position:fixed;z-index:200;bottom:24px;left:24px;max-width:min(420px,calc(100vw - 32px));display:flex;align-items:center;gap:14px;padding:14px 16px;background:var(--green);color:#fff;border-radius:12px;box-shadow:0 12px 36px #0003}.toast-message button{display:inline-flex;align-items:center;justify-content:center;border:0;background:transparent;color:inherit;padding:4px}
