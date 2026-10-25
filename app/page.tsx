@@ -36,6 +36,17 @@ export default function Home() {
   const drawerRef = useRef<HTMLElement>(null);
   const mobileMenuRef = useRef<HTMLElement>(null);
   const [sort, setSort] = useState("featured");
+  const [checkoutOpen, setCheckoutOpen] = useState(false);
+  const [checkoutName, setCheckoutName] = useState("");
+  const [checkoutPhone, setCheckoutPhone] = useState("");
+  const [checkoutProvince, setCheckoutProvince] = useState("");
+  const [checkoutCity, setCheckoutCity] = useState("");
+  const [checkoutAddress, setCheckoutAddress] = useState("");
+  const [checkoutPostal, setCheckoutPostal] = useState("");
+  const [checkoutCarrier, setCheckoutCarrier] = useState("پست ایران");
+  const [checkoutPayment, setCheckoutPayment] = useState("درگاه بانکی (پرداخت در مرحله بعد)");
+  const [checkoutBusy, setCheckoutBusy] = useState(false);
+  const [orderResult, setOrderResult] = useState<{orderCode:string;message:string}|null>(null);
 
   useEffect(() => {
     let active = true;
@@ -126,6 +137,28 @@ export default function Home() {
   const chooseCategory = (value: string) => {
     setCat(value);
     document.getElementById("products")?.scrollIntoView({ behavior: "smooth" });
+  };
+  const submitOrder = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    if (checkoutBusy) return;
+    setCheckoutBusy(true);
+    try {
+      const response = await fetch("/api/orders", {
+        method: "POST", headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          customerName: checkoutName, phone: checkoutPhone, province: checkoutProvince, city: checkoutCity,
+          address: checkoutAddress, postalCode: checkoutPostal, carrier: checkoutCarrier, paymentMethod: checkoutPayment,
+          items: products.filter(p => cart[p.id] > 0).map(p => ({ id: p.id, quantity: cart[p.id] })),
+        }),
+      });
+      const result = await response.json();
+      if (!response.ok) throw new Error(result.error || "ثبت سفارش انجام نشد.");
+      setOrderResult({ orderCode: result.order.orderCode, message: result.message });
+      setCart({});
+      setCheckoutOpen(false);
+    } catch (error) {
+      setNotice(error instanceof Error ? error.message : "ثبت سفارش انجام نشد.");
+    } finally { setCheckoutBusy(false); }
   };
 
   return (
@@ -283,9 +316,9 @@ export default function Home() {
 
       {notice && <div className="toast-message" role="status" aria-live="polite"><span>{notice}</span><button type="button" onClick={() => setNotice("")} aria-label="بستن پیام"><X size={16} /></button></div>}
       {open && <div className="shade" onClick={() => setOpen(false)}><aside ref={drawerRef} className="drawer" role="dialog" aria-modal="true" aria-labelledby="cart-drawer-title" onClick={(e) => e.stopPropagation()}><div className="drawhead"><h2 id="cart-drawer-title">سبد خرید ({count.toLocaleString("fa-IR")})</h2><button onClick={() => setOpen(false)} aria-label="بستن"><X /></button></div>
-        {count === 0 ? <div className="emptycart"><ShoppingBag /><h3>سبد خریدت خالیه</h3><p>چند محصول دوست‌داشتنی بهش اضافه کن.</p><button className="btn" onClick={() => setOpen(false)}>دیدن محصولات</button></div> : <>
+        {orderResult ? <div className="emptycart" role="status"><PackageCheck /><h3>سفارش ثبت شد</h3><p>کد سفارش: <strong dir="ltr">{orderResult.orderCode}</strong></p><p>{orderResult.message}</p><button className="btn" onClick={() => { setOrderResult(null); setOpen(false); }}>متوجه شدم</button></div> : count === 0 ? <div className="emptycart"><ShoppingBag /><h3>سبد خریدت خالیه</h3><p>چند محصول دوست‌داشتنی بهش اضافه کن.</p><button className="btn" onClick={() => setOpen(false)}>دیدن محصولات</button></div> : <>
           <div className="cartlist">{products.filter((p) => cart[p.id] > 0).map((p) => <div className="cartitem" key={p.id}><span className={"thumb " + p.tone}>{p.mark}</span><div><b>{p.name}</b><small>{toman(p.price)}</small><div className="qty"><button onClick={() => add(p.id, -1)} aria-label="کم کردن"><Minus size={13} /></button>{cart[p.id].toLocaleString("fa-IR")}<button onClick={() => add(p.id, 1)} aria-label="زیاد کردن"><Plus size={13} /></button></div></div></div>)}</div>
-          <div className="shipping-progress"><p>{remainingForFreeShipping > 0 ? <>{toman(remainingForFreeShipping)} تا ارسال رایگان باقی مانده</> : "سفارش به حد ارسال رایگان رسیده است."}</p><div className="shipping-progress-track" role="progressbar" aria-valuemin={0} aria-valuemax={100} aria-valuenow={shippingProgress}><span style={{ width: shippingProgress + "%" }} /></div></div><div className="cartfoot"><span>جمع کالاها <b>{toman(total)}</b></span><span>هزینه ارسال <b>پس از تعیین روش ارسال مشخص می‌شود</b></span><span>مجموع موقت <b>{toman(total)}</b></span><button className="btn" onClick={() => setNotice("درگاه پرداخت به این نسخه متصل نیست؛ هیچ پرداختی انجام نشد.")}>ادامه و پرداخت <ArrowLeft size={16} /></button><small>این سبد نمایشی است؛ پرداخت و هزینه ارسال واقعی هنوز فعال نیستند.</small></div>
+          {checkoutOpen ? <form className="cartfoot" onSubmit={submitOrder} style={{display:"grid",gap:12,textAlign:"right"}}><h3 style={{margin:0}}>اطلاعات ارسال و ثبت سفارش</h3><label>نام و نام خانوادگی<input required minLength={3} value={checkoutName} onChange={e=>setCheckoutName(e.target.value)} autoComplete="name" /></label><label>شماره موبایل<input required inputMode="tel" pattern="09[0-9]{9}" maxLength={11} value={checkoutPhone} onChange={e=>setCheckoutPhone(e.target.value)} placeholder="09123456789" autoComplete="tel" /></label><div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:8}}><label>استان<input required value={checkoutProvince} onChange={e=>setCheckoutProvince(e.target.value)} /></label><label>شهر<input required value={checkoutCity} onChange={e=>setCheckoutCity(e.target.value)} autoComplete="address-level2" /></label></div><label>نشانی کامل<input required minLength={8} value={checkoutAddress} onChange={e=>setCheckoutAddress(e.target.value)} autoComplete="street-address" /></label><label>کد پستی ۱۰ رقمی<input required inputMode="numeric" pattern="[0-9]{10}" maxLength={10} value={checkoutPostal} onChange={e=>setCheckoutPostal(e.target.value)} autoComplete="postal-code" /></label><label>روش ارسال<select value={checkoutCarrier} onChange={e=>setCheckoutCarrier(e.target.value)}><option>پست ایران</option><option>تی‌باکس</option></select></label><label>روش پرداخت<select value={checkoutPayment} onChange={e=>setCheckoutPayment(e.target.value)}><option>درگاه بانکی (پرداخت در مرحله بعد)</option><option>پرداخت اقساطی (نیازمند فعال‌سازی)</option></select></label><div><span>مبلغ کالاها <b>{toman(total)}</b></span><small style={{display:"block",lineHeight:1.8}}>هزینه ارسال هنوز از سرویس حمل‌ونقل دریافت نمی‌شود. پرداخت آنلاین و اقساطی هنوز متصل نیستند؛ این مرحله فقط سفارش را با وضعیت «در انتظار پرداخت» ثبت می‌کند.</small></div><button className="btn" type="submit" disabled={checkoutBusy}>{checkoutBusy ? "در حال ثبت سفارش…" : "ثبت سفارش و دریافت کد پیگیری"} <ArrowLeft size={16}/></button><button type="button" className="text-link" onClick={()=>setCheckoutOpen(false)}>بازگشت به سبد خرید</button></form> : <><div className="shipping-progress"><p>{remainingForFreeShipping > 0 ? <>{toman(remainingForFreeShipping)} تا ارسال رایگان باقی مانده</> : "سفارش به حد ارسال رایگان رسیده است."}</p><div className="shipping-progress-track" role="progressbar" aria-valuemin={0} aria-valuemax={100} aria-valuenow={shippingProgress}><span style={{ width: shippingProgress + "%" }} /></div></div><div className="cartfoot"><span>جمع کالاها <b>{toman(total)}</b></span><span>هزینه ارسال <b>پس از تأیید روش ارسال مشخص می‌شود</b></span><span>مجموع کالاها <b>{toman(total)}</b></span><button className="btn" onClick={() => setCheckoutOpen(true)}>ادامه و ثبت سفارش <ArrowLeft size={16} /></button><small>ثبت سفارش، پرداخت واقعی نیست. کد سفارش پس از ذخیره موفق صادر می‌شود.</small></div></>}
         </>}
       </aside></div>}
     </main>
