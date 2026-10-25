@@ -238,7 +238,7 @@ export default function Home() {
           {list.map((p) => (
             <article className="card" key={p.id}>
               <div className={"visual " + p.tone}>
-                {p.imageUrl ? <img src={p.imageUrl} alt={p.name} loading="lazy" style={{position:"absolute",inset:0,width:"100%",height:"100%",objectFit:"cover"}} /> : <><span className="visual-grain" /><div className={"shape shape-" + p.type}><b>{p.mark}</b><small>{p.brand.toUpperCase()}</small></>}
+                {p.imageUrl ? <img src={p.imageUrl} alt={p.name} loading="lazy" style={{position:"absolute",inset:0,width:"100%",height:"100%",objectFit:"cover"}} /> : <><span className="visual-grain" /><div className={"shape shape-" + p.type}><b>{p.mark}</b><small>{p.brand.toUpperCase()}</small></div></>}
                 {p.tag && <span className="tag">{p.tag}</span>}
                 <button className={"like " + (likes.includes(p.id) ? "liked" : "")} onClick={() => setLikes((a) => a.includes(p.id) ? a.filter((x) => x !== p.id) : [...a, p.id])} aria-label={likes.includes(p.id) ? "حذف از علاقه‌مندی‌ها" : "افزودن به علاقه‌مندی‌ها"} aria-pressed={likes.includes(p.id)}><Heart size={17} fill={likes.includes(p.id) ? "currentColor" : "none"} /></button>
                 {p.old && <span className="off">{Math.round((1 - p.price / p.old) * 100).toLocaleString("fa-IR")}٪ تخفیف</span>}
