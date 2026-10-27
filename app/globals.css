@@ -1667,3 +1667,189 @@ footer a:hover{color:#8f7650!important}
 @media(prefers-reduced-motion:reduce){
   *,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}
 }
+
+
+/* MiaShop verified-layout correction: balanced cards, left-side editorial copy,
+   light sage/cream/champagne palette only, and no neon effects. */
+:root{
+  --ink:#405448!important;--muted:#657665!important;--paper:#faf8f1!important;
+  --line:#dce2d7!important;--rose:#8f7650!important;--green:#405448!important;
+}
+html,body{background:#faf8f1!important;color:#405448!important}
+.topline{background:#dce8da!important;color:#405448!important;border-color:#c9a66b!important}
+.topline span,.topline .topline-en{color:#405448!important}
+.header{background:rgba(250,248,241,.97)!important;border-color:#dce2d7!important}
+.header nav,.header nav a,.brandlogo>span,.brandlogo small,.headtools,.headtools button,.search{color:#405448!important}
+.header .brandlogo{display:flex!important;visibility:visible!important;opacity:1!important}
+.header .brandlogo>b,footer .brandlogo>b{background:#405448!important;color:#faf8f1!important}
+.search{background:#fffdf7!important;border:1px solid #dce2d7!important}
+.search input{color:#405448!important}
+.search input::placeholder{color:#657665!important;opacity:1}
+/* Three equal category cards on desktop; one full-width card per row on mobile. */
+.category-grid{
+  display:grid!important;
+  grid-template-columns:repeat(3,minmax(0,1fr))!important;
+  gap:18px!important;
+  direction:ltr!important;
+  align-items:stretch!important;
+}
+.category-card{
+  direction:rtl!important;
+  min-width:0!important;
+  min-height:240px!important;
+  padding:24px!important;
+  background-color:#dce8da!important;
+  background-repeat:no-repeat!important;
+  background-size:cover!important;
+  background-position:center right!important;
+  border:1px solid #c9a66b!important;
+  border-radius:16px!important;
+  color:#fffdf6!important;
+  box-shadow:0 10px 24px rgba(64,84,72,.12)!important;
+}
+.category-card.cat-skin{
+  background-image:url("https://yesojugjdxyjlznelmll.supabase.co/storage/v1/object/public/files/image/skincare.webp%20.jpg?v=3")!important;
+}
+.category-card.cat-makeup{
+  background-image:url("https://yesojugjdxyjlznelmll.supabase.co/storage/v1/object/public/files/image/makeup.webp.jpg?v=3")!important;
+}
+.category-card.cat-scent{
+  background-image:url("https://yesojugjdxyjlznelmll.supabase.co/storage/v1/object/public/files/image/fragrance.webp.jpg?v=3")!important;
+}
+.category-card::before{
+  z-index:0!important;
+  background:linear-gradient(90deg,rgba(45,65,51,.86) 0%,rgba(45,65,51,.65) 43%,rgba(45,65,51,.16) 100%)!important;
+}
+.category-card::after{border-color:rgba(250,248,241,.48)!important}
+.category-card .category-copy{
+  position:absolute!important;
+  left:18px!important;right:auto!important;
+  top:50%!important;bottom:auto!important;
+  transform:translateY(-50%)!important;
+  width:54%!important;max-width:54%!important;
+  display:flex!important;flex-direction:column!important;
+  align-items:flex-start!important;gap:10px!important;
+  padding:0!important;text-align:right!important;
+}
+.category-card .category-copy>small{color:#fff8e9!important;text-shadow:none!important}
+.category-card .category-copy strong{color:#fffdf6!important;text-shadow:none!important;font-size:clamp(18px,1.65vw,25px)!important;line-height:1.55!important}
+.category-card .category-link{
+  background:#405448!important;color:#fffdf6!important;
+  border:1px solid #c9a66b!important;box-shadow:none!important;
+  backdrop-filter:none!important;
+}
+.category-card:hover{transform:translateY(-2px)!important;border-color:#c9a66b!important;box-shadow:0 14px 28px rgba(64,84,72,.16)!important}
+.category-card:hover .category-link{background:#536b56!important;border-color:#c9a66b!important}
+.category-card .category-art{display:none!important}
+/* Editorial: use a predictable LTR grid so column 1 is physically on the left.
+   Keep Persian copy RTL inside its own card. */
+.editorial.wrap{
+  direction:ltr!important;
+  display:grid!important;
+  grid-template-columns:minmax(0, .92fr) minmax(0,1.08fr)!important;
+  gap:clamp(20px,4vw,56px)!important;
+  align-items:center!important;
+  min-height:390px!important;
+  padding:clamp(24px,4vw,52px)!important;
+  background-color:#dce8da!important;
+  background-image:url("https://yesojugjdxyjlznelmll.supabase.co/storage/v1/object/public/files/image/beauty-routine.webp.jpg?v=3")!important;
+  background-size:cover!important;background-position:center right!important;
+  border:1px solid #c9a66b!important;border-radius:20px!important;
+  box-shadow:0 12px 30px rgba(64,84,72,.12)!important;
+}
+.editorial.wrap .editorial-art{display:none!important}
+.editorial.wrap .editorial-copy{
+  direction:rtl!important;grid-column:1!important;
+  justify-self:stretch!important;align-self:center!important;
+  width:100%!important;max-width:500px!important;
+  margin:0!important;padding:clamp(20px,3vw,34px)!important;
+  text-align:right!important;color:#405448!important;
+  background:linear-gradient(135deg,rgba(250,248,241,.97),rgba(220,232,218,.93))!important;
+  border:1px solid #c9a66b!important;border-radius:18px!important;
+  box-shadow:0 10px 26px rgba(64,84,72,.12)!important;
+}
+.editorial.wrap .editorial-copy .eyebrow,
+.editorial.wrap .editorial-copy h2,
+.editorial.wrap .editorial-copy p,
+.editorial.wrap .editorial-copy .text-link{color:#405448!important;text-shadow:none!important}
+.editorial.wrap .editorial-copy h2{font-size:clamp(27px,3vw,40px)!important;line-height:1.6!important;letter-spacing:0!important;overflow-wrap:normal!important}
+.editorial.wrap .editorial-copy h2 em{color:#8f7650!important}
+.editorial.wrap .editorial-copy p{line-height:2.1!important}
+.editorial.wrap .editorial-copy .text-link{border-color:#c9a66b!important}
+/* Newsletter and footer: remove dark panels and use the approved light palette. */
+.newsletter{
+  background:linear-gradient(120deg,#dce8da,#faf8f1)!important;
+  color:#405448!important;border:1px solid #c9a66b!important;
+}
+.newsletter h2,.newsletter p,.newsletter small,.newsletter .eyebrow,
+.newsletter .newsletter-copy,.newsletter .newsletter-message{color:#405448!important}
+.newsletter-mark{background:#fffdf7!important;color:#8f7650!important;box-shadow:none!important}
+.newsletter form{background:#fffdf7!important;border:1px solid #c9a66b!important;box-shadow:none!important}
+.newsletter form input{background:transparent!important;color:#405448!important}
+.newsletter form input::placeholder{color:#657665!important}
+.newsletter form button{background:#405448!important;color:#fffdf6!important;border:1px solid #c9a66b!important;box-shadow:none!important}
+.newsletter:after{border-color:rgba(201,166,107,.25)!important;box-shadow:0 0 0 25px rgba(201,166,107,.06),0 0 0 50px rgba(201,166,107,.06)!important}
+footer{
+  background:linear-gradient(130deg,#dce8da,#faf8f1)!important;
+  color:#405448!important;border-top:1px solid #c9a66b!important;
+}
+footer .foot>div:first-child p,footer .foot>div:not(:first-child)>a,
+footer .foot>div:not(:first-child)>b,footer .foot span,
+footer .brandlogo>span,footer .brandlogo small,footer .copyright,
+footer .footer-note,footer .social-link{color:#405448!important}
+footer .copyright,footer .footer-note{border-color:#c9a66b!important}
+footer .footer-note{background:transparent!important}
+footer a:hover{color:#8f7650!important}
+/* The mobile bottom navigation was a second dark strip; make it match the page. */
+.mobile-bottom-nav{
+  background:rgba(250,248,241,.98)!important;
+  border-top:1px solid #c9a66b!important;
+  box-shadow:0 -5px 18px rgba(64,84,72,.08)!important;
+  backdrop-filter:blur(12px)!important;
+}
+.mobile-bottom-nav a,.mobile-bottom-nav button{color:#405448!important;background:transparent!important}
+.mobile-bottom-nav a:hover,.mobile-bottom-nav button:hover{color:#8f7650!important}
+.shade,.mobile-menu-backdrop{background:rgba(64,84,72,.38)!important}
+.drawer,.mobile-menu-dialog{background:#faf8f1!important;color:#405448!important;box-shadow:0 10px 35px rgba(64,84,72,.15)!important}
+.drawhead,.cartfoot{border-color:#dce2d7!important}
+.toast-message{background:#405448!important;color:#fffdf6!important;box-shadow:0 8px 24px rgba(64,84,72,.16)!important}
+/* Remove neon accents, glow, and motion from the hero and decorative UI. */
+.hero,.heroart.neon-stage{
+  background-color:#dce8da!important;
+  background-image:linear-gradient(135deg,#faf8f1,#dce8da)!important;
+  border-color:#c9a66b!important;box-shadow:none!important;
+}
+.hero .heroart.neon-stage .hero-overlay-content{
+  background:linear-gradient(135deg,#faf8f1,#dce8da)!important;
+  border:1px solid #c9a66b!important;box-shadow:none!important;
+}
+.hero .heroart.neon-stage .hero-overlay-content h1,
+.hero .heroart.neon-stage .hero-overlay-content h1 em,
+.hero .heroart.neon-stage .hero-overlay-content p,
+.hero .heroart.neon-stage .hero-overlay-trust{color:#405448!important;text-shadow:none!important}
+.hero .heroart.neon-stage .hero-overlay-primary,
+.hero .heroart.neon-stage .hero-overlay-secondary,
+.hero .heroart.neon-stage .hero-overlay-actions a{
+  background:#405448!important;color:#fffdf6!important;border-color:#c9a66b!important;box-shadow:none!important;
+}
+.neon-halo,.neon-orb,.orb-pink,.orb-green,.neon-side-note{display:none!important;filter:none!important}
+.heroart.neon-stage *{animation:none!important;text-shadow:none!important}
+.eyebrow,.hero h1 em,.sectionhead h2 em,.newsletter h2 em{color:#8f7650!important}
+.btn,.filters button.active,.products .price button{background:#405448!important;color:#fffdf6!important;border-color:#c9a66b!important;box-shadow:none!important}
+@media(max-width:800px){
+  .category-grid{grid-template-columns:minmax(0,1fr)!important;gap:14px!important}
+  .category-card{min-height:220px!important}
+  .category-card .category-copy{left:18px!important;width:58%!important;max-width:58%!important}
+  .editorial.wrap{
+    grid-template-columns:minmax(0,1fr)!important;
+    min-height:0!important;gap:0!important;padding:18px!important;
+    background-position:center right!important;
+  }
+  .editorial.wrap .editorial-copy{grid-column:1!important;width:100%!important;max-width:100%!important;padding:22px!important}
+  .editorial.wrap .editorial-copy h2{font-size:clamp(25px,7vw,34px)!important}
+}
+@media(max-width:380px){
+  .category-card .category-copy{left:13px!important;width:62%!important;max-width:62%!important}
+  .category-card .category-copy strong{font-size:18px!important}
+  .editorial.wrap .editorial-copy{padding:17px!important}
+}
