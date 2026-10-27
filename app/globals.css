@@ -1853,3 +1853,38 @@ footer a:hover{color:#8f7650!important}
   .category-card .category-copy strong{font-size:18px!important}
   .editorial.wrap .editorial-copy{padding:17px!important}
 }
+
+
+/* Fix hero editorial asset and enforce the approved light footer palette */
+.heroart.neon-stage{
+  background-color:#dce8da!important;
+  background-image:linear-gradient(90deg,rgba(250,248,241,.96) 0%,rgba(220,232,218,.86) 43%,rgba(220,232,218,.18) 100%),url("https://yesojugjdxyjlznelmll.supabase.co/storage/v1/object/public/files/image/Neon%20Botanical%20Beauty%20Editorial.png")!important;
+  background-size:cover!important;
+  background-position:62% center!important;
+  background-repeat:no-repeat!important;
+}
+@media(max-width:800px){
+  .heroart.neon-stage{
+    background-image:linear-gradient(180deg,rgba(250,248,241,.20) 0%,rgba(220,232,218,.78) 48%,rgba(250,248,241,.97) 100%),url("https://yesojugjdxyjlznelmll.supabase.co/storage/v1/object/public/files/image/Neon%20Botanical%20Beauty%20Editorial.png")!important;
+    background-position:center top!important;
+  }
+}
+footer,footer .foot,footer .footer-note,footer .copyright{
+  background-color:#dce8da!important;
+  background-image:none!important;
+  color:#405448!important;
+}
+footer .foot>div,footer .foot>div:first-child,footer .foot>div:not(:first-child),
+footer .brandlogo,footer .brandlogo>span,footer .social-link,
+footer .footer-note,footer .copyright{
+  background:transparent!important;
+  color:#405448!important;
+}
+footer .brandlogo>b{
+  background:#405448!important;
+  color:#faf8f1!important;
+}
+footer .foot>div:first-child p,footer .foot>div:not(:first-child)>a,
+footer .foot>div:not(:first-child)>b,footer span,footer .copyright,
+footer .footer-note{color:#405448!important}
+footer .copyright,footer .footer-note{border-color:#c9a66b!important}
