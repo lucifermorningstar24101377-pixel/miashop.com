@@ -1178,3 +1178,144 @@ input, textarea, select, button{
   }
   .products .price button .add-label{font-size:9px}
 }
+
+
+/* MiaShop light sage / cream / champagne palette — isolated review branch.
+   Centralized final tokens intentionally override legacy theme layers above. */
+:root{
+  --ink:#28372f;
+  --muted:#6e786e;
+  --paper:#faf8f1;
+  --line:#e2e5d9;
+  --rose:#b98478;
+  --green:#405448;
+  --gold:#c9a66b;
+  --soft-rose:#f3e4dc;
+  --champagne:#c9a66b;
+  --cream:#faf8f1;
+  --color-page:#faf8f1;
+  --color-surface:#ffffff;
+  --color-sage-soft:#dce8da;
+  --color-sage:#a9bda8;
+  --color-forest:#405448;
+  --color-champagne:#c9a66b;
+  --color-peach:#f0b7a8;
+  --color-neon-accent:#b8f36b;
+}
+body{
+  background-color:var(--color-page);
+  background-image:radial-gradient(ellipse at 8% 12%,#f0b7a81a,transparent 35%),radial-gradient(ellipse at 90% 45%,#dce8da65,transparent 32%);
+  color:var(--ink);
+}
+::selection{background:#dce8da;color:#28372f}
+:where(a,button,input,select,textarea):focus-visible{outline-color:#8ba88a}
+.topline{background:#405448;color:#fffdf7}
+.topline span,.topline-mark{color:#e4c98f}
+.topline-en{color:#f2e8d4}
+.header{background:#faf8f1f2;border-bottom-color:#e2e5d9}
+.header nav a:hover,footer a:hover{color:#9b6e5d}
+.header nav a:after{background:var(--gold)}
+.search{background:#f0f1e9;border-color:#e4e6dc}
+.search:focus-within{background:#fff;border-color:#a9bda8}
+.brandlogo>b{background:var(--green);color:#fffdf7;box-shadow:0 5px 14px #40544820}
+.bag,.mobile-menu-toggle{color:var(--green)}
+.bag i,.off{background:#b98478}
+.hero h1 em,.sectionhead h2 em,.newsletter h2 em{color:#9b6e5d}
+.eyebrow,.newsletter>div>small{color:#9b6e5d}
+.btn,.filters button.active,.newsletter form button{background:#405448;color:#fff}
+.btn:hover{background:#314439}
+.heroart{background:linear-gradient(145deg,#eaf0e4,#dce8da);box-shadow:0 20px 55px #40544816}
+.heroart:after{background:#c7d7c3}
+.sun{background:radial-gradient(circle at 35% 30%,#fff9e9,#e9dfc6);box-shadow:0 0 70px #fff8dc55}
+.orbit{border-color:#b9c6ae}
+.hero-art-kicker,.hero-art-kicker b{color:#52644f}
+.hero-sticker{background:#fffdf0ed;border-color:#c9a66b66;color:#8e6c43}
+.benefits{border-color:#e2e5d9}
+.benefits>div{color:#405448}
+.category-card{border-color:#d7e0d2}
+.cat-skin{background:linear-gradient(135deg,#e5eddf,#cbdcc8)}
+.cat-makeup{background:linear-gradient(135deg,#f4e5dc,#e8c9bc)}
+.cat-scent{background:linear-gradient(135deg,#eee7d7,#d9d5bd)}
+.category-art{color:#62765f}
+.cat-makeup .category-art{color:#a16e60}
+.cat-scent .category-art{color:#817451}
+.category-link{color:#405448}
+.editorial-art{background:linear-gradient(135deg,#e5eddf,#faf3e5)}
+.editorial-ring{background:radial-gradient(circle at 32% 28%,#fff9e9,#dce8da)}
+.editorial-flower{color:#71866b}
+.editorial-note{background:#fffdf0ed;color:#6b5b48}
+.products{color:var(--ink)}
+.filters button{border-color:#dce2d7;color:#566357;background:#fffdf8}
+.filters button.active{border-color:#405448}
+.visual:before{background:#ffffff60}
+.sand{background:#eee5d8}.rose{background:#f0ded9}.lilac{background:#e6e6dc}.mint{background:#dce8da}.peach{background:#f4dfd1}.blue{background:#dce5df}.yellow{background:#f0ead5}.plum{background:#e8dedb}
+.tag,.like{background:#fffdf0e8;color:#52644f}
+.like.liked{color:#a66f65}
+.details>small{color:#7b8276}
+.price button{border-color:#c9d4c5;color:#405448}
+.price button:hover{background:#405448;color:#fff}
+.newsletter{background:linear-gradient(115deg,#eaf0e4,#f4eadb);border:1px solid #dce5d6}
+.newsletter form{background:#fffdf8;border:1px solid #e3e5da}
+.flower{color:#c7d7c3}
+footer{background:#405448;color:#fffdf7}
+footer .brandlogo>b{background:#f7f1e3;color:#405448}
+footer .brandlogo small{color:#dce5d6}
+footer .foot>div:first-child p,footer .foot>div:not(:first-child)>a,footer .foot span,.copyright{color:#e0e8dc}
+.copyright{border-top-color:#ffffff30}
+.shade,.mobile-menu-backdrop{background:#28372f70}
+.drawer,.mobile-menu-dialog{background:#fffdf8;color:#28372f}
+.toast-message{background:#405448;color:#fff}
+.shipping-progress-track{background:#e2e5d9}
+.shipping-progress-track span{background:#c9a66b}
+.products .price button{border-color:#405448;background:#405448;color:#fff;box-shadow:0 3px 10px #40544822}
+.products .price button:hover{background:#314439;border-color:#314439;box-shadow:0 5px 14px #40544830}
+.products .price button:focus-visible{outline-color:#a9bda8}
+:where(a,button,input,select,textarea):focus-visible{outline:2px solid #8ba88a;outline-offset:3px}
+
+/* Hero image remains unchanged; brighten the card and keep neon as a restrained accent. */
+.heroart.neon-stage .hero-overlay-content{
+  color:#28372f;
+  background:linear-gradient(135deg,#fffdf5f5 0%,#f7f4e9f2 100%);
+  border:1px solid #c9a66b88;
+  border-right:3px solid #c9a66b;
+  box-shadow:0 18px 55px #28372f20;
+  backdrop-filter:blur(10px);
+}
+.heroart.neon-stage .hero-overlay-content h1,
+.heroart.neon-stage .hero-overlay-content h1 em{color:#405448}
+.heroart.neon-stage .hero-overlay-content p{color:#5e6a5f}
+.heroart.neon-stage .hero-overlay-primary{background:#405448;color:#fff;border:1px solid #405448}
+.heroart.neon-stage .hero-overlay-secondary{background:#ffffffc9;color:#405448;border:1px solid #c9a66b}
+.heroart.neon-stage .hero-overlay-trust{color:#657366}
+.heroart.neon-stage .hero-overlay-frame{border-color:#c9a66b55}
+@media(max-width:800px){
+  .hero .heroart.neon-stage .hero-overlay-content{background:linear-gradient(120deg,#fffdf7f7,#f5f2e8f5);border-color:#c9a66b88}
+  .hero .heroart.neon-stage .hero-overlay-content h1{color:#405448}
+  .hero .heroart.neon-stage .hero-overlay-content p{color:#5e6a5f}
+}
+/* Photo cards retain legible copy while reducing the former black/neon treatment. */
+.category-card::before{
+  background:linear-gradient(90deg,rgba(30,48,37,.08) 0%,rgba(30,48,37,.22) 40%,rgba(30,48,37,.68) 100%),linear-gradient(0deg,rgba(30,48,37,.42),transparent 68%);
+}
+.category-card::after{border-color:#f7f0df65}
+.category-card .category-art b{text-shadow:0 0 16px #c9a66b55}
+.category-card .category-copy>small{color:#f7f1e5}
+.category-card .category-link{border-color:#e8d4a7;background:#405448c9;color:#fffdf7}
+.category-card:hover .category-link{background:#536b56;border-color:#e8d4a7}
+.category-card:hover{border-color:#c9a66b;box-shadow:0 20px 45px #40544828}
+.editorial.wrap{
+  border-color:#c9a66b70;
+  background:linear-gradient(90deg,rgba(37,57,43,.84) 0%,rgba(37,57,43,.42) 48%,rgba(37,57,43,.10) 100%),url("https://yesojugjdxyjlznelmll.supabase.co/storage/v1/object/public/files/image/beauty-routine.webp.jpg") center/cover no-repeat;
+  box-shadow:0 22px 55px #40544820;
+}
+.editorial.wrap .editorial-copy .eyebrow{color:#f1d79f}
+.editorial.wrap .editorial-copy h2 em{color:#f1d79f}
+@media(max-width:800px){
+  .editorial.wrap{background-image:linear-gradient(0deg,rgba(37,57,43,.90) 0%,rgba(37,57,43,.58) 58%,rgba(37,57,43,.15) 100%),url("https://yesojugjdxyjlznelmll.supabase.co/storage/v1/object/public/files/image/beauty-routine.webp.jpg")}
+}
+/* Motion feedback uses sage/champagne instead of vivid pink neon. */
+@keyframes mia-soft-glow{0%,100%{box-shadow:0 0 0 #c9a66b00}50%{box-shadow:0 0 18px #c9a66b24}}
+@media(hover:hover) and (prefers-reduced-motion:no-preference){
+ .btn:hover,.hero-overlay-primary:hover,.hero-overlay-secondary:hover,.hero-overlay-actions a:hover,.newsletter form button:hover{box-shadow:0 9px 24px #c9a66b38}
+ .text-link:hover{color:#8f7650}
+}
