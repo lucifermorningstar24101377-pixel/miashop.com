@@ -1543,3 +1543,127 @@ footer .foot span,.copyright{ text-shadow:none }
 @media(max-width:380px){
   .category-card .category-copy{left:13px!important;width:62%!important;max-width:62%!important}
 }
+
+
+/* Final correction pass: no neon styling, no black panels, correct hero copy side. */
+:root{
+  --ink:#405448!important;
+  --muted:#657665!important;
+  --paper:#faf8f1!important;
+  --color-page:#faf8f1!important;
+  --color-surface:#fffdf7!important;
+}
+html,body,main{background-color:#faf8f1!important;color:#405448!important}
+body{
+  background-image:radial-gradient(ellipse at 8% 12%,rgba(240,183,168,.12),transparent 35%),radial-gradient(ellipse at 90% 45%,rgba(220,232,218,.4),transparent 32%)!important;
+}
+/* Use the existing object filename including its embedded space; cache-bust stale failures. */
+.category-card.cat-skin{
+  background-image:url("https://yesojugjdxyjlznelmll.supabase.co/storage/v1/object/public/files/image/skincare.webp%20.jpg?v=2")!important;
+  background-color:#dce8da!important;
+  background-size:cover!important;
+  background-position:center right!important;
+}
+/* Put the large skincare-routine banner copy on the open left side, away from product photography. */
+.editorial.wrap{
+  position:relative!important;
+  background-color:#dce8da!important;
+  background-image:linear-gradient(90deg,rgba(64,84,72,.10) 0%,rgba(64,84,72,.06) 45%,rgba(64,84,72,.18) 100%),url("https://yesojugjdxyjlznelmll.supabase.co/storage/v1/object/public/files/image/beauty-routine.webp.jpg?v=2")!important;
+  background-size:cover!important;
+  background-position:center right!important;
+}
+.editorial.wrap .editorial-copy{
+  grid-column:1!important;
+  justify-self:start!important;
+  align-self:center!important;
+  width:min(48%,520px)!important;
+  max-width:48%!important;
+  margin-inline-start:0!important;
+  margin-inline-end:auto!important;
+  padding:36px!important;
+  text-align:right!important;
+  direction:rtl!important;
+  color:#405448!important;
+  background:linear-gradient(135deg,rgba(250,248,241,.96),rgba(220,232,218,.91))!important;
+  border:1px solid #c9a66b!important;
+  border-radius:20px!important;
+  box-shadow:0 12px 30px rgba(64,84,72,.12)!important;
+}
+.editorial.wrap .editorial-copy .eyebrow,
+.editorial.wrap .editorial-copy h2,
+.editorial.wrap .editorial-copy h2 em,
+.editorial.wrap .editorial-copy p,
+.editorial.wrap .editorial-copy .text-link{
+  color:#405448!important;
+  text-shadow:none!important;
+}
+.editorial.wrap .editorial-copy h2 em{color:#8f7650!important}
+.editorial.wrap .editorial-copy .text-link{border-color:#c9a66b!important}
+@media(max-width:800px){
+  .editorial.wrap{
+    background-image:linear-gradient(0deg,rgba(220,232,218,.18),rgba(220,232,218,.18)),url("https://yesojugjdxyjlznelmll.supabase.co/storage/v1/object/public/files/image/beauty-routine.webp.jpg?v=2")!important;
+    background-position:center right!important;
+  }
+  .editorial.wrap .editorial-copy{
+    width:100%!important;
+    max-width:100%!important;
+    margin:0!important;
+    padding:22px!important;
+    background:rgba(250,248,241,.94)!important;
+  }
+}
+/* Replace the two dark bottom panels with the approved light palette. */
+.newsletter{
+  background:linear-gradient(115deg,#dce8da 0%,#faf8f1 100%)!important;
+  color:#405448!important;
+  border:1px solid #c9a66b!important;
+}
+.newsletter h2,.newsletter p,.newsletter small,.newsletter .eyebrow,
+.newsletter .newsletter-copy,.newsletter .newsletter-message{color:#405448!important}
+.newsletter form{background:#fffdf7!important;border:1px solid #c9a66b!important}
+.newsletter form input{background:#fffdf7!important;color:#405448!important}
+.newsletter form input::placeholder{color:#657665!important}
+.newsletter form button{background:#405448!important;color:#fffdf6!important;border-color:#c9a66b!important}
+footer{
+  background:linear-gradient(135deg,#dce8da 0%,#faf8f1 100%)!important;
+  color:#405448!important;
+  border-top:1px solid #c9a66b!important;
+}
+footer .brandlogo>b{background:#405448!important;color:#faf8f1!important}
+footer .brandlogo>span,footer .brandlogo small,
+footer .foot>div:first-child p,footer .foot>div:not(:first-child)>a,
+footer .foot>div:not(:first-child)>b,footer .foot span,
+footer .copyright,footer .footer-note,footer .social-link{color:#405448!important}
+footer .copyright{border-top-color:#c9a66b!important}
+footer .footer-note{background:transparent!important;color:#405448!important}
+footer a:hover{color:#8f7650!important}
+/* Remove neon/lime glow and dark shadow treatments across the storefront. */
+:root{--color-neon-accent:#a9bda8!important}
+.heroart.neon-stage,.heroart.neon-stage *{
+  animation:none!important;
+  text-shadow:none!important;
+}
+.heroart.neon-stage .hero-overlay-content{
+  background:linear-gradient(135deg,#faf8f1,#dce8da)!important;
+  border-color:#c9a66b!important;
+  box-shadow:0 12px 28px rgba(64,84,72,.12)!important;
+}
+.heroart.neon-stage .hero-overlay-content h1,
+.heroart.neon-stage .hero-overlay-content h1 em,
+.heroart.neon-stage .hero-overlay-content p,
+.heroart.neon-stage .hero-overlay-trust{color:#405448!important}
+.heroart.neon-stage .hero-overlay-primary,
+.heroart.neon-stage .hero-overlay-secondary{
+  background:#405448!important;
+  color:#fffdf6!important;
+  border-color:#c9a66b!important;
+  box-shadow:none!important;
+}
+.heroart.neon-stage .hero-overlay-frame{border-color:#c9a66b!important}
+.category-card .category-copy>small,
+.category-card .category-copy strong{ text-shadow:0 1px 4px rgba(64,84,72,.25)!important}
+.category-card .category-link{box-shadow:none!important}
+.category-card:hover{box-shadow:0 12px 26px rgba(64,84,72,.12)!important}
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}
+}
