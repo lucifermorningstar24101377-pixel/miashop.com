@@ -1330,7 +1330,7 @@ footer .foot>div:first-child p,footer .foot>div:not(:first-child)>a,footer .foot
   background-position:center right!important;
 }
 .category-card:nth-child(1){
-  background-image:url("https://yesojugjdxyjlznelmll.supabase.co/storage/v1/object/public/files/image/skincare.webp%20.jpg")!important;
+  background-image:url("https://yesojugjdxyjlznelmll.supabase.co/storage/v1/object/public/files/image/skincare.webp.jpg")!important;
 }
 .category-card:nth-child(2){
   background-image:url("https://yesojugjdxyjlznelmll.supabase.co/storage/v1/object/public/files/image/makeup.webp.jpg")!important;
@@ -1466,7 +1466,7 @@ footer .foot>div:first-child p,footer .foot>div:not(:first-child)>a,footer .foot
 /* Review fixes: bind imagery to semantic category classes (grid order is RTL),
    keep all foregrounds within the approved sage/cream/champagne palette. */
 .category-card.cat-skin{
-  background-image:url("https://yesojugjdxyjlznelmll.supabase.co/storage/v1/object/public/files/image/skincare.webp%20.jpg")!important;
+  background-image:url("https://yesojugjdxyjlznelmll.supabase.co/storage/v1/object/public/files/image/skincare.webp.jpg")!important;
 }
 .category-card.cat-makeup{
   background-image:url("https://yesojugjdxyjlznelmll.supabase.co/storage/v1/object/public/files/image/makeup.webp.jpg")!important;
@@ -1559,7 +1559,7 @@ body{
 }
 /* Use the existing object filename including its embedded space; cache-bust stale failures. */
 .category-card.cat-skin{
-  background-image:url("https://yesojugjdxyjlznelmll.supabase.co/storage/v1/object/public/files/image/skincare.webp%20.jpg?v=2")!important;
+  background-image:url("https://yesojugjdxyjlznelmll.supabase.co/storage/v1/object/public/files/image/skincare.webp.jpg?v=2")!important;
   background-color:#dce8da!important;
   background-size:cover!important;
   background-position:center right!important;
@@ -1708,7 +1708,7 @@ html,body{background:#faf8f1!important;color:#405448!important}
   box-shadow:0 10px 24px rgba(64,84,72,.12)!important;
 }
 .category-card.cat-skin{
-  background-image:url("https://yesojugjdxyjlznelmll.supabase.co/storage/v1/object/public/files/image/skincare.webp%20.jpg?v=3")!important;
+  background-image:url("https://yesojugjdxyjlznelmll.supabase.co/storage/v1/object/public/files/image/skincare.webp.jpg?v=3")!important;
 }
 .category-card.cat-makeup{
   background-image:url("https://yesojugjdxyjlznelmll.supabase.co/storage/v1/object/public/files/image/makeup.webp.jpg?v=3")!important;
