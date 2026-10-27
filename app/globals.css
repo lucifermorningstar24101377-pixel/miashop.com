@@ -1461,3 +1461,85 @@ footer .foot>div:first-child p,footer .foot>div:not(:first-child)>a,footer .foot
   .category-card .category-link{padding:8px 10px;font-size:11px}
   .brandlogo>span{font-size:16px}
 }
+
+
+/* Review fixes: bind imagery to semantic category classes (grid order is RTL),
+   keep all foregrounds within the approved sage/cream/champagne palette. */
+.category-card.cat-skin{
+  background-image:url("https://yesojugjdxyjlznelmll.supabase.co/storage/v1/object/public/files/image/skincare.webp%20.jpg")!important;
+}
+.category-card.cat-makeup{
+  background-image:url("https://yesojugjdxyjlznelmll.supabase.co/storage/v1/object/public/files/image/makeup.webp.jpg")!important;
+}
+.category-card.cat-scent{
+  background-image:url("https://yesojugjdxyjlznelmll.supabase.co/storage/v1/object/public/files/image/fragrance.webp.jpg")!important;
+}
+.category-card{
+  background-size:cover!important;
+  background-repeat:no-repeat!important;
+  background-position:center right!important;
+  color:#fffdf6!important;
+  border-color:#c9a66b!important;
+}
+.category-card::before{
+  background:linear-gradient(90deg,rgba(35,55,42,.86) 0%,rgba(35,55,42,.70) 34%,rgba(35,55,42,.24) 66%,rgba(35,55,42,.04) 100%)!important;
+}
+.category-card .category-copy{
+  left:clamp(22px,4vw,44px)!important;
+  right:auto!important;
+  width:min(48%,310px)!important;
+  max-width:48%!important;
+  align-items:flex-start!important;
+  text-align:right!important;
+}
+.category-card .category-copy>small,
+.category-card .category-copy strong,
+.category-card .category-link{
+  color:#fffdf6!important;
+}
+.category-card .category-copy>small{text-shadow:0 1px 4px rgba(35,55,42,.65)!important}
+.category-card .category-copy strong{text-shadow:0 2px 8px rgba(35,55,42,.55)!important}
+.category-card .category-link{
+  background:#405448!important;
+  border-color:#c9a66b!important;
+}
+.brandlogo{visibility:visible!important;opacity:1!important}
+.header .brandlogo>span{color:#405448!important}
+.header .brandlogo>span small{color:#657665!important}
+.header .brandlogo>b{background:#405448!important;color:#faf8f1!important}
+.header nav a,.headtools button,.headtools .bag{color:#405448!important}
+.header nav a:hover{color:#8f7650!important}
+.sectionhead h2,.sectionhead p,.sectionhead>span,
+.eyebrow,.details h3,.details>small,.price,
+footer .foot>div:first-child p,footer .foot>div:not(:first-child)>a,
+footer .foot span,.copyright{ text-shadow:none }
+.sectionhead h2,.details h3{color:#405448!important}
+.sectionhead p,.details>small{color:#657665!important}
+.eyebrow,.hero h1 em,.sectionhead h2 em,.newsletter h2 em{color:#8f7650!important}
+.search input,.search input::placeholder{color:#405448!important}
+.search input::placeholder{opacity:1}
+.products .price button,.btn,.filters button.active,.newsletter form button{
+  background:#405448!important;
+  border-color:#c9a66b!important;
+  color:#fffdf6!important;
+}
+.products .price button:hover,.btn:hover,.newsletter form button:hover{
+  background:#536b56!important;
+  color:#fffdf6!important;
+}
+.toast-message{background:#405448!important;color:#fffdf6!important}
+.shade,.mobile-menu-backdrop{background:rgba(64,84,72,.48)!important}
+@media(max-width:800px){
+  .category-card .category-copy{
+    left:18px!important;
+    width:58%!important;
+    max-width:58%!important;
+  }
+  .category-card::before{
+    background:linear-gradient(90deg,rgba(35,55,42,.88) 0%,rgba(35,55,42,.68) 48%,rgba(35,55,42,.18) 100%)!important;
+  }
+  .header .brandlogo>span{font-size:18px!important}
+}
+@media(max-width:380px){
+  .category-card .category-copy{left:13px!important;width:62%!important;max-width:62%!important}
+}
