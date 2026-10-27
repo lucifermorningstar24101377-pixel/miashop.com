@@ -23,3 +23,38 @@
 @media(max-width:900px){.admin-sidebar{transform:translateX(105%);transition:transform .25s ease;box-shadow:none;width:280px}.admin-sidebar.is-open{transform:translateX(0);box-shadow:-15px 0 45px #1820171a}.admin-main{width:100%;margin-right:0}.admin-menu-toggle{display:grid;place-items:center;width:36px;height:36px;border:1px solid var(--admin-line);border-radius:9px}.admin-close-mobile{display:block}.admin-scrim{display:block;position:fixed;inset:0;background:#20251f66;border:0;z-index:35}.admin-topbar{height:76px}.admin-content{padding:23px 20px 18px}.admin-main-grid{grid-template-columns:minmax(0,1.3fr) minmax(245px,1fr)}.admin-stats-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.compact-stats{grid-template-columns:repeat(3,minmax(0,1fr))}.stat-value{font-size:21px}}
 @media(max-width:640px){.admin-topbar{height:70px;padding:0 14px}.admin-topbar h1{font-size:17px}.admin-breadcrumb{font-size:9px}.admin-top-actions{gap:7px}.admin-live{display:none}.admin-view-site{padding:8px;font-size:0;gap:0}.admin-view-site svg{width:17px;height:17px}.admin-content{padding:19px 13px 14px}.admin-welcome{align-items:flex-start;flex-direction:column;gap:10px;margin-bottom:16px}.admin-welcome h2{font-size:22px}.admin-date{font-size:10px}.admin-stats-grid{gap:9px;margin-bottom:13px}.admin-stat-card{padding:12px;border-radius:11px}.stat-card-top{font-size:10px}.stat-card-top i{width:30px;height:30px}.stat-value{font-size:19px;margin:9px 0}.stat-card-bottom{align-items:flex-start;flex-direction:column;gap:4px}.stat-card-bottom>small{font-size:9px}.admin-main-grid{grid-template-columns:1fr;gap:0}.admin-panel{padding:14px;border-radius:11px;margin-bottom:13px}.admin-panel-head{align-items:flex-start;margin-bottom:13px}.admin-panel-head h3{font-size:13px}.admin-panel-head p{font-size:9px}.sales-chart{height:175px}.sales-summary>b{font-size:20px}.integration-cards{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}.integration-mini{padding:9px;gap:7px}.provider-mark{width:31px;height:31px}.integration-mini b{font-size:10px}.integration-mini small{font-size:8px}.admin-page-intro{align-items:flex-start;flex-direction:column;margin-bottom:16px}.admin-page-intro h2{font-size:20px}.admin-page-intro .admin-primary,.admin-page-intro .admin-secondary{align-self:stretch}.compact-stats{grid-template-columns:1fr;gap:8px}.compact-stats .admin-stat-card{display:grid;grid-template-columns:1fr auto;align-items:center;gap:0 8px;padding:11px 13px}.compact-stats .stat-card-top{grid-column:1;grid-row:1}.compact-stats .stat-card-top i{display:none}.compact-stats .stat-value{grid-column:2;grid-row:1/3;font-size:20px;margin:0}.compact-stats .stat-card-bottom{grid-column:1;grid-row:2;flex-direction:row;align-items:center;margin-top:3px}.product-toolbar{padding:11px;gap:6px;flex-wrap:wrap}.admin-search{flex-basis:100%;height:38px}.product-toolbar .admin-secondary{flex:1;padding:8px}.admin-table{min-width:750px}.admin-table th,.admin-table td{padding:11px 10px}.admin-footer{align-items:flex-start;flex-direction:column;gap:5px;padding:5px 2px 12px}.provider-row{gap:9px;flex-wrap:wrap;padding:13px 0}.provider-info{flex-basis:calc(100% - 50px)}.provider-status{margin-right:45px;order:3}.toggle-switch{order:4;margin-right:auto}.provider-config{order:5}.admin-notice{padding:11px}.admin-notice small{font-size:9px}.module-preview{padding:25px 15px;min-height:300px}.module-feature-grid{grid-template-columns:1fr;width:100%;gap:7px}.module-feature-grid>div{justify-content:flex-start;padding:10px 12px}.admin-modal{padding:19px;border-radius:13px}.admin-modal-head h2{font-size:18px}.admin-form-grid{grid-template-columns:1fr;gap:12px}.admin-field.full{grid-column:auto}.admin-modal-actions{flex-direction:column-reverse}.admin-modal-actions button{width:100%;min-height:42px}.admin-toast{bottom:12px;left:12px;right:12px;justify-content:center;font-size:10px}.admin-support{padding:9px}.admin-table-foot{font-size:9px}}
 @media(prefers-reduced-motion:reduce){.mia-admin *,.mia-admin *:before,.mia-admin *:after{animation-duration:.01ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important;transition-duration:.01ms!important}}
+
+
+/* MiaShop admin brand alignment: sage, cream and champagne; retain dashboard contrast. */
+:root{
+ --admin-ink:#28372f;
+ --admin-muted:#6e786e;
+ --admin-line:#e2e5d9;
+ --admin-paper:#faf8f1;
+ --admin-card:#ffffff;
+ --admin-green:#405448;
+ --admin-green-soft:#e5eee1;
+ --admin-rose:#b98478;
+ --admin-rose-soft:#f7e9e2;
+ --admin-gold:#c9a66b;
+}
+.mia-admin{background:var(--admin-paper);color:var(--admin-ink)}
+.admin-sidebar,.admin-topbar,.admin-card,.admin-panel,.admin-modal{background-color:var(--admin-card)}
+.admin-sidebar{border-left-color:var(--admin-line)}
+.admin-brand-mark{background:var(--admin-green);box-shadow:0 5px 12px #40544820}
+.admin-store-switch{background:#f3f5ed;border-color:var(--admin-line)}
+.store-avatar,.profile-avatar{background:var(--admin-green-soft);color:var(--admin-green)}
+.admin-nav-group>button:hover{background:#f3f5ed;color:var(--admin-green)}
+.admin-nav-group>button.active{background:var(--admin-green-soft);color:var(--admin-green)}
+.admin-nav-group>button.active:before{background:var(--admin-green)}
+.admin-support{background:#f7f2e7}
+.support-icon{background:#f0e5cc;color:#8f7650}
+.admin-topbar{border-bottom-color:var(--admin-line)}
+.admin-primary,.admin-button-primary,.admin-save,.admin-submit{background:var(--admin-green);border-color:var(--admin-green);color:#fff}
+.admin-primary:hover,.admin-button-primary:hover,.admin-save:hover,.admin-submit:hover{background:#314439;border-color:#314439}
+.admin-secondary{border-color:#d4ddcf;color:var(--admin-green);background:#fff}
+.admin-secondary:hover{background:#f3f5ed}
+.admin-stat-card,.admin-panel,.admin-table-wrap,.integration-mini{border-color:var(--admin-line)}
+.nav-count{background:var(--admin-rose-soft);color:#8f5f55}
+.admin-toast{background:var(--admin-green);color:#fff}
+.mia-admin :where(a,button,input,select,textarea):focus-visible{outline:2px solid #8ba88a;outline-offset:3px}
