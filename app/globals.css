@@ -1966,3 +1966,45 @@ footer .brandlogo>b{background:#34343A!important;color:#FFFFFF!important}
     background:linear-gradient(180deg,rgba(255,255,255,.02) 0%,rgba(255,255,255,.28) 42%,rgba(255,255,255,.96) 100%)!important}
   .heroart.neon-stage .hero-overlay-content{background:rgba(255,255,255,.93)!important}
 }
+
+
+/* LiaShop luxury brand system — refined typography and logo placement */
+:root{
+  --ink:#34343A!important;
+  --muted:#77727A!important;
+  --paper:#FFFFFF!important;
+  --line:#EEE5E9!important;
+  --rose:#D982A0!important;
+  --green:#34343A!important;
+  --pink-soft:#FCEFF3;
+  --pink-deep:#C95F83;
+}
+body{font-family:var(--font-estedad),var(--font-vazirmatn),Tahoma,sans-serif!important;color:#34343A}
+h1,h2,h3,h4,.sectionhead,.newsletter h2,.hero-overlay-content h1{
+  font-family:var(--font-estedad),var(--font-vazirmatn),sans-serif!important;
+  letter-spacing:-.035em;
+}
+p,button,input,select,textarea,.header nav,.brandlogo{font-family:var(--font-vazirmatn),Tahoma,sans-serif}
+.brandlogo{display:flex!important;align-items:center!important;min-width:0}
+.brandlogo img{
+  display:block;width:clamp(112px,12vw,154px);height:auto;max-height:76px;
+  object-fit:contain;object-position:center;
+}
+footer .brandlogo img{width:clamp(124px,13vw,164px);max-height:82px}
+.header{min-height:88px}
+.btn,.hero-overlay-actions a,.products .price button,.newsletter form button{
+  border-radius:999px!important;transition:transform .2s ease,background .2s ease,box-shadow .2s ease;
+}
+.btn:hover,.hero-overlay-actions a:hover,.products .price button:hover{
+  transform:translateY(-2px);box-shadow:0 8px 20px rgba(201,95,131,.18)!important;
+}
+.category-card,.product-card,.editorial.wrap,.newsletter{
+  border-radius:18px!important;
+}
+@media(max-width:800px){
+  .brandlogo img{width:108px;max-height:58px}
+  footer .brandlogo img{width:126px;max-height:66px}
+}
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{scroll-behavior:auto!important;transition-duration:.01ms!important;animation-duration:.01ms!important}
+}
