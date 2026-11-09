@@ -24,8 +24,8 @@ const cormorant = Cormorant_Garamond({
 });
 
 export const metadata: Metadata = {
-  title: "میاشاپ | زیبایی، با انتخابی هوشمندانه",
-  description: "خرید محصولات آرایشی، مراقبت پوست و عطر از میاشاپ",
+  title: "لیاشاپ | زیبایی، با انتخابی هوشمندانه",
+  description: "خرید محصولات آرایشی، مراقبت پوست و عطر از لیاشاپ",
 };
 
 export default function RootLayout({
