@@ -190,8 +190,8 @@ export default function Home() {
       </div>
 
       <header className="wrap header">
-        <a className="brandlogo" href="#home" aria-label="میاشاپ، صفحه اصلی">
-          <b>m.</b><span>میاشاپ<small>BEAUTY, YOUR WAY</small></span>
+        <a className="brandlogo" href="#home" aria-label="لیاشاپ، صفحه اصلی">
+          <b>m.</b><span>لیاشاپ<small>BEAUTY, YOUR WAY</small></span>
         </a>
         <nav className={mobileMenu ? "nav-open" : ""} aria-label="ناوبری اصلی">
           <a href="#home" onClick={() => setMobileMenu(false)}>صفحه اصلی</a>
@@ -212,7 +212,7 @@ export default function Home() {
           <button className="mobile-menu-toggle" onClick={() => setMobileMenu((v) => !v)} aria-label="باز و بسته کردن منو" aria-expanded={mobileMenu} aria-controls="mobile-navigation"><Menu size={21} /></button>
         </div>
       </header>
-      {mobileMenu && <div className="mobile-menu-backdrop" onClick={() => setMobileMenu(false)}><nav id="mobile-navigation" ref={mobileMenuRef} className="mobile-menu-dialog" role="dialog" aria-modal="true" aria-label="منوی اصلی" onClick={(event) => event.stopPropagation()}><div className="mobile-menu-heading"><strong>منوی میاشاپ</strong><button type="button" onClick={() => setMobileMenu(false)} aria-label="بستن منو"><X /></button></div><a href="#home" onClick={() => setMobileMenu(false)}>صفحه اصلی</a><a href="#products" onClick={() => { chooseCategory("آرایش"); setMobileMenu(false); }}>آرایشی</a><a href="#products" onClick={() => { chooseCategory("پوست"); setMobileMenu(false); }}>مراقبت پوست</a><a href="#products" onClick={() => { chooseCategory("عطر"); setMobileMenu(false); }}>عطر و ادکلن</a></nav></div>}
+      {mobileMenu && <div className="mobile-menu-backdrop" onClick={() => setMobileMenu(false)}><nav id="mobile-navigation" ref={mobileMenuRef} className="mobile-menu-dialog" role="dialog" aria-modal="true" aria-label="منوی اصلی" onClick={(event) => event.stopPropagation()}><div className="mobile-menu-heading"><strong>منوی لیاشاپ</strong><button type="button" onClick={() => setMobileMenu(false)} aria-label="بستن منو"><X /></button></div><a href="#home" onClick={() => setMobileMenu(false)}>صفحه اصلی</a><a href="#products" onClick={() => { chooseCategory("آرایش"); setMobileMenu(false); }}>آرایشی</a><a href="#products" onClick={() => { chooseCategory("پوست"); setMobileMenu(false); }}>مراقبت پوست</a><a href="#products" onClick={() => { chooseCategory("عطر"); setMobileMenu(false); }}>عطر و ادکلن</a></nav></div>}
 
       <section className="hero wrap" id="home">
         <div className="herotext">
@@ -229,7 +229,7 @@ export default function Home() {
             <div><b>رایحه</b><small>امضای شخصی</small></div>
           </div>
         </div>
-        <div className="heroart neon-stage" aria-label="بنر اصلی میاشاپ با دسترسی سریع به محصولات">
+        <div className="heroart neon-stage" aria-label="بنر اصلی لیاشاپ با دسترسی سریع به محصولات"><img className="hero-background-image" src="https://yesojugjdxyjlznelmll.supabase.co/storage/v1/object/public/files/image/Neon%20Botanical%20Beauty%20Editorial.png" alt="تصویر اصلی کمپین زیبایی لیاشاپ" fetchPriority="high" />
           <div className="hero-overlay-content" dir="rtl">
             <span className="hero-overlay-kicker"><Sparkles size={15} /> THE MIA BEAUTY EDIT</span>
             <h1>زیبایی، یک انتخاب نیست؛<br /><em>یک سبک زندگی است.</em></h1>
@@ -277,12 +277,12 @@ export default function Home() {
 
       <section className="wrap products" id="products">
         <div className="sectionhead">
-          <div><small className="eyebrow">THE BEAUTY SHELF</small><h2>انتخاب‌های <em>میاشاپ</em></h2><p>برای روتین روزانه‌ات، با سلیقه خودت انتخاب کن.</p></div>
+          <div><small className="eyebrow">THE BEAUTY SHELF</small><h2>انتخاب‌های <em>لیاشاپ</em></h2><p>برای روتین روزانه‌ات، با سلیقه خودت انتخاب کن.</p></div>
           <span>جزئیات کوچک، حس متفاوت <Sparkles size={16} /></span>
         </div>
         <div className="filters">
           {["همه", "پوست", "آرایش", "عطر"].map((c) => <button key={c} className={cat === c ? "active" : ""} onClick={() => { setCat(c); if (c === "همه") { setQ(""); setSearchInput(""); } }}>{c === "همه" ? "همه محصولات" : c}</button>)}
-          <label className="sort-label"><SlidersHorizontal size={14} /><select value={sort} onChange={(e) => setSort(e.target.value)} aria-label="مرتب‌سازی محصولات"><option value="featured">پیشنهاد میاشاپ</option><option value="low">ارزان‌ترین</option><option value="high">گران‌ترین</option></select></label>
+          <label className="sort-label"><SlidersHorizontal size={14} /><select value={sort} onChange={(e) => setSort(e.target.value)} aria-label="مرتب‌سازی محصولات"><option value="featured">پیشنهاد لیاشاپ</option><option value="low">ارزان‌ترین</option><option value="high">گران‌ترین</option></select></label>
           <small className="product-count">{list.length.toLocaleString("fa-IR")} محصول</small>
         </div>
         <div className="grid">
@@ -317,12 +317,12 @@ export default function Home() {
 
       <footer>
         <div className="wrap foot">
-          <div className="foot-brand"><a className="brandlogo" href="#home"><b>m.</b><span>میاشاپ<small>BEAUTY, YOUR WAY</small></span></a><p>زیبایی از انتخاب‌های کوچک شروع می‌شود. انتخاب‌های روزمره‌ات را کمی خاص‌تر کن.</p><a className="social-link" href="#home" aria-label="اینستاگرام میاشاپ"><Instagram size={17} /> <span>همراه میاشاپ باش</span></a></div>
+          <div className="foot-brand"><a className="brandlogo" href="#home"><b>m.</b><span>لیاشاپ<small>BEAUTY, YOUR WAY</small></span></a><p>زیبایی از انتخاب‌های کوچک شروع می‌شود. انتخاب‌های روزمره‌ات را کمی خاص‌تر کن.</p><a className="social-link" href="#home" aria-label="اینستاگرام لیاشاپ"><Instagram size={17} /> <span>همراه لیاشاپ باش</span></a></div>
           <div><b>خرید و کشف</b><a href="#products">همه محصولات</a><a href="#products" onClick={() => chooseCategory("پوست")}>مراقبت پوست</a><a href="#products" onClick={() => chooseCategory("آرایش")}>آرایش و زیبایی</a><a href="#products" onClick={() => chooseCategory("عطر")}>عطر و رایحه</a></div>
-          <div><b>میاشاپ</b><a href="#ritual">یادداشت زیبایی</a><a href="#home">درباره میاشاپ</a><a href="mailto:hello@miashop.com">ارتباط با ما</a><span>شنبه تا پنجشنبه · ۹ تا ۱۸</span></div>
+          <div><b>لیاشاپ</b><a href="#ritual">یادداشت زیبایی</a><a href="#home">درباره لیاشاپ</a><a href="mailto:hello@miashop.com">ارتباط با ما</a><span>شنبه تا پنجشنبه · ۹ تا ۱۸</span></div>
         </div>
         <div className="wrap footer-note"><ShieldCheck size={15} /><span>اطلاعات سفارش و پرداخت پس از راه‌اندازی سرویس‌های واقعی فعال خواهد شد.</span></div>
-        <div className="wrap copyright">© ۱۴۰۵ میاشاپ — تمامی حقوق محفوظ است. <span>ساخته‌شده برای روتین زیبایی تو ✦</span></div>
+        <div className="wrap copyright">© ۱۴۰۵ لیاشاپ — تمامی حقوق محفوظ است. <span>ساخته‌شده برای روتین زیبایی تو ✦</span></div>
       </footer>
 
       <nav className="mobile-bottom-nav" aria-label="دسترسی سریع موبایل">
