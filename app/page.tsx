@@ -191,7 +191,7 @@ export default function Home() {
 
       <header className="wrap header">
         <a className="brandlogo" href="#home" aria-label="لیاشاپ، صفحه اصلی">
-          <img src="/images/lia-shop-logo.png" alt="لوگوی لیا شاپ" />
+          <span className="brand-symbol" aria-hidden="true">L</span><span className="brand-name">لیا شاپ<small>BEAUTY · CARE · YOU</small></span>
         </a>
         <nav className={mobileMenu ? "nav-open" : ""} aria-label="ناوبری اصلی">
           <a href="#home" onClick={() => setMobileMenu(false)}>صفحه اصلی</a>
@@ -216,7 +216,7 @@ export default function Home() {
 
       <section className="hero wrap" id="home">
         <div className="herotext">
-          <span className="eyebrow"><Sparkles size={15} /> THE MIA BEAUTY EDIT · ۰۱</span>
+          <span className="eyebrow"><Sparkles size={15} /> LIA BEAUTY JOURNAL · ۰۱</span>
           <h1>زیبایی تو،<br /><em>قانون خودته.</em></h1>
           <p>از اولین قدم روتین مراقبت پوست تا رایحه‌ای که امضای تو می‌شود؛ چیزهایی را انتخاب کن که حسِ خودت را بهتر می‌کنند.</p>
           <div className="hero-actions">
@@ -229,18 +229,9 @@ export default function Home() {
             <div><b>رایحه</b><small>امضای شخصی</small></div>
           </div>
         </div>
-        <div className="heroart neon-stage" aria-label="بنر اصلی لیاشاپ با دسترسی سریع به محصولات"><img className="hero-background-image" src="https://yesojugjdxyjlznelmll.supabase.co/storage/v1/object/public/files/image/Neon%20Botanical%20Beauty%20Editorial.png" alt="تصویر اصلی کمپین زیبایی لیاشاپ" fetchPriority="high" />
-          <div className="hero-overlay-content" dir="rtl">
-            <span className="hero-overlay-kicker"><Sparkles size={15} /> THE MIA BEAUTY EDIT</span>
-            <h1>زیبایی، یک انتخاب نیست؛<br /><em>یک سبک زندگی است.</em></h1>
-            <p>از مراقبت پوست تا آرایش و رایحه‌های خاص؛ انتخاب‌هایی برای درخشش به سبک خودت.</p>
-            <div className="hero-overlay-actions">
-              <a className="hero-overlay-primary" href="#products">مشاهده محصولات <ArrowLeft size={17} /></a>
-              <a className="hero-overlay-secondary" href="#categories">کشف دسته‌بندی‌ها <ChevronLeft size={16} /></a>
-            </div>
-            <div className="hero-overlay-trust"><span><ShieldCheck size={15} /> انتخاب آگاهانه</span><i /><span><Heart size={15} /> زیبایی به سبک تو</span></div>
-          </div>
-          <span className="hero-overlay-frame" aria-hidden="true" />
+        <div className="heroart neon-stage" aria-label="تصویر کمپین زیبایی لیاشاپ">
+          <img className="hero-background-image" src="https://yesojugjdxyjlznelmll.supabase.co/storage/v1/object/public/files/image/Neon%20Botanical%20Beauty%20Editorial.png" alt="کمپین زیبایی لیاشاپ" fetchPriority="high" />
+          <span className="hero-image-caption"><b>01 / 03</b><span>لحظه‌ای برای خودت</span></span>
         </div>
       </section>
 
@@ -307,7 +298,7 @@ export default function Home() {
 
       <section className="newsletter wrap">
         <div className="newsletter-mark"><Gift size={25} /></div>
-        <div className="newsletter-copy"><small>THE MIA LETTER</small><h2>نامه‌هایی برای <em>حالِ بهتر</em></h2><p>تازه‌های زیبایی و ایده‌های روتین را در یک جای خلوت دنبال کن.</p></div>
+        <div className="newsletter-copy"><small>THE LIA LETTER</small><h2>نامه‌هایی برای <em>حالِ بهتر</em></h2><p>تازه‌های زیبایی و ایده‌های روتین را در یک جای خلوت دنبال کن.</p></div>
         <form onSubmit={(e) => { e.preventDefault(); setNewsletterMessage("خبرنامه هنوز به سرویس ارسال ایمیل متصل نیست؛ اطلاعات ارسال نشد."); }}>
           <input type="email" required placeholder="آدرس ایمیل تو" aria-label="آدرس ایمیل" /><button>به خبرنامه بپیوند <ArrowLeft size={16} /></button>
         </form>
@@ -317,7 +308,7 @@ export default function Home() {
 
       <footer>
         <div className="wrap foot">
-          <div className="foot-brand"><a className="brandlogo" href="#home"><b>l.</b><span>لیاشاپ<small>BEAUTY, YOUR WAY</small></span></a><p>زیبایی از انتخاب‌های کوچک شروع می‌شود. انتخاب‌های روزمره‌ات را کمی خاص‌تر کن.</p><a className="social-link" href="#home" aria-label="اینستاگرام لیاشاپ"><Instagram size={17} /> <span>همراه لیاشاپ باش</span></a></div>
+          <div className="foot-brand"><a className="brandlogo" href="#home"><span className="brand-symbol" aria-hidden="true">L</span><span className="brand-name">لیا شاپ<small>BEAUTY · CARE · YOU</small></span></a><p>زیبایی از انتخاب‌های کوچک شروع می‌شود. انتخاب‌های روزمره‌ات را کمی خاص‌تر کن.</p><a className="social-link" href="#home" aria-label="اینستاگرام لیاشاپ"><Instagram size={17} /> <span>همراه لیاشاپ باش</span></a></div>
           <div><b>خرید و کشف</b><a href="#products">همه محصولات</a><a href="#products" onClick={() => chooseCategory("پوست")}>مراقبت پوست</a><a href="#products" onClick={() => chooseCategory("آرایش")}>آرایش و زیبایی</a><a href="#products" onClick={() => chooseCategory("عطر")}>عطر و رایحه</a></div>
           <div><b>لیاشاپ</b><a href="#ritual">یادداشت زیبایی</a><a href="#home">درباره لیاشاپ</a><a href="mailto:hello@miashop.com">ارتباط با ما</a><span>شنبه تا پنجشنبه · ۹ تا ۱۸</span></div>
         </div>
