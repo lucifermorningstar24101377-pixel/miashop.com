@@ -1888,3 +1888,81 @@ footer .foot>div:first-child p,footer .foot>div:not(:first-child)>a,
 footer .foot>div:not(:first-child)>b,footer span,footer .copyright,
 footer .footer-note{color:#405448!important}
 footer .copyright,footer .footer-note{border-color:#c9a66b!important}
+
+
+/* LiaShop identity: white, blush pink, and graphite */
+:root{
+  --ink:#34343A!important;--muted:#77747A!important;--paper:#FFFFFF!important;
+  --line:#E9E3E6!important;--rose:#D98FA4!important;--green:#34343A!important;
+}
+html,body{background:#FFFFFF!important;color:#34343A!important}
+.topline{background:#34343A!important;color:#FFFFFF!important}
+.topline span{color:#F0B8C7!important}
+.header{background:#FFFFFF!important;border-color:#E9E3E6!important}
+.brandlogo{color:#34343A!important}
+.brandlogo>b{background:#34343A!important;color:#FFFFFF!important}
+.brandlogo small{color:#D98FA4!important}
+.header nav,.headtools,.headtools button{color:#34343A!important}
+.header nav a:hover,footer a:hover{color:#D98FA4!important}
+.hero{background:#FFFFFF!important}
+.heroart.neon-stage{
+  position:relative!important;isolation:isolate!important;overflow:hidden!important;
+  background:#F8E9EE!important;border:1px solid #E9B6C5!important;
+  box-shadow:0 14px 38px rgba(52,52,58,.10)!important;
+}
+.heroart.neon-stage .hero-background-image{
+  position:absolute!important;inset:0!important;width:100%!important;height:100%!important;
+  display:block!important;object-fit:cover!important;object-position:62% center!important;
+  z-index:-1!important;opacity:1!important;
+}
+.heroart.neon-stage:before{
+  content:""!important;position:absolute!important;inset:0!important;z-index:0!important;
+  background:linear-gradient(90deg,rgba(255,255,255,.96) 0%,rgba(255,255,255,.78) 38%,rgba(255,255,255,.04) 100%)!important;
+  pointer-events:none!important;
+}
+.heroart.neon-stage .hero-overlay-content{z-index:1!important;position:relative!important;
+  background:rgba(255,255,255,.90)!important;border:1px solid #E9B6C5!important;
+  box-shadow:0 10px 30px rgba(52,52,58,.10)!important;color:#34343A!important}
+.heroart.neon-stage .hero-overlay-content h1,
+.heroart.neon-stage .hero-overlay-content h1 em,
+.heroart.neon-stage .hero-overlay-content p,
+.heroart.neon-stage .hero-overlay-trust{color:#34343A!important}
+.heroart.neon-stage .hero-overlay-kicker,.eyebrow,
+.hero h1 em,.sectionhead h2 em,.newsletter h2 em{color:#C87590!important}
+.heroart.neon-stage .hero-overlay-actions a,.btn,
+.filters button.active,.products .price button{
+  background:#34343A!important;color:#FFFFFF!important;border:1px solid #D98FA4!important;
+  box-shadow:none!important}
+.heroart.neon-stage .hero-overlay-secondary{background:#FFFFFF!important;color:#34343A!important}
+.category-card,.editorial.wrap,.newsletter{
+  background-color:#FFF8FA!important;border-color:#E9B6C5!important;
+  box-shadow:0 10px 28px rgba(52,52,58,.07)!important}
+.category-card .category-copy,.editorial.wrap .editorial-copy,
+.newsletter h2,.newsletter p,.newsletter small,.newsletter .eyebrow,
+.newsletter .newsletter-copy,.newsletter .newsletter-message{color:#34343A!important}
+.category-link,.editorial.wrap .editorial-copy h2 em{color:#C87590!important}
+.editorial.wrap .editorial-copy{background:rgba(255,255,255,.95)!important;border-color:#E9B6C5!important}
+.newsletter-mark{background:#F8E9EE!important;color:#C87590!important}
+.newsletter form{background:#FFFFFF!important;border-color:#E9B6C5!important}
+.newsletter form input{color:#34343A!important}
+.newsletter form button{background:#34343A!important;color:#FFFFFF!important;border-color:#D98FA4!important}
+footer,footer .foot,footer .footer-note,footer .copyright{
+  background:#FFFFFF!important;background-image:none!important;color:#34343A!important;
+  border-color:#E9B6C5!important}
+footer .foot>div,footer .brandlogo,footer .brandlogo>span,footer .brandlogo small,
+footer .foot>div:first-child p,footer .foot>div:not(:first-child)>a,
+footer .foot>div:not(:first-child)>b,footer span,footer .copyright,
+footer .footer-note,footer .social-link{background:transparent!important;color:#34343A!important}
+footer .brandlogo>b{background:#34343A!important;color:#FFFFFF!important}
+.mobile-bottom-nav{background:rgba(255,255,255,.98)!important;border-color:#E9B6C5!important;
+  box-shadow:0 -5px 18px rgba(52,52,58,.08)!important}
+.mobile-bottom-nav a,.mobile-bottom-nav button{color:#34343A!important}
+.drawer,.mobile-menu-dialog{background:#FFFFFF!important;color:#34343A!important}
+.shade,.mobile-menu-backdrop{background:rgba(52,52,58,.35)!important}
+.toast-message{background:#34343A!important;color:#FFFFFF!important}
+@media(max-width:800px){
+  .heroart.neon-stage .hero-background-image{object-position:58% top!important}
+  .heroart.neon-stage:before{
+    background:linear-gradient(180deg,rgba(255,255,255,.02) 0%,rgba(255,255,255,.28) 42%,rgba(255,255,255,.96) 100%)!important}
+  .heroart.neon-stage .hero-overlay-content{background:rgba(255,255,255,.93)!important}
+}
