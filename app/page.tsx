@@ -308,9 +308,9 @@ export default function Home() {
 
       <footer>
         <div className="wrap foot">
-          <div className="foot-brand"><a className="brandlogo" href="#home"><span className="brand-symbol" aria-hidden="true">L</span><span className="brand-name">لیا شاپ<small>BEAUTY · CARE · YOU</small></span></a><p>زیبایی از انتخاب‌های کوچک شروع می‌شود. انتخاب‌های روزمره‌ات را کمی خاص‌تر کن.</p><a className="social-link" href="#home" aria-label="اینستاگرام لیاشاپ"><Instagram size={17} /> <span>همراه لیاشاپ باش</span></a></div>
+          <div className="foot-brand"><a className="brandlogo" href="#home" aria-label="لیا شاپ"><img src="https://yesojugjdxyjlznelmll.supabase.co/storage/v1/object/public/files/image/liashoplogo.png" alt="لوگوی رسمی لیا شاپ" /></a><p>زیبایی از انتخاب‌های کوچک شروع می‌شود. انتخاب‌های روزمره‌ات را کمی خاص‌تر کن.</p><a className="social-link" href="#home" aria-label="اینستاگرام لیاشاپ"><Instagram size={17} /> <span>همراه لیاشاپ باش</span></a></div>
           <div><b>خرید و کشف</b><a href="#products">همه محصولات</a><a href="#products" onClick={() => chooseCategory("پوست")}>مراقبت پوست</a><a href="#products" onClick={() => chooseCategory("آرایش")}>آرایش و زیبایی</a><a href="#products" onClick={() => chooseCategory("عطر")}>عطر و رایحه</a></div>
-          <div><b>لیاشاپ</b><a href="#ritual">یادداشت زیبایی</a><a href="#home">درباره لیاشاپ</a><a href="mailto:hello@miashop.com">ارتباط با ما</a><span>شنبه تا پنجشنبه · ۹ تا ۱۸</span></div>
+          <div><b>لیاشاپ</b><a href="#ritual">یادداشت زیبایی</a><a href="#home">درباره لیاشاپ</a><a href="mailto:hello@liashop.com">ارتباط با ما</a><span>شنبه تا پنجشنبه · ۹ تا ۱۸</span></div>
         </div>
         <div className="wrap footer-note"><ShieldCheck size={15} /><span>اطلاعات سفارش و پرداخت پس از راه‌اندازی سرویس‌های واقعی فعال خواهد شد.</span></div>
         <div className="wrap copyright">© ۱۴۰۵ لیاشاپ — تمامی حقوق محفوظ است. <span>ساخته‌شده برای روتین زیبایی تو ✦</span></div>
