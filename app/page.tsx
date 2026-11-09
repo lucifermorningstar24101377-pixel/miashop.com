@@ -191,7 +191,7 @@ export default function Home() {
 
       <header className="wrap header">
         <a className="brandlogo" href="#home" aria-label="لیاشاپ، صفحه اصلی">
-          <b>m.</b><span>لیاشاپ<small>BEAUTY, YOUR WAY</small></span>
+          <b>l.</b><span>لیاشاپ<small>BEAUTY, YOUR WAY</small></span>
         </a>
         <nav className={mobileMenu ? "nav-open" : ""} aria-label="ناوبری اصلی">
           <a href="#home" onClick={() => setMobileMenu(false)}>صفحه اصلی</a>
@@ -317,7 +317,7 @@ export default function Home() {
 
       <footer>
         <div className="wrap foot">
-          <div className="foot-brand"><a className="brandlogo" href="#home"><b>m.</b><span>لیاشاپ<small>BEAUTY, YOUR WAY</small></span></a><p>زیبایی از انتخاب‌های کوچک شروع می‌شود. انتخاب‌های روزمره‌ات را کمی خاص‌تر کن.</p><a className="social-link" href="#home" aria-label="اینستاگرام لیاشاپ"><Instagram size={17} /> <span>همراه لیاشاپ باش</span></a></div>
+          <div className="foot-brand"><a className="brandlogo" href="#home"><b>l.</b><span>لیاشاپ<small>BEAUTY, YOUR WAY</small></span></a><p>زیبایی از انتخاب‌های کوچک شروع می‌شود. انتخاب‌های روزمره‌ات را کمی خاص‌تر کن.</p><a className="social-link" href="#home" aria-label="اینستاگرام لیاشاپ"><Instagram size={17} /> <span>همراه لیاشاپ باش</span></a></div>
           <div><b>خرید و کشف</b><a href="#products">همه محصولات</a><a href="#products" onClick={() => chooseCategory("پوست")}>مراقبت پوست</a><a href="#products" onClick={() => chooseCategory("آرایش")}>آرایش و زیبایی</a><a href="#products" onClick={() => chooseCategory("عطر")}>عطر و رایحه</a></div>
           <div><b>لیاشاپ</b><a href="#ritual">یادداشت زیبایی</a><a href="#home">درباره لیاشاپ</a><a href="mailto:hello@miashop.com">ارتباط با ما</a><span>شنبه تا پنجشنبه · ۹ تا ۱۸</span></div>
         </div>
