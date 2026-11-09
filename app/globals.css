@@ -2008,3 +2008,173 @@ footer .brandlogo img{width:clamp(124px,13vw,164px);max-height:82px}
 @media(prefers-reduced-motion:reduce){
   *,*::before,*::after{scroll-behavior:auto!important;transition-duration:.01ms!important;animation-duration:.01ms!important}
 }
+
+
+/* ===== LIA SHOP / editorial retail redesign ===== */
+:root{
+ --ink:#34343A!important;--muted:#77727A!important;--paper:#fff!important;
+ --line:#E9E2E5!important;--rose:#D47F9A!important;--green:#34343A!important;
+ --lia-blush:#F9EDF1;--lia-pink:#D47F9A;--lia-deep:#B85D7C;--lia-graphite:#34343A;
+}
+html{scroll-padding-top:112px}
+body{background:#fff!important;color:#34343A!important;font-family:var(--font-vazirmatn),Tahoma,sans-serif!important}
+.wrap{width:min(1320px,calc(100% - 80px))!important}
+.topline{height:30px!important;background:#F9EDF1!important;color:#5E4B52!important;border:0!important;font-size:10px!important;letter-spacing:.02em}
+.topline span,.topline .topline-en{color:#7B5966!important}
+.header{height:92px!important;min-height:92px!important;border-bottom:1px solid #EEE7EA!important;background:#fff!important;gap:30px!important}
+.brandlogo{display:flex!important;align-items:center!important;gap:11px!important;text-decoration:none!important;color:#34343A!important}
+.brand-symbol{width:44px;height:44px;display:grid;place-items:center;border:1px solid #D47F9A;border-radius:50%;font:italic 29px Georgia,serif;color:#B85D7C;background:#FFF9FB}
+.brand-name{font-size:19px;font-weight:800;letter-spacing:-.04em;line-height:1.2}
+.brand-name small{display:block;margin-top:5px;font:8px Georgia,serif;letter-spacing:1.8px;color:#A16D7E}
+.header nav{gap:clamp(16px,2.1vw,32px)!important;color:#55515A!important;font-size:12px!important}
+.header nav a{position:relative;padding-block:10px}
+.header nav a:after{content:"";position:absolute;bottom:2px;right:0;width:0;height:1px;background:#D47F9A;transition:width .2s}
+.header nav a:hover:after{width:100%}
+.search{width:210px!important;background:#FAF7F8!important;border:1px solid #EEE5E9!important;border-radius:3px!important;padding:10px 12px!important}
+.search input{font-size:11px!important}
+.bag{color:#34343A!important}
+.hero.wrap{
+ direction:rtl!important;display:grid!important;
+ grid-template-columns:minmax(0,.88fr) minmax(0,1.12fr)!important;
+ gap:clamp(28px,5vw,76px)!important;align-items:center!important;
+ padding:54px 0 64px!important;min-height:590px!important;
+}
+.herotext{padding:20px 0!important;max-width:540px!important;justify-self:center!important}
+.herotext .eyebrow{font-size:10px!important;letter-spacing:1.4px!important;color:#B85D7C!important}
+.hero h1{font-size:clamp(42px,4.1vw,64px)!important;line-height:1.5!important;letter-spacing:-.055em!important;color:#34343A!important;margin:22px 0 15px!important}
+.hero h1 em{font-style:normal!important;color:#C87590!important}
+.herotext>p{max-width:440px!important;color:#77727A!important;font-size:13px!important;line-height:2.35!important}
+.hero-actions{display:flex!important;align-items:center!important;gap:22px!important;flex-wrap:wrap!important}
+.btn{background:#34343A!important;color:white!important;border:1px solid #34343A!important;border-radius:2px!important;padding:14px 22px!important;font-size:11px!important}
+.text-link{color:#7D5967!important;border-bottom:1px solid #D9A2B3!important;padding-bottom:5px!important}
+.stats{border-top:1px solid #EEE5E9!important;padding-top:22px!important;gap:22px!important;margin-top:38px!important}
+.stats b{font-size:13px!important;color:#34343A!important}
+.stats small{font-size:10px!important;color:#8A858B!important}
+.stats>i{background:#E8DDE1!important}
+.heroart.neon-stage{
+ min-height:490px!important;height:clamp(440px,42vw,570px)!important;width:100%!important;
+ max-width:none!important;margin:0!important;border:0!important;border-radius:0 0 0 90px!important;
+ background:#F8E9EE!important;box-shadow:none!important;overflow:hidden!important;position:relative!important;
+}
+.heroart.neon-stage .hero-background-image{
+ position:absolute!important;inset:0!important;width:100%!important;height:100%!important;
+ display:block!important;object-fit:cover!important;object-position:60% center!important;z-index:0!important;
+}
+.heroart.neon-stage:before{
+ content:""!important;position:absolute!important;inset:0!important;z-index:1!important;
+ background:linear-gradient(90deg,rgba(255,255,255,.03),rgba(255,255,255,0) 50%,rgba(255,255,255,.10))!important;
+ pointer-events:none!important;
+}
+.hero-image-caption{position:absolute;z-index:2;bottom:22px;left:24px;right:24px;display:flex;justify-content:space-between;align-items:center;color:#fff;text-shadow:0 1px 8px #34343A70;font-size:10px;letter-spacing:.08em}
+.hero-image-caption b{font:11px Georgia,serif;border:1px solid #ffffff9c;padding:7px 10px}
+.benefits{border-block:1px solid #EEE5E9!important;padding:24px 0!important;gap:14px!important}
+.benefits>div{color:#C87590!important;justify-content:center!important}
+.benefits b{color:#34343A!important;font-size:11px!important}
+.benefits small{color:#858087!important;font-size:10px!important}
+.categories-section{padding-top:86px!important;padding-bottom:32px!important}
+.sectionhead{margin-bottom:28px!important;align-items:end!important}
+.sectionhead h2,.newsletter h2{color:#34343A!important;font-size:clamp(27px,2.8vw,38px)!important;letter-spacing:-.045em!important}
+.sectionhead h2 em,.newsletter h2 em{color:#C87590!important}
+.sectionhead p{color:#77727A!important}
+.category-grid{grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:18px!important;direction:rtl!important}
+.category-card{
+ min-height:270px!important;padding:0!important;overflow:hidden!important;border:1px solid #E9D9DF!important;
+ border-radius:2px!important;box-shadow:none!important;position:relative!important;
+ background-color:#F7E9EE!important;
+}
+.category-card.cat-skin{background-image:linear-gradient(0deg,rgba(52,52,58,.55),rgba(52,52,58,.02) 75%),url("https://yesojugjdxyjlznelmll.supabase.co/storage/v1/object/public/files/image/skincare.webp.jpg")!important}
+.category-card.cat-makeup{background-image:linear-gradient(0deg,rgba(52,52,58,.55),rgba(52,52,58,.02) 75%),url("https://yesojugjdxyjlznelmll.supabase.co/storage/v1/object/public/files/image/makeup.webp.jpg")!important}
+.category-card.cat-scent{background-image:linear-gradient(0deg,rgba(52,52,58,.55),rgba(52,52,58,.02) 75%),url("https://yesojugjdxyjlznelmll.supabase.co/storage/v1/object/public/files/image/fragrance.webp.jpg")!important}
+.category-card:before{display:none!important}
+.category-card .category-art{display:none!important}
+.category-card .category-copy{
+ position:absolute!important;inset:auto 24px 24px!important;width:auto!important;max-width:none!important;
+ transform:none!important;display:flex!important;align-items:flex-start!important;gap:8px!important;
+ color:#fff!important;text-align:right!important;
+}
+.category-card .category-copy>small{color:#FBEAF0!important;font-size:10px!important}
+.category-card .category-copy strong{color:#fff!important;font-size:23px!important}
+.category-card .category-link{background:transparent!important;color:#fff!important;border:0!important;padding:0!important}
+.category-card:hover{transform:translateY(-4px)!important;box-shadow:0 12px 28px #34343A18!important}
+.products{padding-block:82px 88px!important}
+.filters{border-bottom:1px solid #EEE5E9!important;padding-bottom:16px!important}
+.filters button{border-radius:2px!important;border-color:#E8DDE1!important;color:#5F5960!important}
+.filters button.active{background:#34343A!important;border-color:#34343A!important}
+.sort-label{color:#77727A!important}
+.grid{gap:28px 20px!important}
+.card{border:1px solid #F0EAED!important;background:#fff!important;transition:box-shadow .2s,border-color .2s!important}
+.card:hover{border-color:#E5C3CF!important;box-shadow:0 10px 24px #34343A0D!important}
+.visual{height:270px!important;background:#FAF5F7!important}
+.visual:before{background:#fff8!important}
+.details{padding:15px 14px 18px!important}
+.details>small{color:#A16D7E!important}
+.details h3{color:#34343A!important;font-size:12px!important;line-height:1.9!important}
+.price b{color:#34343A!important}
+.price button{border-radius:2px!important;border-color:#D9B0BE!important;color:#B85D7C!important}
+.editorial.wrap{
+ direction:rtl!important;grid-template-columns:minmax(0,1fr) minmax(0,1fr)!important;
+ background:#FAF3F6!important;border:1px solid #F0E2E8!important;border-radius:0!important;
+ box-shadow:none!important;min-height:390px!important;padding:36px!important;
+}
+.editorial.wrap .editorial-art{display:flex!important;grid-column:2!important;min-height:300px!important}
+.editorial.wrap .editorial-copy{grid-column:1!important;background:transparent!important;border:0!important;box-shadow:none!important;padding:20px!important}
+.editorial.wrap .editorial-copy h2{color:#34343A!important}
+.editorial.wrap .editorial-copy h2 em{color:#C87590!important}
+.newsletter{background:#FAF3F6!important;border:1px solid #F0E2E8!important;border-radius:0!important;box-shadow:none!important}
+.newsletter form{border:1px solid #E8DDE1!important;border-radius:2px!important}
+.newsletter form button{background:#34343A!important;border-radius:0!important}
+footer{background:#34343A!important;color:#fff!important;border:0!important}
+footer .foot>div:first-child p,footer .foot>div:not(:first-child)>a,footer .foot>div:not(:first-child)>b,footer span,footer .copyright,footer .footer-note{color:#E6DDE1!important}
+footer .brand-name{color:#fff!important}
+footer .brand-name small{color:#E7AFC0!important}
+footer .brand-symbol{background:#fff!important;color:#B85D7C!important;border-color:#fff!important}
+footer .copyright{border-color:#ffffff25!important}
+.mobile-bottom-nav{background:#fff!important;border-color:#EEE5E9!important}
+.mobile-bottom-nav a,.mobile-bottom-nav button{color:#34343A!important}
+@media(max-width:1050px){
+ .wrap{width:min(100% - 48px,1320px)!important}
+ .hero.wrap{gap:28px!important;min-height:520px!important}
+ .heroart.neon-stage{height:440px!important;min-height:440px!important}
+ .header nav{gap:13px!important}
+}
+@media(max-width:800px){
+ .wrap{width:calc(100% - 32px)!important}
+ .topline{height:28px!important}
+ .header{height:72px!important;min-height:72px!important}
+ .brand-symbol{width:37px;height:37px;font-size:24px}
+ .brand-name{font-size:16px}
+ .brand-name small{font-size:7px;letter-spacing:1.2px}
+ .hero.wrap{grid-template-columns:1fr!important;gap:24px!important;padding:28px 0 40px!important;min-height:0!important}
+ .herotext{grid-row:2!important;padding:0 4px!important;width:100%!important;max-width:620px!important}
+ .heroart.neon-stage{grid-row:1!important;height:clamp(280px,68vw,430px)!important;min-height:280px!important;border-radius:0 0 0 54px!important}
+ .heroart.neon-stage .hero-background-image{object-position:58% center!important}
+ .hero h1{font-size:clamp(36px,8vw,52px)!important;margin:12px 0!important;line-height:1.45!important}
+ .herotext>p{font-size:12px!important;line-height:2.2!important}
+ .stats{margin-top:24px!important;gap:14px!important;justify-content:space-between!important}
+ .benefits{grid-template-columns:1fr!important;padding:18px 4px!important;gap:16px!important}
+ .benefits>div{justify-content:flex-start!important}
+ .categories-section{padding-top:54px!important}
+ .category-grid{grid-template-columns:1fr!important;gap:12px!important}
+ .category-card{min-height:230px!important}
+ .products{padding-block:54px 62px!important}
+ .grid{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:18px 12px!important}
+ .visual{height:clamp(155px,46vw,230px)!important}
+ .editorial.wrap{grid-template-columns:1fr!important;padding:18px!important;gap:10px!important}
+ .editorial.wrap .editorial-art{grid-column:1!important;min-height:220px!important}
+ .editorial.wrap .editorial-copy{grid-column:1!important;padding:12px 4px!important}
+ .newsletter{padding:26px 20px!important;gap:16px!important}
+ .foot{grid-template-columns:1fr 1fr!important;gap:24px 16px!important}
+}
+@media(max-width:430px){
+ .wrap{width:calc(100% - 24px)!important}
+ .heroart.neon-stage{height:280px!important;min-height:280px!important}
+ .stats b{font-size:11px!important}
+ .stats small{font-size:9px!important}
+ .sectionhead h2{font-size:24px!important}
+ .category-card{min-height:205px!important}
+ .visual{height:165px!important}
+ .details{padding:12px 9px 14px!important}
+ .details h3{font-size:11px!important}
+ .price b{font-size:10px!important}
+ .price button{width:31px!important;height:31px!important}
+}
