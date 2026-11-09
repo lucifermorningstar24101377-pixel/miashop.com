@@ -191,7 +191,7 @@ export default function Home() {
 
       <header className="wrap header">
         <a className="brandlogo" href="#home" aria-label="لیاشاپ، صفحه اصلی">
-          <b>l.</b><span>لیاشاپ<small>BEAUTY, YOUR WAY</small></span>
+          <img src="/images/lia-shop-logo.png" alt="لوگوی لیا شاپ" />
         </a>
         <nav className={mobileMenu ? "nav-open" : ""} aria-label="ناوبری اصلی">
           <a href="#home" onClick={() => setMobileMenu(false)}>صفحه اصلی</a>
